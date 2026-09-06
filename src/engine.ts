@@ -47,8 +47,8 @@
  * 如果你只想读懂一个函数，从 Simulator.tick() 开始；它就是每 100ms 发生一次的"心跳"。
  */
 
-export const TICK_MS = 100;
-export const TPS = 1000 / TICK_MS; // 每秒逻辑帧数 = 10
+export const TICK_MS = 100; // 每个 tick 100ms
+export const TPS = 1000 / TICK_MS; // 每秒逻辑帧数 = 10 ，每秒 10 个 tick
 
 /* ==========================================================================
  * TUNING —— 引擎机制常量
