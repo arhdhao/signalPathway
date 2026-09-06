@@ -6,8 +6,11 @@
 <title>信号通路模拟器 · DEV 开发模式</title>
 <!--
   ⚠️ 这是「开发预览」页，不要用它做最终发布。
-  · 必须通过本地服务器访问（见 tools/dev-server.mjs），file:// 下 ES module 会被浏览器拦截
-  · 直接加载 src/ 下的源码 —— 改 src 任意文件后刷新浏览器即可生效，无需打包
+  · 源码已迁 TypeScript（src/*.ts）。浏览器不能直接跑 .ts，所以这里加载
+    tools/build.js 一样的编译产物（build/）。工作流：
+      node tools/dev-server.mjs          # 起本地服务器
+      ./node_modules/.bin/tsc -w         # 另开终端跑 watch，.ts 一保存即重编到 build/
+    刷新浏览器即生效。
   · 想发布给别人 / 双击运行 → 用 tools/build.js 生成的 dist/信号通路模拟器.html
 -->
 <link rel="stylesheet" href="./styles.css">
@@ -20,7 +23,7 @@
 </style>
 </head>
 <body>
-<div class="dev-badge">DEV · 改 src 保存后刷新即生效</div>
+<div class="dev-badge">DEV · tsc watch 编译后刷新即生效</div>
 <div id="app">
 
   <header class="topbar">
@@ -132,6 +135,6 @@
   </div>
 
 </div>
-<script type="module" src="./main.js"></script>
+<script type="module" src="../build/main.js"></script>
 </body>
 </html>

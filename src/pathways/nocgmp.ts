@@ -83,7 +83,34 @@
  *    纯视觉。这一层的任何改动都不可能影响模拟结果，可以放心大胆地调。
  * ══════════════════════════════════════════════════════════════════════════*/
 
-const VIEW = {
+import type {
+  LevelConfig,
+  MoleculeTemplateConfig,
+  ReactionConfig,
+  MetricConfig,
+  DrugConfig,
+  OutcomeConfig,
+  ChartSeries,
+} from '../engine.js';
+
+/* ---------------------------------------------------------------------------
+ * 层类型别名 —— 六层各存一份「只属于自己的字段子集」。
+ * 用引擎的类型约束每层字面量，既保留字面量（role/effect/drive 不会被拓宽成 string），
+ * 又让「组装车间」能按字符串索引而不报 TS7053，还让每层的键/取值都受编译期校验。
+ * --------------------------------------------------------------------------- */
+type NodeLayout = Pick<MoleculeTemplateConfig, 'x' | 'y'>;                    // ① VIEW 坐标
+type NodeBio = Pick<MoleculeTemplateConfig, 'name' | 'cn' | 'role' | 'kind' | 'desc'>; // ② BIOLOGY 档案
+type NodeKin = Partial<Omit<MoleculeTemplateConfig, 'id' | 'name'>>;          // ④ KINETICS 分子动力学
+type RxBio = Pick<ReactionConfig, 'from' | 'to' | 'effect'>;                  // ② BIOLOGY 反应拓扑
+type RxKin = Partial<Omit<ReactionConfig, 'from' | 'to' | 'effect'>>;         // ④ KINETICS 反应动力学
+type RxView = Partial<Pick<ReactionConfig, 'label' | 'negate' | 'waypoints'>>; // ① VIEW 连线样式
+
+const VIEW: {
+  canvas: { w: number; h: number };
+  layout: Record<string, NodeLayout>;
+  colors: Record<string, string>;
+  edges: Record<string, RxView>;
+} = {
   /** 设计稿逻辑坐标。渲染层会按容器实际尺寸自动缩放，所以这里填设计稿尺寸即可。 */
   canvas: { w: 1000, h: 400 },
 
@@ -154,7 +181,10 @@ const VIEW = {
  *    改的是 KINETICS 里的 baseDecay，而「NO 激活 sGC」这个生物学事实纹丝不动。
  * ══════════════════════════════════════════════════════════════════════════*/
 
-const BIOLOGY = {
+const BIOLOGY: {
+  nodes: Record<string, NodeBio>;
+  reactions: Record<string, RxBio>;
+} = {
   /**
    * 分子档案。字段：
    *   name / cn  显示名 / 中文全名
@@ -233,7 +263,7 @@ const BIOLOGY = {
  *    想让 PDE5 不再误伤 cGMP，改标签比改反应边更符合这套机制的本意。
  * ══════════════════════════════════════════════════════════════════════════*/
 
-const TAGS = {
+const TAGS: Record<string, string[]> = {
   NO:         ['NO_Signal'],
   sGC:        ['NO_Signal', 'receptor_sGC'],
   cGMP:       ['cGMP_like', 'PDE_Target'],
@@ -256,7 +286,10 @@ const TAGS = {
  *    所有以它为起点的反应。
  * ══════════════════════════════════════════════════════════════════════════*/
 
-const KINETICS = {
+const KINETICS: {
+  nodes: Record<string, NodeKin>;
+  reactions: Record<string, RxKin>;
+} = {
   /** ── 分子自身的动力学参数 ──────────────────────────────────────────────
    *   drive       推动力来源：count 数量驱动 | activation 激活度驱动 | pulse 脉冲
    *   K           半饱和常数：多少个分子能把推动力推到 50%
@@ -370,7 +403,7 @@ const RULES = {
  *     { kind: 'metric', id: 'Ca' }
  *     { kind: 'pool',   id: 'GTP' }
  */
-const OUTCOME = {
+const OUTCOME: OutcomeConfig = {
   /** ── 结局 ①：稳态恢复（win）──────────────────────────────────────────
    *   metric   判哪个宏观指标（id 对应 METRICS）
    *   below    降到该值以下算达标
@@ -438,7 +471,7 @@ const OUTCOME = {
  * 以前这三种算法是写死在 engine.js 里的 if (m.id === 'Ca') 分支，
  * 现在改成关卡声明 kind、引擎执行通式 —— 做第二关不用再回引擎加分支。
  */
-const METRICS = [
+const METRICS: MetricConfig[] = [
   {
     id: 'Ca', name: '钙离子浓度', unit: '', kind: 'driven',
     driver: 'MLCP', base: 100, drain: 3.2, restore: 0.045, min: 0, max: 200,
@@ -467,7 +500,7 @@ const METRICS = [
  *   想多画一条曲线（比如把 GTP 也画上去），往 series 里加一行即可，
  *   采样和绘制会同时生效，不用改 engine.js 或 render.js。
  */
-const CHART = {
+const CHART: { max: number; series: ChartSeries[] } = {
   max: 160,
   series: [
     { key: 'Ca', label: 'Ca²⁺', color: '#ff7a6b', kind: 'metric', id: 'Ca' },
@@ -490,7 +523,7 @@ const CHART = {
  *              boostPulse 放大外部脉冲（ticks / factor / periodScale）
  *              restore    补充资源池（pool / amount）
  */
-const DRUGS = [
+const DRUGS: DrugConfig[] = [
   {
     id: 'sildenafil', name: '西地那非', en: 'Sildenafil', charges: 2, hotkey: '1',
     color: VIEW.colors.Sildenafil, icon: 'pill',
@@ -528,7 +561,7 @@ const DRUGS = [
  * 数组里没写的字段玩家改不了，这是为了保住「负反馈涌现」所必需的网络结构。
  * 滑块的名称 / 取值范围 / 说明文字定义在 ui.js 的 PARAM_META。
  */
-const EDITABLE = {
+const EDITABLE: Record<string, string[]> = {
   NO:         ['baseDecay'],
   sGC:        ['band', 'decay'],
   cGMP:       ['baseDecay', 'K'],
@@ -615,10 +648,10 @@ const NODE_ORDER = ['NO', 'sGC', 'cGMP', 'PKG', 'MLCP', 'PDE5', 'Sildenafil'];
 const REACTION_ORDER = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6'];
 
 /** 去掉值为 undefined 的键，好让引擎里的类默认值正常生效 */
-const clean = (obj) =>
-  Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined));
+const clean = <T extends object>(obj: T): T =>
+  Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined)) as T;
 
-const NODES = NODE_ORDER.map((id) => clean({
+const NODES: MoleculeTemplateConfig[] = NODE_ORDER.map((id) => clean({
   id,
   ...BIOLOGY.nodes[id],   // name / cn / role / kind / desc   ← ②
   ...VIEW.layout[id],     // x / y                            ← ①
@@ -628,7 +661,7 @@ const NODES = NODE_ORDER.map((id) => clean({
   editable: EDITABLE[id], // 玩家可调白名单                    ← ⑤
 }));
 
-const REACTIONS = REACTION_ORDER.map((id) => clean({
+const REACTIONS: ReactionConfig[] = REACTION_ORDER.map((id) => clean({
   id,
   ...BIOLOGY.reactions[id],  // from / to / effect                          ← ②
   ...KINETICS.reactions[id], // band / hill / power / amplify / slots / …    ← ④
@@ -644,7 +677,7 @@ const REACTIONS = REACTION_ORDER.map((id) => clean({
  *   真正的唯一数据源是 OUTCOME —— 改胜负条件请去改它，别改这三个。
  *   等哪天把 ui.js / render.js 也改成直接读 outcome，这三个就可以删掉了。
  * ───────────────────────────────────────────────────────────────────────────*/
-export const LEVEL_NO_CGMP = {
+export const LEVEL_NO_CGMP: LevelConfig = {
   id: 'no-cgmp',
   name: '第一关 · 血管舒张',
   subtitle: 'NO – sGC – cGMP – PKG – PDE5',

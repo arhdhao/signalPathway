@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-page-node-id="tpM6hxS8NeMgT5lV14SLmH">
-<head data-page-node-id="nIEIZpSTfcbrC6q7rvDBRD">
-<meta charset="UTF-8" data-page-node-id="RJuTHPeDkGp3yNIuDVZS4f">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="bzgdfUj2ulkn7DAHeGKSFX">
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>信号通路模拟器 · Signaling Pathway Simulator</title>
 <style>:root{
   --bg:#0a0e13; --panel:#111821; --panel2:#151e29; --border:#212d3d;
@@ -199,115 +199,115 @@ body{
 }
 </style>
 </head>
-<body data-page-node-id="UCu0oCqRC8A5BDAdzkQZgf">
-<div id="app" data-page-node-id="ZWR0PLBHs2z41PDIHcCTOH">
+<body>
+<div id="app">
 
-  <header class="topbar" data-page-node-id="KgTFo5wvqb5lxPzyuJCdVJ">
-    <div class="brand" data-page-node-id="VyVqg6GSsC2bOR5b2d0h5P">
-      <svg class="logo" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" data-page-node-id="xfUeGDyvvnbhiPOai34U1H">
-        <circle cx="6" cy="16" r="3.4" fill="#4dd0c7" data-page-node-id="0ou5X69P8eSe8AP2oIfW9m"/>
-        <circle cx="16" cy="7" r="3.4" fill="#4dd0c7" data-page-node-id="niW4uR0vWpgpCpnFEEk67W"/>
-        <circle cx="16" cy="25" r="3.4" fill="#ff7a6b" data-page-node-id="4ARCTH51iV9CogWV8CBu09"/>
-        <circle cx="26" cy="16" r="3.4" fill="#b39dff" data-page-node-id="wqgZBoBJN5WbRVm59vx72H"/>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+        <circle cx="6" cy="16" r="3.4" fill="#4dd0c7"/>
+        <circle cx="16" cy="7" r="3.4" fill="#4dd0c7"/>
+        <circle cx="16" cy="25" r="3.4" fill="#ff7a6b"/>
+        <circle cx="26" cy="16" r="3.4" fill="#b39dff"/>
         <path d="M6 16 L16 7 M6 16 L16 25 M16 7 L26 16 M16 25 L26 16"
-              stroke="#3a5560" stroke-width="1.6" fill="none" data-page-node-id="zqcjZ4OQcHxvo7WLMJUJES"/>
+              stroke="#3a5560" stroke-width="1.6" fill="none"/>
       </svg>
-      <div class="brand-text" data-page-node-id="gcft4zMWGX1utWlM4GDZ7O">
-        <h1 data-page-node-id="gVK2d8RNYD4wtjnu4AzXJv">信号通路模拟器</h1>
-        <p id="levelName" data-page-node-id="KOKe5EDPZ9yEc1NlVUCQhd">—</p>
+      <div class="brand-text">
+        <h1>信号通路模拟器</h1>
+        <p id="levelName">—</p>
       </div>
     </div>
 
-    <div class="clock" data-page-node-id="hBcZZgjYynvtlEbQIsF1RO">
-      <span class="clock-label" data-page-node-id="5gCrahXlt23gHlbG556pyS">推演时间</span>
-      <span class="clock-value" id="clock" data-page-node-id="62WMoaPOPWwO7Nm87YjI4i">00.0s</span>
-      <span class="clock-total" id="clockTotal" data-page-node-id="ODHJtYkZ3w32IQ62U2utoj">/ 90s</span>
+    <div class="clock">
+      <span class="clock-label">推演时间</span>
+      <span class="clock-value" id="clock">00.0s</span>
+      <span class="clock-total" id="clockTotal">/ 90s</span>
     </div>
 
-    <div class="controls" data-page-node-id="9QoeYaHUkwVRuFEkT3erms">
-      <button class="btn" id="btnPause" title="空格键" data-page-node-id="9uuU1kPOv7n5oA2Lk71hEo">暂停</button>
-      <button class="btn" id="btnSpeed" title="切换推演速度" data-page-node-id="RyYuX1VF9VlySaqPlIMuSC">1×</button>
-      <button class="btn ghost" id="btnReset" title="R 键" data-page-node-id="Cj6uf3L3Clw43mVMeQ0eBO">重置</button>
-      <button class="btn ghost" id="btnHelp" data-page-node-id="1yecLpWKbygPmGu6Fs0VBQ">说明</button>
+    <div class="controls">
+      <button class="btn" id="btnPause" title="空格键">暂停</button>
+      <button class="btn" id="btnSpeed" title="切换推演速度">1×</button>
+      <button class="btn ghost" id="btnReset" title="R 键">重置</button>
+      <button class="btn ghost" id="btnHelp">说明</button>
     </div>
   </header>
 
-  <main class="stage" data-page-node-id="CqzvFrOyCk0fVTTsktiUD6">
-    <section class="board" data-page-node-id="bAwaH27A57c3sMYd6EwwfU">
-      <div class="canvas-wrap" data-page-node-id="ixhsVTo5jEF7ZaAYk584az">
-        <canvas id="pathway" data-page-node-id="IOJh547f8yyfbJz6Nhzbb3"></canvas>
-        <div class="tooltip" id="tooltip" data-page-node-id="a68Njq2SfOf5Jzw7BlsTZh"></div>
+  <main class="stage">
+    <section class="board">
+      <div class="canvas-wrap">
+        <canvas id="pathway"></canvas>
+        <div class="tooltip" id="tooltip"></div>
       </div>
 
-      <div class="dock" data-page-node-id="aZsifnMQVRU36mhpRvBwSY">
-        <div class="dock-head" data-page-node-id="UOANkH4uUYlr4QdEE8R3mc">
-          <span class="dock-title" data-page-node-id="a5oovX6dFlhbsEqBdNNQZN">道具栏</span>
-          <span class="dock-hint" data-page-node-id="h8jmNXLqDtFLnv2OoKtHvR">点击投放 · 也可按数字键 1–4</span>
+      <div class="dock">
+        <div class="dock-head">
+          <span class="dock-title">道具栏</span>
+          <span class="dock-hint">点击投放 · 也可按数字键 1–4</span>
         </div>
-        <div class="dock-items" id="dock" data-page-node-id="f2RM2YfRnmlpc7QjgDz2d6"></div>
+        <div class="dock-items" id="dock"></div>
       </div>
     </section>
 
-    <aside class="sidebar" data-page-node-id="OjbsqxUkWSP0bIzsDTWFIK">
-      <div class="panel" data-page-node-id="BfpbPBIABBck1T4PU9NLC6">
-        <div class="panel-head" data-page-node-id="DSQQn47eG9hQFWYVFrREz6"><span data-page-node-id="gaiViEGqBD8ZfZ94pn91TU">稳态指标</span><span class="panel-tag" id="phaseTag" data-page-node-id="pjFlTMFqO8OYXOCnBLI4hX">推演中</span></div>
-        <div class="gauge-main" data-page-node-id="pN32i2RG8prwUAPXFLMB3t">
-          <div class="gauge-row" data-page-node-id="B7rBQpDXbZA1BzGc6I9ZKI">
-            <span class="gauge-name" data-page-node-id="dypCVQvPpODBZ1otRseDpU">钙离子浓度 Ca²⁺</span>
-            <span class="gauge-val" id="caVal" data-page-node-id="3LpFtBSFVbF8qVfNeFmjWI">100</span>
+    <aside class="sidebar">
+      <div class="panel">
+        <div class="panel-head"><span>稳态指标</span><span class="panel-tag" id="phaseTag">推演中</span></div>
+        <div class="gauge-main">
+          <div class="gauge-row">
+            <span class="gauge-name">钙离子浓度 Ca²⁺</span>
+            <span class="gauge-val" id="caVal">100</span>
           </div>
-          <div class="gauge-bar" data-page-node-id="2VbRdjBf6QNQGsKFZlfQjr">
-            <div class="gauge-safe" id="caSafe" data-page-node-id="smgmoEDIn28O41qKUntHBO"></div>
-            <div class="gauge-fill" id="caFill" data-page-node-id="LOBYfNuECDLxZaFonotOxi"></div>
-            <div class="gauge-target" id="caTarget" data-page-node-id="rVmRcZLYZM9QWdBl58vmXE"></div>
+          <div class="gauge-bar">
+            <div class="gauge-safe" id="caSafe"></div>
+            <div class="gauge-fill" id="caFill"></div>
+            <div class="gauge-target" id="caTarget"></div>
           </div>
-          <div class="gauge-foot" data-page-node-id="votcNS5KUk8dgAIcOWXHgr">
-            <span data-page-node-id="wUos5XywiCwC2h6cS0PorC">目标 ≤ <b id="caGoal" data-page-node-id="v0EU8qCVHtVOqcISofeHzr">45</b></span>
-            <span id="caHold" data-page-node-id="nSChK5NB0TZI4FLkAk9TWP">已稳定 0.0s / 3.0s</span>
-          </div>
-        </div>
-        <div class="mini-grid" data-page-node-id="YHMWcMrZSmjIZg3pgFSbdE">
-          <div class="mini" data-page-node-id="qX8Th29BYsw0RLl6QwdlKh">
-            <span class="mini-name" data-page-node-id="0WU71Cy4Kz69CgjOHilbeG">平滑肌舒张度</span>
-            <span class="mini-val" id="relaxVal" data-page-node-id="AA6BwxSFWjSUURnylkU65X">0%</span>
-            <div class="mini-bar" data-page-node-id="E9Oh7nd5xldzFcDRFTGhb1"><div class="mini-fill" id="relaxFill" style="background:#7ee08a" data-page-node-id="AToaHsIamXq21MiTwIRHYL"></div></div>
-          </div>
-          <div class="mini" data-page-node-id="ScfOxedAq1HGxwVaKv7fq1">
-            <span class="mini-name" data-page-node-id="c2lZYjUSbEytBFn8fzvsfJ">cGMP 浓度</span>
-            <span class="mini-val" id="cgmpVal" data-page-node-id="DiHI1Lc7x1GBpixfK4iYF1">0</span>
-            <div class="mini-bar" data-page-node-id="UkREjT6FaDIVen0WVy387v"><div class="mini-fill" id="cgmpFill" style="background:#4dd0c7" data-page-node-id="vjA8z0rxvtYsXMCZx9aCbw"></div></div>
-          </div>
-          <div class="mini" data-page-node-id="8k1XiuKrT8CJhOgNrQkxdZ">
-            <span class="mini-name" data-page-node-id="vC1hPDkGnm2sR0GOAQcV0w">GTP 能量池</span>
-            <span class="mini-val" id="gtpVal" data-page-node-id="1CciB9qWIPw1h5bX2Fc1AI">1200</span>
-            <div class="mini-bar" data-page-node-id="SOkTOjCYg6kGbEn1en22c6"><div class="mini-fill" id="gtpFill" style="background:#ffd479" data-page-node-id="RblxaEJ2sOO30AgPsUJrW2"></div></div>
+          <div class="gauge-foot">
+            <span>目标 ≤ <b id="caGoal">45</b></span>
+            <span id="caHold">已稳定 0.0s / 3.0s</span>
           </div>
         </div>
+        <div class="mini-grid">
+          <div class="mini">
+            <span class="mini-name">平滑肌舒张度</span>
+            <span class="mini-val" id="relaxVal">0%</span>
+            <div class="mini-bar"><div class="mini-fill" id="relaxFill" style="background:#7ee08a"></div></div>
+          </div>
+          <div class="mini">
+            <span class="mini-name">cGMP 浓度</span>
+            <span class="mini-val" id="cgmpVal">0</span>
+            <div class="mini-bar"><div class="mini-fill" id="cgmpFill" style="background:#4dd0c7"></div></div>
+          </div>
+          <div class="mini">
+            <span class="mini-name">GTP 能量池</span>
+            <span class="mini-val" id="gtpVal">1200</span>
+            <div class="mini-bar"><div class="mini-fill" id="gtpFill" style="background:#ffd479"></div></div>
+          </div>
+        </div>
       </div>
 
-      <div class="panel" data-page-node-id="mPH5WnmTmtjPfILwAEqSkZ">
-        <div class="panel-head" data-page-node-id="8XgCo6Z2tqb5G2vKBkHvUy"><span data-page-node-id="WZO2o85DFfsspqD4MFrK89">浓度动态</span><span class="panel-tag mono" id="tickTag" data-page-node-id="Ti59dBtY5ULo49K9fbk46C">10 Hz</span></div>
-        <div class="chart-wrap" data-page-node-id="ZKuGBHAercNRqTnZYmnHcK"><canvas id="chart" data-page-node-id="0mcobCf3iu1ibKwBIhvdwI"></canvas></div>
+      <div class="panel">
+        <div class="panel-head"><span>浓度动态</span><span class="panel-tag mono" id="tickTag">10 Hz</span></div>
+        <div class="chart-wrap"><canvas id="chart"></canvas></div>
       </div>
 
-      <div class="panel grow" id="inspectorPanel" data-page-node-id="XsJoyk0rB3DNztHCzs8T9G">
-        <div class="panel-head" data-page-node-id="rj9cbLFM71E3WvocEwZREY"><span id="inspectorTitle" data-page-node-id="wLzyqMX2j6lOws7HvtGtaM">节点档案</span></div>
-        <div class="inspector" id="inspector" data-page-node-id="TUYVbnHnFHEUHUVX9DzCs4"></div>
+      <div class="panel grow" id="inspectorPanel">
+        <div class="panel-head"><span id="inspectorTitle">节点档案</span></div>
+        <div class="inspector" id="inspector"></div>
       </div>
 
-      <div class="panel" data-page-node-id="gGPqvDYiHN3UgdoxwUKMGQ">
-        <div class="panel-head" data-page-node-id="SOSG8ggAWFQP4IuXc5SGK1"><span data-page-node-id="cLRBOIHfQNi4agYLX5MG4U">事件流水</span></div>
-        <div class="log" id="log" data-page-node-id="i4iBWbiZi1jhIRNhtNa9tF"></div>
+      <div class="panel">
+        <div class="panel-head"><span>事件流水</span></div>
+        <div class="log" id="log"></div>
       </div>
     </aside>
   </main>
 
-  <div class="modal" id="modal" hidden data-page-node-id="RCX5z91HH2IT7CEo0zVtu3">
-    <div class="modal-card" id="modalCard" data-page-node-id="9dFxSJrH1qiV6H0yn1OvCU"></div>
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" id="modalCard"></div>
   </div>
 
-  <div class="modal" id="briefModal" data-page-node-id="Kz8tyRyOUIpJCmR8Uz0Ctj">
-    <div class="modal-card brief-card" id="briefCard" data-page-node-id="01XYsvY5RXWSAGBRO1n4Xi"></div>
+  <div class="modal" id="briefModal">
+    <div class="modal-card brief-card" id="briefCard"></div>
   </div>
 
 </div>
@@ -326,7 +326,6 @@ __MODULES__["engine.js"] = (function () {
  * 结算四步：  匹配标签(tags) → 掷骰子(band) → 挂 Buff(activation/timer) → 乘数增量(amplify)
  * 时间基准：  逻辑 10 Hz（TICK_MS = 100），渲染 60 fps，二者解耦。
  * ==========================================================================*/
-
 /* 【如何读这个文件 —— 给非程序员的导读】
  * 整个引擎本质上是一个「状态机」：每 100 毫秒走一步，把所有节点的激活度、
  * 分子数量、Buff 倒计时推进一步。这文件从下到上分六块：
@@ -365,10 +364,8 @@ __MODULES__["engine.js"] = (function () {
  *
  * 如果你只想读懂一个函数，从 Simulator.tick() 开始；它就是每 100ms 发生一次的"心跳"。
  */
-
 const TICK_MS = 100;
 const TPS = 1000 / TICK_MS; // 每秒逻辑帧数 = 10
-
 /* ==========================================================================
  * TUNING —— 引擎机制常量
  * --------------------------------------------------------------------------
@@ -387,40 +384,32 @@ const TPS = 1000 / TICK_MS; // 每秒逻辑帧数 = 10
  * ⚠️ 改动这些值会影响【所有关卡】，改完要跑 tools/balance.mjs 与 tools/smoke.mjs。
  * ==========================================================================*/
 const TUNING = {
-  /** 激活度的满值。激活度是一个 0–100 的抽象刻度，不是真实浓度 —— 别当物理单位看。 */
-  activationMax: 100,
-
-  /** Buff 生效期内，激活度衰减放慢到的倍率（模拟"被化学修饰后状态更稳定"）。 */
-  buffDecayScale: 0.35,
-  /** Buff 过期后，激活度衰减加速到的倍率（模拟"修饰被移除，迅速回落"）。 */
-  spentDecayScale: 2.0,
-
-  /** 被沉默（抑制）时，激活度每 tick 乘以的系数 —— 越接近 1 崩塌越慢。 */
-  muteCollapse: 0.90,
-  /** 激活度 ≥ 此值，节点对外显示为「激活中」（决定发光强度）。 */
-  activeThreshold: 55,
-
-  /** 每次命中 / 产出的随机抖动区间，让模拟不至于像一条死板的曲线。 */
-  hitJitter: [0.85, 1.15],
-
-  /** 脉冲周期的下限（tick）。防止关卡把 period 配得过小导致每 tick 都喷发。 */
-  pulsePeriodFloor: 3,
-
-  /** 同类增益型药物【连续投放】时，放大倍数的累乘增量（不是覆盖，是叠加 ——
-   *  这正是"叠加用药出事"的机制来源，见 applyDrug 的 boostPulse 分支）。 */
-  boostStackBonus: 0.7,
-
-  /** 命中闪光每 tick 的衰减量，纯视觉。 */
-  flashFade: 0.12,
-
-  /** 折线图最多保留多少帧快照（超出后丢弃最旧的）。 */
-  historyCap: 1200,
-  /** 每 N 个 tick 存一条折线图快照。 */
-  snapshotEvery: 2,
-  /** 事件流水最多保留多少条。 */
-  eventCap: 60,
+    /** 激活度的满值。激活度是一个 0–100 的抽象刻度，不是真实浓度 —— 别当物理单位看。 */
+    activationMax: 100,
+    /** Buff 生效期内，激活度衰减放慢到的倍率（模拟"被化学修饰后状态更稳定"）。 */
+    buffDecayScale: 0.35,
+    /** Buff 过期后，激活度衰减加速到的倍率（模拟"修饰被移除，迅速回落"）。 */
+    spentDecayScale: 2.0,
+    /** 被沉默（抑制）时，激活度每 tick 乘以的系数 —— 越接近 1 崩塌越慢。 */
+    muteCollapse: 0.90,
+    /** 激活度 ≥ 此值，节点对外显示为「激活中」（决定发光强度）。 */
+    activeThreshold: 55,
+    /** 每次命中 / 产出的随机抖动区间，让模拟不至于像一条死板的曲线。 */
+    hitJitter: [0.85, 1.15],
+    /** 脉冲周期的下限（tick）。防止关卡把 period 配得过小导致每 tick 都喷发。 */
+    pulsePeriodFloor: 3,
+    /** 同类增益型药物【连续投放】时，放大倍数的累乘增量（不是覆盖，是叠加 ——
+     *  这正是"叠加用药出事"的机制来源，见 applyDrug 的 boostPulse 分支）。 */
+    boostStackBonus: 0.7,
+    /** 命中闪光每 tick 的衰减量，纯视觉。 */
+    flashFade: 0.12,
+    /** 折线图最多保留多少帧快照（超出后丢弃最旧的）。 */
+    historyCap: 1200,
+    /** 每 N 个 tick 存一条折线图快照。 */
+    snapshotEvery: 2,
+    /** 事件流水最多保留多少条。 */
+    eventCap: 60,
 };
-
 /**
  * 极简模板填充：把字符串里的 {name} 换成 vars 里对应的值。
  * 找不到对应值就原样保留 {name}，方便一眼看出漏传了什么。
@@ -430,41 +419,37 @@ const TUNING = {
  * 用占位符把两边接起来，引擎就不用再拼字符串、也不用认识 cGMP 是什么了。
  */
 function fillTemplate(tpl, vars) {
-  return String(tpl).replace(/\{\s*(\w+)\s*\}/g, (all, key) =>
-    key in vars ? String(vars[key]) : all
-  );
+    return String(tpl).replace(/\{\s*(\w+)\s*\}/g, (all, key) => key in vars ? String(vars[key]) : all);
 }
-
 /** 夹在 [lo, hi] 之间的小工具，_updateMetrics 里约束指标上下限用 */
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
-
 /* ---------------------------------------------------------------- 随机数 */
 /** mulberry32：可复现的伪随机源，便于关卡回放与参数敏感性分析 */
 class RNG {
-  constructor(seed = 20260904) {
-    this.seed = seed >>> 0 || 1;
-    this.s = this.seed;
-  }
-  next() {
-    this.s = (this.s + 0x6d2b79f5) >>> 0;
-    let t = this.s;
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  }
-  range(a, b) { return a + this.next() * (b - a); }
-  /** 掷一枚 0–100 的骰子 */
-  roll() { return this.next() * 100; }
-  reseed(seed) { this.seed = seed >>> 0 || 1; this.s = this.seed; }
+    constructor(seed = 20260904) {
+        this.seed = seed >>> 0 || 1;
+        this.s = this.seed;
+    }
+    next() {
+        this.s = (this.s + 0x6d2b79f5) >>> 0;
+        let t = this.s;
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    }
+    range(a, b) { return a + this.next() * (b - a); }
+    /** 掷一枚 0–100 的骰子 */
+    roll() { return this.next() * 100; }
+    reseed(seed) { this.seed = seed >>> 0 || 1; this.s = this.seed; }
 }
-
-/* ---------------------------------------------------------------- 状态枚举 */
 const Status = {
-  INACTIVE: 'Inactive', // 未激活 / 休眠
-  ACTIVE: 'Active',     // 激活（挂载增益 Buff）
-  MUTED: 'Muted',       // 沉默 / 被抑制
+    INACTIVE: 'Inactive', // 未激活 / 休眠
+    ACTIVE: 'Active', // 激活（挂载增益 Buff）
+    MUTED: 'Muted', // 沉默 / 被抑制
 };
-
+const STATUS_INACTIVE = Status.INACTIVE;
+const STATUS_ACTIVE = Status.ACTIVE;
+const STATUS_MUTED = Status.MUTED;
 /* ------------------------------------------------------- Molecule 模板 */
 /**
  * 所有信号分子 / 药物的抽象模板。运行时实例由 Simulator 从此模板生成。
@@ -478,140 +463,135 @@ const Status = {
  *   buffTicks —— 一次命中后增益 Buff 持续的 tick 数
  */
 class MoleculeTemplate {
-  constructor(cfg) {
-    Object.assign(this, {
-      id: 'mol',
-      name: 'Molecule',
-      cn: '',
-      kind: 'node',          // node | drug
-      role: 'generic',       // source|messenger|receptor|amplifier|kinase|effector|decoy|donor
-      tags: [],
-      x: 0, y: 0,            // 拓扑图坐标
-      band: [0, 30],         // 命中频段
-      K: 100,                // 半饱和常数
-      hill: 1,               // 协同系数
-      amplify: 1,            // 放大乘数
-      decay: 0.05,           // 激活度衰减
-      baseDecay: 0,          // 物质自然降解（信使分子）
-      buffTicks: 25,         // Buff 持续 tick
-      drive: 'activation',   // activation | count | pulse
-      degradable: true,      // 是否可被降解酶清除（西地那非 = false）
-      editable: [],          // 允许玩家在侧边栏调节的参数白名单
-      desc: '',
-      color: '#4dd0c7',
-    }, cfg);
-  }
+    constructor(cfg) {
+        Object.assign(this, {
+            id: 'mol',
+            name: 'Molecule',
+            cn: '',
+            kind: 'node', // node | drug
+            role: 'generic', // source|messenger|receptor|amplifier|kinase|effector|decoy|donor
+            tags: [],
+            x: 0, y: 0, // 拓扑图坐标
+            band: [0, 30], // 命中频段
+            K: 100, // 半饱和常数
+            hill: 1, // 协同系数
+            amplify: 1, // 放大乘数
+            decay: 0.05, // 激活度衰减
+            baseDecay: 0, // 物质自然降解（信使分子）
+            buffTicks: 25, // Buff 持续 tick
+            drive: 'activation', // activation | count | pulse
+            degradable: true, // 是否可被降解酶清除（西地那非 = false）
+            editable: [], // 允许玩家在侧边栏调节的参数白名单
+            desc: '',
+            color: '#4dd0c7',
+        }, cfg);
+    }
 }
-
 /* ------------------------------------------------------- Molecule 实例 */
 class Molecule {
-  constructor(tpl) {
-    this.tpl = tpl;
-    this.id = tpl.id;
-    this.count = 0;           // 分子数量（信使 / 药物）
-    this.activation = 0;      // 激活度 0–100（酶 / 受体）
-    // 双缓冲：本 tick 反应写入的"下一帧"状态。tick() 开头从当前快照拷入，
-    // 所有反应只读 this.*（快照）、只写 next.*（缓冲），末尾一次性提交。
-    // 这是消除"遍历顺序幽灵先手"的关键，也让反馈回路获得严格的 1 tick 传播延迟。
-    this.nextCount = 0;
-    this.nextActivation = 0;
-    this.status = Status.INACTIVE;
-    this.timer = 0;           // Buff 倒计时
-    this.muteTimer = 0;       // 沉默倒计时
-    this.buffs = [];          // { id, name, kind, timer, source }
-    this.flash = 0;           // 命中闪光，渲染层读取
-    this.lastGain = 0;        // 本 tick 产量，粒子系统读取
-    this.lastHit = false;     // 本 tick 是否掷骰命中
-    this.metabolism = 0;      // 药物代谢清除速率
-  }
-
-  get isDrug() { return this.tpl.kind === 'drug'; }
-  get isMuted() { return this.muteTimer > 0; }
-
-  /** 对下游的推动力 0–1 —— 相当于连续模型里的「有效浓度」
-   *
-   * 关键设计：用「饱和曲线」替代米氏方程。
-   *   drive = count / (count + K)         // 标准饱和（count 驱动）
-   *   drive = activation / 100            // 酶激活度直接当推动力（activation 驱动）
-   * 数学含义：分子越多 → 推动力越大，但越接近上限越难继续涨。
-   * 这就是「信号传导有天花板」的代码表达 —— 没有这个上限，任意放大器都会失控。
-   */
-  get drive() {
-    if (this.isMuted) return 0;
-    const t = this.tpl;
-    if (t.drive === 'count') return this.count / (this.count + t.K);
-    if (t.drive === 'pulse') return this.count > 1 ? 1 : this.count;
-    return this.activation / TUNING.activationMax;
-  }
-
-  /** 状态饱和度 0–1，供渲染层决定发光强度 */
-  get saturation() {
-    const t = this.tpl;
-    if (t.drive === 'count' || t.drive === 'pulse') {
-      return Math.min(1, this.count / (t.K * 2));
+    constructor(tpl) {
+        this.tpl = tpl;
+        this.id = tpl.id;
+        this.count = 0; // 分子数量（信使 / 药物）
+        this.activation = 0; // 激活度 0–100（酶 / 受体）
+        // 双缓冲：本 tick 反应写入的"下一帧"状态。tick() 开头从当前快照拷入，
+        // 所有反应只读 this.*（快照）、只写 next.*（缓冲），末尾一次性提交。
+        // 这是消除"遍历顺序幽灵先手"的关键，也让反馈回路获得严格的 1 tick 传播延迟。
+        this.nextCount = 0;
+        this.nextActivation = 0;
+        this.status = Status.INACTIVE;
+        this.timer = 0; // Buff 倒计时
+        this.muteTimer = 0; // 沉默倒计时
+        this.buffs = []; // { id, name, kind, timer, source }
+        this.flash = 0; // 命中闪光，渲染层读取
+        this.lastGain = 0; // 本 tick 产量，粒子系统读取
+        this.lastHit = false; // 本 tick 是否掷骰命中
+        this.metabolism = 0; // 药物代谢清除速率
     }
-    return this.activation / TUNING.activationMax;
-  }
-
-  /** 挂 Buff —— 第三步：化学修饰 → 带倒计时的状态标签
-   *  双缓冲：写入 nextActivation（不是 this.activation）。增益的"天花板"仍用
-   *  当前快照 this.activation 计算 room，保证同一 tick 内的多次激活不会自我叠加放大。 */
-  applyActivation(delta, ticks) {
-    if (this.isMuted) return 0;
-    const before = this.nextActivation;
-    // 饱和趋近：越接近满值越难继续上升，避免无限堆叠
-    const room = 1 - this.activation / TUNING.activationMax;
-    const gain = delta * Math.max(0, room);
-    this.nextActivation = clamp(
-      this.nextActivation + gain, 0, TUNING.activationMax
-    );
-    if (gain > 0 && ticks > 0) this.timer = Math.max(this.timer, ticks);
-    return this.nextActivation - before;
-  }
-
-  addBuff(buff) {
-    const exist = this.buffs.find((b) => b.id === buff.id);
-    if (exist) { exist.timer = Math.max(exist.timer, buff.timer); return exist; }
-    this.buffs.push({ ...buff });
-    return buff;
-  }
-
-  mute(ticks, source = '') {
-    this.muteTimer = Math.max(this.muteTimer, ticks);
-    this.status = Status.MUTED;
-    this.addBuff({ id: 'muted', name: '沉默', kind: 'mute', timer: ticks, source });
-  }
-
-  /** 每个逻辑帧调用 —— 消耗资源、倒计时递减 */
-  onTick() {
-    if (this.muteTimer > 0) {
-      this.muteTimer -= 1;
-      this.activation *= TUNING.muteCollapse; // 沉默期激活度快速崩塌
-      if (this.muteTimer === 0) this.status = Status.INACTIVE;
+    get isDrug() { return this.tpl.kind === 'drug'; }
+    get isMuted() { return this.muteTimer > 0; }
+    /** 对下游的推动力 0–1 —— 相当于连续模型里的「有效浓度」
+     *
+     * 关键设计：用「饱和曲线」替代米氏方程。
+     *   drive = count / (count + K)         // 标准饱和（count 驱动）
+     *   drive = activation / 100            // 酶激活度直接当推动力（activation 驱动）
+     * 数学含义：分子越多 → 推动力越大，但越接近上限越难继续涨。
+     * 这就是「信号传导有天花板」的代码表达 —— 没有这个上限，任意放大器都会失控。
+     */
+    get drive() {
+        if (this.isMuted)
+            return 0;
+        const t = this.tpl;
+        if (t.drive === 'count')
+            return this.count / (this.count + t.K);
+        if (t.drive === 'pulse')
+            return this.count > 1 ? 1 : this.count;
+        return this.activation / TUNING.activationMax;
     }
-    this.timer = Math.max(0, this.timer - 1);
-    this.buffs = this.buffs.filter((b) => (b.timer -= 1) > 0);
-
-    // Buff 期内衰减慢，Buff 过期后加速回落 —— 这就是「激活状态有持续时间」
-    const d = this.tpl.decay
-      * (this.timer > 0 ? TUNING.buffDecayScale : TUNING.spentDecayScale);
-    this.activation = Math.max(0, this.activation * (1 - d));
-
-    if (this.tpl.baseDecay > 0) {
-      this.count = Math.max(0, this.count * (1 - this.tpl.baseDecay));
+    /** 状态饱和度 0–1，供渲染层决定发光强度 */
+    get saturation() {
+        const t = this.tpl;
+        if (t.drive === 'count' || t.drive === 'pulse') {
+            return Math.min(1, this.count / (t.K * 2));
+        }
+        return this.activation / TUNING.activationMax;
     }
-    if (this.metabolism > 0) {
-      this.count = Math.max(0, this.count * (1 - this.metabolism));
+    /** 挂 Buff —— 第三步：化学修饰 → 带倒计时的状态标签
+     *  双缓冲：写入 nextActivation（不是 this.activation）。增益的"天花板"仍用
+     *  当前快照 this.activation 计算 room，保证同一 tick 内的多次激活不会自我叠加放大。 */
+    applyActivation(delta, ticks) {
+        if (this.isMuted)
+            return 0;
+        const before = this.nextActivation;
+        // 饱和趋近：越接近满值越难继续上升，避免无限堆叠
+        const room = 1 - this.activation / TUNING.activationMax;
+        const gain = delta * Math.max(0, room);
+        this.nextActivation = clamp(this.nextActivation + gain, 0, TUNING.activationMax);
+        if (gain > 0 && ticks > 0)
+            this.timer = Math.max(this.timer, ticks);
+        return this.nextActivation - before;
     }
-    this.flash = Math.max(0, this.flash - TUNING.flashFade);
-
-    if (!this.isMuted) {
-      this.status = this.activation >= TUNING.activeThreshold
-        ? Status.ACTIVE : Status.INACTIVE;
+    addBuff(buff) {
+        const exist = this.buffs.find((b) => b.id === buff.id);
+        if (exist) {
+            exist.timer = Math.max(exist.timer, buff.timer);
+            return exist;
+        }
+        this.buffs.push({ ...buff });
+        return buff;
     }
-  }
+    mute(ticks, source = '') {
+        this.muteTimer = Math.max(this.muteTimer, ticks);
+        this.status = Status.MUTED;
+        this.addBuff({ id: 'muted', name: '沉默', kind: 'mute', timer: ticks, source });
+    }
+    /** 每个逻辑帧调用 —— 消耗资源、倒计时递减 */
+    onTick() {
+        if (this.muteTimer > 0) {
+            this.muteTimer -= 1;
+            this.activation *= TUNING.muteCollapse; // 沉默期激活度快速崩塌
+            if (this.muteTimer === 0)
+                this.status = Status.INACTIVE;
+        }
+        this.timer = Math.max(0, this.timer - 1);
+        this.buffs = this.buffs.filter((b) => (b.timer -= 1) > 0);
+        // Buff 期内衰减慢，Buff 过期后加速回落 —— 这就是「激活状态有持续时间」
+        const d = this.tpl.decay
+            * (this.timer > 0 ? TUNING.buffDecayScale : TUNING.spentDecayScale);
+        this.activation = Math.max(0, this.activation * (1 - d));
+        if (this.tpl.baseDecay > 0) {
+            this.count = Math.max(0, this.count * (1 - this.tpl.baseDecay));
+        }
+        if (this.metabolism > 0) {
+            this.count = Math.max(0, this.count * (1 - this.metabolism));
+        }
+        this.flash = Math.max(0, this.flash - TUNING.flashFade);
+        if (!this.isMuted) {
+            this.status = this.activation >= TUNING.activeThreshold
+                ? Status.ACTIVE : Status.INACTIVE;
+        }
+    }
 }
-
 /* ------------------------------------------------------------- Reaction */
 /**
  * 一条反应边。effect 类型：
@@ -621,483 +601,480 @@ class Molecule {
  *   consume  —— 槽位竞争降解：按数量比例瓜分酶的处理槽位
  */
 class Reaction {
-  constructor(cfg) {
-    Object.assign(this, {
-      id: '', from: '', to: '',
-      effect: 'activate',
-      band: [0, 30],
-      hill: 1,
-      power: 20,       // activate/inhibit 的力度
-      amplify: 0,      // produce 的放大乘数
-      gtpCost: 0,      // 每次产出消耗的 GTP
-      slots: 0,        // consume：酶的处理槽位
-      slotTag: '',     // consume：识别底物的标签
-      costPool: 'GTP', // produce：这次合成消耗哪个资源池（第二关要换 ATP 就配这里）
-      negate: false,   // 渲染用：是否画成抑制箭头
-      label: '',
-      waypoints: [],   // 渲染用：折线拐点
-    }, cfg);
-    if (!this.id) this.id = `${this.from}->${this.to}`;
-  }
+    constructor(cfg) {
+        Object.assign(this, {
+            id: '', from: '', to: '',
+            effect: 'activate',
+            band: [0, 30],
+            hill: 1,
+            power: 20, // activate/inhibit 的力度
+            amplify: 0, // produce 的放大乘数
+            gtpCost: 0, // 每次产出消耗的 GTP
+            slots: 0, // consume：酶的处理槽位
+            slotTag: '', // consume：识别底物的标签
+            costPool: 'GTP', // produce：这次合成消耗哪个资源池（第二关要换 ATP 就配这里）
+            negate: false, // 渲染用：是否画成抑制箭头
+            label: '',
+            waypoints: [], // 渲染用：折线拐点
+        }, cfg);
+        if (!this.id)
+            this.id = `${this.from}->${this.to}`;
+    }
 }
-
 /* ------------------------------------------------------------ Simulator */
 class Simulator {
-  constructor(level, opts = {}) {
-    this.level = level;
-    this.rng = new RNG(opts.seed ?? 20260904);
-    this.reset();
-  }
-
-  reset(seed) {
-    const L = this.level;
-    if (seed !== undefined) this.rng.reseed(seed);
-
-    this.tickCount = 0;
-    this.time = 0;                 // 秒
-    this.nodes = new Map();
-    this.reactions = L.reactions.map((r) => new Reaction(r));
-    this.pools = { ...L.pools };
-    this.poolsMax = { ...L.pools };
-    this.metrics = {};
-    for (const m of L.metrics) this.metrics[m.id] = m.base;
-
-    for (const tpl of L.nodes) {
-      const m = new Molecule(new MoleculeTemplate(tpl));
-      m.count = tpl.initialCount ?? 0;
-      m.activation = tpl.initialActivation ?? 0;
-      this.nodes.set(m.id, m);
+    constructor(level, opts = {}) {
+        this.level = level;
+        this.rng = new RNG(opts.seed ?? 20260904);
+        this.reset();
     }
-
-    this.drugState = new Map(); // drugId -> { uses, active:boolean }
-    for (const d of L.drugs) this.drugState.set(d.id, { uses: 0, active: false });
-
-    this.holdTicks = 0;
-    this.dangerTicks = 0;
-    this.starveTicks = 0;
-    this.outcome = null;        // null | {result:'win'|'lose', reason, title, detail}
-    this.history = [];          // 折线图数据
-    this.events = [];           // 事件流水
-    this.selected = null;
-    this.paused = false;
-    this.speed = 1;
-    this._pulseClock = 0;
-    this._ntgBoost = 0;
-    this._ntgFactor = 1;
-    this._ntgPeriod = 1;
-  }
-
-  get nodeList() { return [...this.nodes.values()]; }
-  node(id) { return this.nodes.get(id); }
-
-  log(text, kind = 'info') {
-    this.events.unshift({ t: this.time.toFixed(1), text, kind });
-    if (this.events.length > TUNING.eventCap) this.events.pop();
-  }
-
-  /* ---------------------------------------------------------- 投放药物 */
-  applyDrug(drugId) {
-    const drug = this.level.drugs.find((d) => d.id === drugId);
-    if (!drug) return false;
-    const st = this.drugState.get(drugId);
-    if (!st || st.uses >= drug.charges) return false;
-
-    st.uses += 1;
-    st.active = true;
-
-    for (const eff of drug.effects) {
-      if (eff.kind === 'spawn') {
-        // 底物 / 竞争性类似物：直接投放分子实体进入战场
-        const m = this.node(eff.target);
-        m.count += eff.amount;
-        m.metabolism = eff.metabolism ?? 0;
-      } else if (eff.kind === 'mute') {
-        const m = this.node(eff.target);
-        m.mute(eff.ticks, drug.name);
-      } else if (eff.kind === 'boostPulse') {
-        // 连续给药会累乘放大，而不是简单覆盖 —— 这正是「叠加用药出事」的机制来源
-        this._ntgFactor = this._ntgBoost > 0
-          ? this._ntgFactor + TUNING.boostStackBonus
-          : (eff.factor ?? 2);
-        this._ntgPeriod = Math.min(
-          this._ntgBoost > 0 ? this._ntgPeriod : 1,
-          eff.periodScale ?? 1
-        );
-        this._ntgBoost = Math.max(this._ntgBoost, eff.ticks);
-      } else if (eff.kind === 'restore') {
-        this.pools[eff.pool] = Math.min(
-          this.poolsMax[eff.pool],
-          this.pools[eff.pool] + eff.amount
-        );
-      }
+    reset(seed) {
+        const L = this.level;
+        if (seed !== undefined)
+            this.rng.reseed(seed);
+        this.tickCount = 0;
+        this.time = 0; // 秒
+        this.nodes = new Map();
+        this.reactions = L.reactions.map((r) => new Reaction(r));
+        this.pools = { ...L.pools };
+        this.poolsMax = { ...L.pools };
+        this.metrics = {};
+        for (const m of L.metrics)
+            this.metrics[m.id] = m.base ?? 0;
+        for (const tpl of L.nodes) {
+            const m = new Molecule(new MoleculeTemplate(tpl));
+            m.count = tpl.initialCount ?? 0;
+            m.activation = tpl.initialActivation ?? 0;
+            this.nodes.set(m.id, m);
+        }
+        this.drugState = new Map(); // drugId -> { uses, active:boolean }
+        for (const d of L.drugs)
+            this.drugState.set(d.id, { uses: 0, active: false });
+        this.holdTicks = 0;
+        this.dangerTicks = 0;
+        this.starveTicks = 0;
+        this.outcome = null; // null | {result:'win'|'lose', reason, title, detail}
+        this.history = []; // 折线图数据
+        this.events = []; // 事件流水
+        this.selected = null;
+        this.paused = false;
+        this.speed = 1;
+        this._pulseClock = 0;
+        this._ntgBoost = 0;
+        this._ntgFactor = 1;
+        this._ntgPeriod = 1;
     }
-    this.log(`投放 ${drug.name} ×${st.uses}`, 'drug');
-    return true;
-  }
-
-  /* ------------------------------------------------------------ 主循环 */
-  /** 整个引擎的「心跳」 —— 每 100 毫秒被主循环调一次。
-   * 一个 tick 内的严格顺序（双缓冲贯穿其中）：
-   *   快照 → 脉冲(写 next) → 四步结算(读 this / 写 next) → 提交(next→this)
-   *        → 自身衰减 → 资源再生 → 宏观指标 → 判定
-   * 这是整局游戏唯一的"时钟源"。所有粒子动画都是这个 tick 的视觉延伸。
-   */
-  tick() {
-    if (this.outcome || this.paused) return;
-    const L = this.level;
-
-    // —— 双缓冲：把当前状态快照到 next 缓冲区 ——
-    // 之后所有反应都是"读 this（本 tick 开始的快照）、写 next（下一帧）"，
-    // 这样无论 reactions 数组怎么排序、通路里有没有反馈环，信号传播都严格 1 tick 延迟，
-    // 不再有"遍历顺序导致的幽灵先手"（详见 gifts/ 里 Gemini 评审的第二条）。
-    for (const m of this.nodes.values()) {
-      m.nextActivation = m.activation;
-      m.nextCount = m.count;
+    get nodeList() { return [...this.nodes.values()]; }
+    node(id) { return this.nodes.get(id); }
+    log(text, kind = 'info') {
+        this.events.unshift({ t: this.time.toFixed(1), text, kind });
+        if (this.events.length > TUNING.eventCap)
+            this.events.pop();
     }
-
-    /* --- 阶段 0：外部信号源脉冲释放（写入 next） --- */
-    this._pulseClock += 1;
-    const pulsePeriod = Math.max(
-      TUNING.pulsePeriodFloor,
-      Math.round(L.pulse.period * (this._ntgBoost > 0 ? this._ntgPeriod : 1))
-    );
-    if (this._pulseClock >= pulsePeriod) {
-      this._pulseClock = 0;
-      const src = this.node(L.pulse.node);
-      if (src && !src.isMuted) {
-        const boost = this._ntgBoost > 0 ? this._ntgFactor : 1;
-        const [jLo, jHi] = TUNING.hitJitter;
-        const jitter = this.rng.range(jLo, jHi);
-        // 读取快照 src.count、写入缓冲 src.nextCount
-        src.nextCount = Math.min(L.pulse.cap, src.count + L.pulse.amount * boost * jitter);
-        src.flash = 1;
-        src.lastHit = true;
-      }
+    /* ---------------------------------------------------------- 投放药物 */
+    applyDrug(drugId) {
+        const drug = this.level.drugs.find((d) => d.id === drugId);
+        if (!drug)
+            return false;
+        const st = this.drugState.get(drugId);
+        if (!st || st.uses >= drug.charges)
+            return false;
+        st.uses += 1;
+        st.active = true;
+        for (const eff of drug.effects) {
+            if (eff.kind === 'spawn') {
+                // 底物 / 竞争性类似物：直接投放分子实体进入战场
+                const m = this.node(eff.target);
+                if (!m)
+                    continue;
+                m.count += eff.amount ?? 0;
+                m.metabolism = eff.metabolism ?? 0;
+            }
+            else if (eff.kind === 'mute') {
+                const m = this.node(eff.target);
+                m?.mute(eff.ticks ?? 0, drug.name);
+            }
+            else if (eff.kind === 'boostPulse') {
+                // 连续给药会累乘放大，而不是简单覆盖 —— 这正是「叠加用药出事」的机制来源
+                this._ntgFactor = this._ntgBoost > 0
+                    ? this._ntgFactor + TUNING.boostStackBonus
+                    : (eff.factor ?? 2);
+                this._ntgPeriod = Math.min(this._ntgBoost > 0 ? this._ntgPeriod : 1, eff.periodScale ?? 1);
+                this._ntgBoost = Math.max(this._ntgBoost, eff.ticks ?? 0);
+            }
+            else if (eff.kind === 'restore') {
+                const pool = eff.pool;
+                if (pool && this.pools[pool] !== undefined) {
+                    this.pools[pool] = Math.min(this.poolsMax[pool] ?? this.pools[pool], this.pools[pool] + (eff.amount ?? 0));
+                }
+            }
+        }
+        this.log(`投放 ${drug.name} ×${st.uses}`, 'drug');
+        return true;
     }
-    if (this._ntgBoost > 0) this._ntgBoost -= 1;
-
-    /* --- 阶段 1–3：四步结算（读 this 快照、写 next 缓冲） --- */
-    for (const rx of this.reactions) {
-      if (rx.effect === 'consume') { this._resolveConsume(rx); continue; }
-      this._resolveReaction(rx);
+    /* ------------------------------------------------------------ 主循环 */
+    /** 整个引擎的「心跳」 —— 每 100 毫秒被主循环调一次。
+     * 一个 tick 内的严格顺序（双缓冲贯穿其中）：
+     *   快照 → 脉冲(写 next) → 四步结算(读 this / 写 next) → 提交(next→this)
+     *        → 自身衰减 → 资源再生 → 宏观指标 → 判定
+     * 这是整局游戏唯一的"时钟源"。所有粒子动画都是这个 tick 的视觉延伸。
+     */
+    tick() {
+        if (this.outcome || this.paused)
+            return;
+        const L = this.level;
+        // —— 双缓冲：把当前状态快照到 next 缓冲区 ——
+        // 之后所有反应都是"读 this（本 tick 开始的快照）、写 next（下一帧）"，
+        // 这样无论 reactions 数组怎么排序、通路里有没有反馈环，信号传播都严格 1 tick 延迟，
+        // 不再有"遍历顺序导致的幽灵先手"（详见 gifts/ 里 Gemini 评审的第二条）。
+        for (const m of this.nodes.values()) {
+            m.nextActivation = m.activation;
+            m.nextCount = m.count;
+        }
+        /* --- 阶段 0：外部信号源脉冲释放（写入 next） --- */
+        this._pulseClock += 1;
+        const pulsePeriod = Math.max(TUNING.pulsePeriodFloor, Math.round(L.pulse.period * (this._ntgBoost > 0 ? this._ntgPeriod : 1)));
+        if (this._pulseClock >= pulsePeriod) {
+            this._pulseClock = 0;
+            const src = this.node(L.pulse.node);
+            if (src && !src.isMuted) {
+                const boost = this._ntgBoost > 0 ? this._ntgFactor : 1;
+                const [jLo, jHi] = TUNING.hitJitter;
+                const jitter = this.rng.range(jLo, jHi);
+                // 读取快照 src.count、写入缓冲 src.nextCount
+                src.nextCount = Math.min(L.pulse.cap, src.count + L.pulse.amount * boost * jitter);
+                src.flash = 1;
+                src.lastHit = true;
+            }
+        }
+        if (this._ntgBoost > 0)
+            this._ntgBoost -= 1;
+        /* --- 阶段 1–3：四步结算（读 this 快照、写 next 缓冲） --- */
+        for (const rx of this.reactions) {
+            if (rx.effect === 'consume') {
+                this._resolveConsume(rx);
+                continue;
+            }
+            this._resolveReaction(rx);
+        }
+        // —— 提交双缓冲：next → this，原子切换，下游读取到的永远是本 tick 的终态 ——
+        for (const m of this.nodes.values()) {
+            m.activation = m.nextActivation;
+            m.count = m.nextCount;
+        }
+        /* --- 阶段 4：各分子自身的时间推进（衰减，作用于已提交的终态） --- */
+        for (const m of this.nodes.values())
+            m.onTick();
+        /* --- 资源池再生 --- */
+        for (const [k, v] of Object.entries(L.poolsRegen || {})) {
+            this.pools[k] = Math.min(this.poolsMax[k], this.pools[k] + v);
+        }
+        /* --- 宏观指标演化（钙离子 / 舒张度） --- */
+        this._updateMetrics();
+        /* --- 胜负判定 --- */
+        this._judge();
+        this.tickCount += 1;
+        this.time = this.tickCount / TPS;
+        if (this.tickCount % TUNING.snapshotEvery === 0)
+            this._snapshot();
     }
-
-    // —— 提交双缓冲：next → this，原子切换，下游读取到的永远是本 tick 的终态 ——
-    for (const m of this.nodes.values()) {
-      m.activation = m.nextActivation;
-      m.count = m.nextCount;
+    /* ------------------------------------------------- 单条反应：四步结算 */
+    /** 这是引擎的「心法」 —— 把米氏动力学微分方程降维成桌游规则。
+     *
+     * 步骤对应 PDF 设计的四步：
+     *   ① 锁定目标  —— 比对密码标签 (tags)，不相交则根本不发生碰撞（除非产物反应）
+     *   ② 命中判定  —— 掷一个 0–100 的骰子，落进 [lo, lo + 宽度 × 推动力^hill] 就算
+     *                 这里 hill 系数（协同性）才是控制响应曲线 S 形陡峭度的关键
+     *                 —— 不要被直觉骗去改 power，改了会把曲线压扁成开关
+     *   ③ 挂 Buff   —— activate 给目标加激活度（带 buffTicks 倒计时的 Buff）
+     *                 inhibit 给目标加沉默；degrade 走 _resolveConsume 槽位竞争
+     *   ④ 乘数增量  —— produce 按 amplify 批量产出下游分子，并消耗 GTP
+     */
+    _resolveReaction(rx) {
+        const from = this.node(rx.from);
+        const to = this.node(rx.to);
+        if (!from || !to)
+            return;
+        // 第一步 [锁定目标]：比对密码标签，不相交则根本不发生碰撞
+        const matched = from.tpl.tags.some((t) => to.tpl.tags.includes(t))
+            || (rx.effect === 'produce' && true); // 产物由模板自身标签决定
+        if (!matched && rx.from !== to.id) {
+            from.lastHit = false;
+            return;
+        }
+        const drive = from.drive;
+        if (drive <= 0.0001) {
+            from.lastHit = false;
+            return;
+        }
+        // 第二步 [命中判定]：微分方程 → 离散概率。骰子必须落进 [lo, lo + 宽度×推动力]
+        const lo = rx.band[0];
+        const width = rx.band[1] - rx.band[0];
+        const chance = width * Math.pow(drive, rx.hill);
+        const roll = this.rng.roll();
+        const hit = roll >= lo && roll < lo + chance;
+        from.lastHit = hit;
+        if (!hit)
+            return;
+        const intensity = Math.pow(drive, rx.hill);
+        // 第三步 [挂 Buff] / 第四步 [乘数增量]
+        if (rx.effect === 'activate') {
+            to.applyActivation(rx.power * intensity, to.tpl.buffTicks);
+            to.flash = 1;
+        }
+        else if (rx.effect === 'inhibit') {
+            to.mute(Math.round(rx.power * intensity), rx.label || from.tpl.name);
+            to.flash = 1;
+        }
+        else if (rx.effect === 'produce') {
+            // 全局能量限制：资源池见底时合成停滞（死法 A 的物理基础）。
+            // 消耗哪个池由反应自己声明（rx.costPool），引擎不认识「GTP」这个名字 ——
+            // 第二关想让合成消耗 ATP，在关卡里配 costPool: 'ATP' 即可，引擎不用改。
+            const poolName = rx.costPool || 'GTP';
+            const budget = this.pools[poolName] ?? 0;
+            const supply = budget > 0 ? 1 : 0;
+            const [jLo, jHi] = TUNING.hitJitter;
+            let made = rx.amplify * intensity * supply * this.rng.range(jLo, jHi);
+            // 能量硬约束（Gemini 评审第三条·1）：产量不能超过当前资源池能负担的量，
+            // 杜绝"池子只剩 2 点却白嫖 100 个产物"的透支。
+            // 以前 GTP 仅作开关（>0 就满产），现在按 budget / gtpCost 封顶，
+            // 能量枯竭会表现为产量平滑衰减，而不是断崖后凭空续命。
+            if (rx.gtpCost > 0)
+                made = Math.min(made, budget / rx.gtpCost);
+            to.nextCount += made;
+            to.lastGain = made;
+            to.flash = 1;
+            this.pools[poolName] = Math.max(0, budget - made * rx.gtpCost);
+        }
     }
-
-    /* --- 阶段 4：各分子自身的时间推进（衰减，作用于已提交的终态） --- */
-    for (const m of this.nodes.values()) m.onTick();
-
-    /* --- 资源池再生 --- */
-    for (const [k, v] of Object.entries(L.poolsRegen || {})) {
-      this.pools[k] = Math.min(this.poolsMax[k], this.pools[k] + v);
+    /* ------------------------------------ 槽位竞争降解：竞争性抑制的建模 */
+    /**
+     * 【这是整个游戏最重要的机制 —— 竞争性抑制】
+     *
+     * 设想一个酶（PDE5）有固定的处理能力 = `slots × 激活度`。
+     * 所有带 `slotTag` 标签的分子按数量比例瓜分这个能力。
+     *
+     * 关键：不可降解的诱饵（如西地那非）照样占座，但不被清除。
+     * → 等于把酶的算力全部浪费在"消化西地那非"上，
+     *   真正该降解的 cGMP 因此被"保护"下来，浓度反而上升。
+     *
+     * 这个机制比"给酶挂沉默 debuff"更真实：
+     *   - 它不需要为每个抑制剂写特殊规则，机制是涌现的；
+     *   - 西地那非的可调参（剂量、代谢率）自然映射到"占座多少"和"占多久"；
+     *   - 玩家能推理出"为什么 PDE5 的槽位总是不够用"，而不只是死记"这个药就是抑制 PDE5 的"。
+     */
+    _resolveConsume(rx) {
+        const enzyme = this.node(rx.from);
+        if (!enzyme || enzyme.isMuted)
+            return;
+        const cap = rx.slots * (enzyme.activation / TUNING.activationMax);
+        if (cap <= 0)
+            return;
+        const subs = this.nodeList.filter((m) => m.tpl.tags.includes(rx.slotTag) && m.count > 0.01);
+        if (!subs.length)
+            return;
+        const total = subs.reduce((s, m) => s + m.count, 0);
+        if (total <= 0)
+            return;
+        let processed = 0;
+        for (const m of subs) {
+            const share = (cap * m.count) / total; // m.count 取快照，读-改分离
+            if (!m.tpl.degradable) {
+                processed += share;
+                continue;
+            } // 占座但不被降解
+            const removed = Math.min(m.count, share);
+            m.nextCount -= removed; // 写入下一帧缓冲
+            processed += removed;
+        }
+        enzyme.lastGain = processed;
+        if (processed > 0.5)
+            enzyme.flash = 1;
     }
-
-    /* --- 宏观指标演化（钙离子 / 舒张度） --- */
-    this._updateMetrics();
-
-    /* --- 胜负判定 --- */
-    this._judge();
-
-    this.tickCount += 1;
-    this.time = this.tickCount / TPS;
-
-    if (this.tickCount % TUNING.snapshotEvery === 0) this._snapshot();
-  }
-
-  /* ------------------------------------------------- 单条反应：四步结算 */
-  /** 这是引擎的「心法」 —— 把米氏动力学微分方程降维成桌游规则。
-   *
-   * 步骤对应 PDF 设计的四步：
-   *   ① 锁定目标  —— 比对密码标签 (tags)，不相交则根本不发生碰撞（除非产物反应）
-   *   ② 命中判定  —— 掷一个 0–100 的骰子，落进 [lo, lo + 宽度 × 推动力^hill] 就算
-   *                 这里 hill 系数（协同性）才是控制响应曲线 S 形陡峭度的关键
-   *                 —— 不要被直觉骗去改 power，改了会把曲线压扁成开关
-   *   ③ 挂 Buff   —— activate 给目标加激活度（带 buffTicks 倒计时的 Buff）
-   *                 inhibit 给目标加沉默；degrade 走 _resolveConsume 槽位竞争
-   *   ④ 乘数增量  —— produce 按 amplify 批量产出下游分子，并消耗 GTP
-   */
-  _resolveReaction(rx) {
-    const from = this.node(rx.from);
-    const to = this.node(rx.to);
-    if (!from || !to) return;
-
-    // 第一步 [锁定目标]：比对密码标签，不相交则根本不发生碰撞
-    const matched = from.tpl.tags.some((t) => to.tpl.tags.includes(t))
-      || (rx.effect === 'produce' && true); // 产物由模板自身标签决定
-    if (!matched && rx.from !== to.id) { from.lastHit = false; return; }
-
-    const drive = from.drive;
-    if (drive <= 0.0001) { from.lastHit = false; return; }
-
-    // 第二步 [命中判定]：微分方程 → 离散概率。骰子必须落进 [lo, lo + 宽度×推动力]
-    const lo = rx.band[0];
-    const width = rx.band[1] - rx.band[0];
-    const chance = width * Math.pow(drive, rx.hill);
-    const roll = this.rng.roll();
-    const hit = roll >= lo && roll < lo + chance;
-
-    from.lastHit = hit;
-    if (!hit) return;
-
-    const intensity = Math.pow(drive, rx.hill);
-
-    // 第三步 [挂 Buff] / 第四步 [乘数增量]
-    if (rx.effect === 'activate') {
-      to.applyActivation(rx.power * intensity, to.tpl.buffTicks);
-      to.flash = 1;
-    } else if (rx.effect === 'inhibit') {
-      to.mute(Math.round(rx.power * intensity), rx.label || from.tpl.name);
-      to.flash = 1;
-    } else if (rx.effect === 'produce') {
-      // 全局能量限制：资源池见底时合成停滞（死法 A 的物理基础）。
-      // 消耗哪个池由反应自己声明（rx.costPool），引擎不认识「GTP」这个名字 ——
-      // 第二关想让合成消耗 ATP，在关卡里配 costPool: 'ATP' 即可，引擎不用改。
-      const poolName = rx.costPool || 'GTP';
-      const budget = this.pools[poolName] ?? 0;
-      const supply = budget > 0 ? 1 : 0;
-      const [jLo, jHi] = TUNING.hitJitter;
-      let made = rx.amplify * intensity * supply * this.rng.range(jLo, jHi);
-      // 能量硬约束（Gemini 评审第三条·1）：产量不能超过当前资源池能负担的量，
-      // 杜绝"池子只剩 2 点却白嫖 100 个产物"的透支。
-      // 以前 GTP 仅作开关（>0 就满产），现在按 budget / gtpCost 封顶，
-      // 能量枯竭会表现为产量平滑衰减，而不是断崖后凭空续命。
-      if (rx.gtpCost > 0) made = Math.min(made, budget / rx.gtpCost);
-      to.nextCount += made;
-      to.lastGain = made;
-      to.flash = 1;
-      this.pools[poolName] = Math.max(0, budget - made * rx.gtpCost);
+    /* --------------------------------------------------------- 宏观指标 */
+    /** 计算"非分子"性质的派生量：钙离子浓度、平滑肌舒张度等。
+     * 这些不在网络中流动，而是网络效应的"读数" —— 玩家看的是它们，关卡胜负也由它们判定。
+     *
+     * 【以前这里写死了一堆 if (m.id === 'Ca') / else if (m.id === 'Relax')】
+     * 现在改由关卡在 METRICS 里声明每条指标的 `kind`，引擎只负责执行三种通式：
+     *
+     *   driven   被效应器抽走 + 向 base 回归
+     *            公式：cur + (base - cur) × restore - 激活度 × drain
+     *            典型：Ca 浓度 —— 效应器（MLCP）越活，被抽走得越多
+     *            需要：driver / base / drain / restore / min / max
+     *
+     *   mirror   直接镜像某个分子的数量（默认 kind，不写就是它）
+     *            典型：cGMP 浓度 —— 指标值就是 cGMP 分子的个数
+     *            需要：driver
+     *
+     *   derived  由另一个指标换算而来
+     *            典型：舒张度 = 100 - Ca
+     *            需要：from / transform(值) / min / max
+     *
+     * 好处：引擎不再认识「Ca」「cGMP」这些名字。做第二关时只用在关卡文件里
+     * 挑一种 kind、填参数，不用回来给引擎加新的 if 分支。
+     */
+    _updateMetrics() {
+        for (const m of this.level.metrics) {
+            const src = m.driver ? this.node(m.driver) : null;
+            if (m.kind === 'driven') {
+                const eff = src ? src.activation / TUNING.activationMax : 0;
+                const cur = this.metrics[m.id];
+                const next = cur + ((m.base ?? 0) - cur) * (m.restore ?? 0) - eff * (m.drain ?? 0);
+                this.metrics[m.id] = clamp(next, m.min ?? 0, m.max ?? Infinity);
+            }
+            else if (m.kind === 'derived') {
+                const from = m.from;
+                const v = this.metrics[from] ?? 0;
+                const tf = m.transform;
+                this.metrics[m.id] = clamp(tf(v), m.min ?? 0, m.max ?? 100);
+            }
+            else {
+                this.metrics[m.id] = src ? src.count : 0;
+            }
+        }
     }
-  }
-
-  /* ------------------------------------ 槽位竞争降解：竞争性抑制的建模 */
-  /**
-   * 【这是整个游戏最重要的机制 —— 竞争性抑制】
-   *
-   * 设想一个酶（PDE5）有固定的处理能力 = `slots × 激活度`。
-   * 所有带 `slotTag` 标签的分子按数量比例瓜分这个能力。
-   *
-   * 关键：不可降解的诱饵（如西地那非）照样占座，但不被清除。
-   * → 等于把酶的算力全部浪费在"消化西地那非"上，
-   *   真正该降解的 cGMP 因此被"保护"下来，浓度反而上升。
-   *
-   * 这个机制比"给酶挂沉默 debuff"更真实：
-   *   - 它不需要为每个抑制剂写特殊规则，机制是涌现的；
-   *   - 西地那非的可调参（剂量、代谢率）自然映射到"占座多少"和"占多久"；
-   *   - 玩家能推理出"为什么 PDE5 的槽位总是不够用"，而不只是死记"这个药就是抑制 PDE5 的"。
-   */
-  _resolveConsume(rx) {
-    const enzyme = this.node(rx.from);
-    if (!enzyme || enzyme.isMuted) return;
-    const cap = rx.slots * (enzyme.activation / TUNING.activationMax);
-    if (cap <= 0) return;
-
-    const subs = this.nodeList.filter(
-      (m) => m.tpl.tags.includes(rx.slotTag) && m.count > 0.01
-    );
-    if (!subs.length) return;
-
-    const total = subs.reduce((s, m) => s + m.count, 0);
-    if (total <= 0) return;
-
-    let processed = 0;
-    for (const m of subs) {
-      const share = (cap * m.count) / total;           // m.count 取快照，读-改分离
-      if (!m.tpl.degradable) { processed += share; continue; } // 占座但不被降解
-      const removed = Math.min(m.count, share);
-      m.nextCount -= removed;                          // 写入下一帧缓冲
-      processed += removed;
+    /* ------------------------------------------------------ 取值小工具 */
+    /** 关卡配置里到处都要"取某个分子/指标/资源池的当前数值"，
+     *  统一走这里，省得每个判定分支各写一套。
+     *    { kind: 'node',   id: 'cGMP', prop: 'count' | 'activation' }
+     *    { kind: 'metric', id: 'Ca' }
+     *    { kind: 'pool',   id: 'GTP' }
+     */
+    _readValue(ref) {
+        if (ref.kind === 'pool')
+            return this.pools[ref.id] ?? 0;
+        if (ref.kind === 'metric')
+            return this.metrics[ref.id] ?? 0;
+        const n = this.node(ref.id);
+        if (!n)
+            return 0;
+        return ref.prop === 'activation' ? n.activation : n.count;
     }
-    enzyme.lastGain = processed;
-    if (processed > 0.5) enzyme.flash = 1;
-  }
-
-  /* --------------------------------------------------------- 宏观指标 */
-  /** 计算"非分子"性质的派生量：钙离子浓度、平滑肌舒张度等。
-   * 这些不在网络中流动，而是网络效应的"读数" —— 玩家看的是它们，关卡胜负也由它们判定。
-   *
-   * 【以前这里写死了一堆 if (m.id === 'Ca') / else if (m.id === 'Relax')】
-   * 现在改由关卡在 METRICS 里声明每条指标的 `kind`，引擎只负责执行三种通式：
-   *
-   *   driven   被效应器抽走 + 向 base 回归
-   *            公式：cur + (base - cur) × restore - 激活度 × drain
-   *            典型：Ca 浓度 —— 效应器（MLCP）越活，被抽走得越多
-   *            需要：driver / base / drain / restore / min / max
-   *
-   *   mirror   直接镜像某个分子的数量（默认 kind，不写就是它）
-   *            典型：cGMP 浓度 —— 指标值就是 cGMP 分子的个数
-   *            需要：driver
-   *
-   *   derived  由另一个指标换算而来
-   *            典型：舒张度 = 100 - Ca
-   *            需要：from / transform(值) / min / max
-   *
-   * 好处：引擎不再认识「Ca」「cGMP」这些名字。做第二关时只用在关卡文件里
-   * 挑一种 kind、填参数，不用回来给引擎加新的 if 分支。
-   */
-  _updateMetrics() {
-    for (const m of this.level.metrics) {
-      const src = m.driver ? this.node(m.driver) : null;
-
-      if (m.kind === 'driven') {
-        const eff = src ? src.activation / TUNING.activationMax : 0;
-        const cur = this.metrics[m.id];
-        const next = cur + (m.base - cur) * m.restore - eff * m.drain;
-        this.metrics[m.id] = clamp(next, m.min ?? 0, m.max ?? Infinity);
-      } else if (m.kind === 'derived') {
-        const v = this.metrics[m.from] ?? 0;
-        this.metrics[m.id] = clamp(m.transform(v), m.min ?? 0, m.max ?? 100);
-      } else {
-        this.metrics[m.id] = src ? src.count : 0;
-      }
+    /** 指标 id → 显示名，用于往结算文案里填「钙离子浓度」这样的中文名 */
+    _metricName(id) {
+        return this.level.metrics.find((m) => m.id === id)?.name ?? id;
     }
-  }
-
-  /* ------------------------------------------------------ 取值小工具 */
-  /** 关卡配置里到处都要"取某个分子/指标/资源池的当前数值"，
-   *  统一走这里，省得每个判定分支各写一套。
-   *    { kind: 'node',   id: 'cGMP', prop: 'count' | 'activation' }
-   *    { kind: 'metric', id: 'Ca' }
-   *    { kind: 'pool',   id: 'GTP' }
-   */
-  _readValue(ref) {
-    if (ref.kind === 'pool') return this.pools[ref.id] ?? 0;
-    if (ref.kind === 'metric') return this.metrics[ref.id] ?? 0;
-    const n = this.node(ref.id);
-    if (!n) return 0;
-    return ref.prop === 'activation' ? n.activation : n.count;
-  }
-
-  /** 指标 id → 显示名，用于往结算文案里填「钙离子浓度」这样的中文名 */
-  _metricName(id) {
-    return this.level.metrics.find((m) => m.id === id)?.name ?? id;
-  }
-
-  /* --------------------------------------------------------- 胜负判定 */
-  /** 每个 tick 调一次。四个结局按顺序检查，命中即停。
-   *
-   *   ① 稳态恢复（win）  核心指标降到 below 以下并持续 hold 个 tick
-   *   ② 能量枯竭         资源池见底并持续 starve.sustainTicks
-   *   ③ 脱靶毒性         某分子越过红线并持续 toxicity.sustainTicks
-   *   ④ 干预失效         跑满 timeout.ticks 仍未进入安全区
-   *
-   * 【关键改动：这套配方现在整份来自关卡的 OUTCOME 配置】
-   * 以前这里写死了「Ca」「cGMP」「GTP」「190」「20」「40」「0.5」「0.1」，还硬编码了
-   * 四段带分子名的中文结算文案。结果就是：做第二关必须回来改引擎，而且极易漏改。
-   * 现在引擎只认四种"判定形状"，具体判谁、判多少、持续多久、说什么话，全在关卡文件里。
-   *
-   * 仍在引擎里的两个机制（换关卡也不会变，所以没搬走）：
-   *   · 双缓冲（tick 内读写分离）消除遍历顺序"幽灵先手"；
-   *   · 生产按资源池能量封顶，杜绝透支。
-   * ⚠️ TODO(配平暂缓)：各类阈值尚未结合双缓冲后的新动力学配平，
-   *   目前 5 个标准场景的结局分布还没对齐，留待后续专门配平。
-   */
-  _judge() {
-    const O = this.level.outcome;
-    const win = O.win;
-
-    /* ——— 结局 ①：稳态恢复 —— ————————————————————————————————————
-     * 除了指标达标，还要求处于"绝对安全"状态（关卡配的 safe 前置）：
-     *   本关是「cGMP 未越红线」且「GTP 高于池容 10%」。
-     * 二者皆满足才累积胜利进度，否则进度回退。这样"乱灌硝酸甘油"即便短暂把 Ca 打下去，
-     * 也会因为它正处于能量/毒性危机中而无法抢先判胜。 */
-    const value = this.metrics[win.metric];
-    const safe = win.safe.every((c) => this._checkSafe(c));
-
-    if (value <= win.below && safe) {
-      this.holdTicks += 1;
-      if (this.holdTicks >= win.hold) {
-        return this._finish('win', 'homeostasis', {
-          metric: this._metricName(win.metric),
-          value: value.toFixed(1),
-        });
-      }
-    } else {
-      // 没达标就往回掉，掉得比涨得快（slipPerTick）—— 抖动着蒙混过关是不行的
-      this.holdTicks = Math.max(0, this.holdTicks - win.slipPerTick);
+    /* --------------------------------------------------------- 胜负判定 */
+    /** 每个 tick 调一次。四个结局按顺序检查，命中即停。
+     *
+     *   ① 稳态恢复（win）  核心指标降到 below 以下并持续 hold 个 tick
+     *   ② 能量枯竭         资源池见底并持续 starve.sustainTicks
+     *   ③ 脱靶毒性         某分子越过红线并持续 toxicity.sustainTicks
+     *   ④ 干预失效         跑满 timeout.ticks 仍未进入安全区
+     *
+     * 【关键改动：这套配方现在整份来自关卡的 OUTCOME 配置】
+     * 以前这里写死了「Ca」「cGMP」「GTP」「190」「20」「40」「0.5」「0.1」，还硬编码了
+     * 四段带分子名的中文结算文案。结果就是：做第二关必须回来改引擎，而且极易漏改。
+     * 现在引擎只认四种"判定形状"，具体判谁、判多少、持续多久、说什么话，全在关卡文件里。
+     *
+     * 仍在引擎里的两个机制（换关卡也不会变，所以没搬走）：
+     *   · 双缓冲（tick 内读写分离）消除遍历顺序"幽灵先手"；
+     *   · 生产按资源池能量封顶，杜绝透支。
+     * ⚠️ TODO(配平暂缓)：各类阈值尚未结合双缓冲后的新动力学配平，
+     *   目前 5 个标准场景的结局分布还没对齐，留待后续专门配平。
+     */
+    _judge() {
+        const O = this.level.outcome;
+        const win = O.win;
+        /* ——— 结局 ①：稳态恢复 —— ————————————————————————————————————
+         * 除了指标达标，还要求处于"绝对安全"状态（关卡配的 safe 前置）：
+         *   本关是「cGMP 未越红线」且「GTP 高于池容 10%」。
+         * 二者皆满足才累积胜利进度，否则进度回退。这样"乱灌硝酸甘油"即便短暂把 Ca 打下去，
+         * 也会因为它正处于能量/毒性危机中而无法抢先判胜。 */
+        const value = this.metrics[win.metric];
+        const safe = win.safe.every((c) => this._checkSafe(c));
+        if (value <= win.below && safe) {
+            this.holdTicks += 1;
+            if (this.holdTicks >= win.hold) {
+                return this._finish('win', 'homeostasis', {
+                    metric: this._metricName(win.metric),
+                    value: value.toFixed(1),
+                });
+            }
+        }
+        else {
+            // 没达标就往回掉，掉得比涨得快（slipPerTick）—— 抖动着蒙混过关是不行的
+            this.holdTicks = Math.max(0, this.holdTicks - win.slipPerTick);
+        }
+        /* ——— 结局 ②：能量枯竭 ——————————————————————————————————————— */
+        const S = O.starve;
+        if ((this.pools[S.pool] ?? 1) <= S.emptyBelow) {
+            this.starveTicks += 1;
+            if (this.starveTicks >= S.sustainTicks) {
+                return this._finish('lose', 'starvation', { pool: S.pool });
+            }
+        }
+        else
+            this.starveTicks = Math.max(0, this.starveTicks - 1);
+        /* ——— 结局 ③：脱靶与毒性（红区超载）—————————————————————————— */
+        const T = O.toxicity;
+        if (this._readValue(T) >= T.above) {
+            this.dangerTicks += 1;
+            if (this.dangerTicks >= T.sustainTicks) {
+                return this._finish('lose', 'toxicity', {
+                    node: T.kind === 'metric'
+                        ? this._metricName(T.id)
+                        : (this.node(T.id)?.tpl.name ?? T.id),
+                    redline: T.above,
+                });
+            }
+        }
+        else
+            this.dangerTicks = Math.max(0, this.dangerTicks - 1);
+        /* ——— 结局 ④：无响应超时 —— ——————————————————————————————————— */
+        if (this.tickCount >= O.timeout.ticks) {
+            return this._finish('lose', 'timeout', {
+                seconds: (O.timeout.ticks / TPS).toFixed(0),
+                metric: this._metricName(win.metric),
+            });
+        }
     }
-
-    /* ——— 结局 ②：能量枯竭 ——————————————————————————————————————— */
-    const S = O.starve;
-    if ((this.pools[S.pool] ?? 1) <= S.emptyBelow) {
-      this.starveTicks += 1;
-      if (this.starveTicks >= S.sustainTicks) {
-        return this._finish('lose', 'starvation', { pool: S.pool });
-      }
-    } else this.starveTicks = Math.max(0, this.starveTicks - 1);
-
-    /* ——— 结局 ③：脱靶与毒性（红区超载）—————————————————————————— */
-    const T = O.toxicity;
-    if (this._readValue(T) >= T.above) {
-      this.dangerTicks += 1;
-      if (this.dangerTicks >= T.sustainTicks) {
-        return this._finish('lose', 'toxicity', {
-          node: T.kind === 'metric'
-            ? this._metricName(T.id)
-            : (this.node(T.id)?.tpl.name ?? T.id),
-          redline: T.above,
-        });
-      }
-    } else this.dangerTicks = Math.max(0, this.dangerTicks - 1);
-
-    /* ——— 结局 ④：无响应超时 —— ——————————————————————————————————— */
-    if (this.tickCount >= O.timeout.ticks) {
-      return this._finish('lose', 'timeout', {
-        seconds: (O.timeout.ticks / TPS).toFixed(0),
-        metric: this._metricName(win.metric),
-      });
+    /** 判断一条"安全前置条件"是否成立。
+     *   池：当前量 > 池容 × aboveRatio
+     *   分子/指标：当前值 < below
+     */
+    _checkSafe(c) {
+        if (c.kind === 'pool') {
+            return (this.pools[c.id] ?? 0) > (this.poolsMax[c.id] ?? 0) * (c.aboveRatio ?? 0);
+        }
+        return this._readValue(c) < (c.below ?? 0);
     }
-  }
-
-  /** 判断一条"安全前置条件"是否成立。
-   *   池：当前量 > 池容 × aboveRatio
-   *   分子/指标：当前值 < below
-   */
-  _checkSafe(c) {
-    if (c.kind === 'pool') {
-      return (this.pools[c.id] ?? 0) > (this.poolsMax[c.id] ?? 0) * c.aboveRatio;
+    /** 结束本局。标题与详情文案由关卡的 outcomeText 提供，
+     *  引擎只负责把运行时的数值（当前值 / 红线 / 秒数 / 分子名）填进 {占位符}。
+     *  这样第二关换个结局文案，不用碰引擎一行代码。 */
+    _finish(result, reason, vars = {}) {
+        const text = this.level.outcomeText?.[reason];
+        const title = text?.title ?? reason;
+        const detail = fillTemplate(text?.detail ?? '', vars);
+        this.outcome = { result, reason, title, detail, time: this.time };
+        this.log(`${result === 'win' ? '✔' : '✖'} ${title}`, result === 'win' ? 'win' : 'lose');
+        return this.outcome;
     }
-    return this._readValue(c) < c.below;
-  }
-
-  /** 结束本局。标题与详情文案由关卡的 outcomeText 提供，
-   *  引擎只负责把运行时的数值（当前值 / 红线 / 秒数 / 分子名）填进 {占位符}。
-   *  这样第二关换个结局文案，不用碰引擎一行代码。 */
-  _finish(result, reason, vars = {}) {
-    const text = this.level.outcomeText?.[reason];
-    const title = text?.title ?? reason;
-    const detail = fillTemplate(text?.detail ?? '', vars);
-    this.outcome = { result, reason, title, detail, time: this.time };
-    this.log(`${result === 'win' ? '✔' : '✖'} ${title}`, result === 'win' ? 'win' : 'lose');
-    return this.outcome;
-  }
-
-  /** 折线图快照。画哪些曲线由关卡的 chart.series 决定 ——
-   *  引擎不再写死「要采 cGMP 和 Ca」，第二关想画别的曲线改关卡配置就行。 */
-  _snapshot() {
-    const row = { t: this.tickCount };
-    for (const s of this.level.chart.series) {
-      row[s.key] = this._readValue(s);
+    /** 折线图快照。画哪些曲线由关卡的 chart.series 决定 ——
+     *  引擎不再写死「要采 cGMP 和 Ca」，第二关想画别的曲线改关卡配置就行。 */
+    _snapshot() {
+        const row = { t: this.tickCount };
+        for (const s of this.level.chart.series) {
+            row[s.key] = this._readValue(s);
+        }
+        this.history.push(row);
+        if (this.history.length > TUNING.historyCap)
+            this.history.shift();
     }
-    this.history.push(row);
-    if (this.history.length > TUNING.historyCap) this.history.shift();
-  }
-
-  /* ------------------------------------------------- 玩家侧边栏调参接口 */
-  /** 只允许修改模板白名单内的参数（PDF 难点二：80% 写死，20% 开放） */
-  setParam(nodeId, key, value) {
-    const m = this.node(nodeId);
-    if (!m) return false;
-    if (!m.tpl.editable.includes(key)) return false;
-    m.tpl[key] = value;
-    this.log(`调节 ${m.tpl.name}.${key} = ${value}`, 'param');
-    return true;
-  }
+    /* ------------------------------------------------- 玩家侧边栏调参接口 */
+    /** 只允许修改模板白名单内的参数（PDF 难点二：80% 写死，20% 开放） */
+    setParam(nodeId, key, value) {
+        const m = this.node(nodeId);
+        if (!m)
+            return false;
+        if (!m.tpl.editable.includes(key))
+            return false;
+        m.tpl[key] = value;
+        this.log(`调节 ${m.tpl.name}.${key} = ${value}`, 'param');
+        return true;
+    }
 }
-
 /* ============================================================================
  * 速查：玩家可见的玩法，映射到哪个方法
  * ----------------------------------------------------------------------------
@@ -1115,7 +1092,7 @@ class Simulator {
  *   Buff 衰减倍率 / 抖动幅度 / 激活阈值 / 日志上限  → 本文件 TUNING（影响所有关卡）
  *   判胜阈值 / 红线 / 死法时长 / 结算文案 / 曲线    → pathways/nocgmp.js
  * ==========================================================================*/
-return { TICK_MS: TICK_MS, TPS: TPS, TUNING: TUNING, fillTemplate: fillTemplate, RNG: RNG, Status: Status, MoleculeTemplate: MoleculeTemplate, Molecule: Molecule, Reaction: Reaction, Simulator: Simulator };
+return { TICK_MS: TICK_MS, TPS: TPS, TUNING: TUNING, fillTemplate: fillTemplate, RNG: RNG, Status: Status, STATUS_INACTIVE: STATUS_INACTIVE, STATUS_ACTIVE: STATUS_ACTIVE, STATUS_MUTED: STATUS_MUTED, MoleculeTemplate: MoleculeTemplate, Molecule: Molecule, Reaction: Reaction, Simulator: Simulator };
 })();
 
 /* ================================ pathways/nocgmp.js ================================ */
@@ -1125,148 +1102,64 @@ __MODULES__["pathways/nocgmp.js"] = (function () {
  * ----------------------------------------------------------------------------
  * 对照 KEGG map04022（cGMP-PKG 通路）+ 临床经典案例：西地那非竞争性抑制 PDE5。
  * ==========================================================================*/
-
-/* ╔═══════════════════════════════════════════════════╗
- * ║  这个文件怎么读 —— 六层数据 + 一个组装车间              ║
- * ╚═══════════════════════════════════════════════════╝
- *
- *  ① VIEW        屏幕上长什么样   画布尺寸 / 坐标 / 配色 / 连线样式
- *  ② BIOLOGY     谁是谁、谁影响谁  分子档案 + 反应关系（⚠️ 这一层没有数字）
- *  ③ INTERACTION 谁能和谁碰撞      标签密码表
- *  ④ KINETICS    多强、多快、多少  半饱和 / 衰减 / 频段 / 放大 / 槽位
- *  ⑤ GAME        玩家怎么玩        关卡规则 / 宏观指标 / 药物 / 可调参数白名单
- *  ⑥ COPY        文案              简报 / 提示 / 结算小知识
- *
- *  文件末尾的「组装车间」把上面六层按 id 拼成引擎认识的 NODES / REACTIONS，
- *  它自己不含任何数据 —— 只是查表、合并、排序。
- *
- * ───────────────────────────────────────────────────────────────────────────
- *  为什么要把一个节点拆成六处？
- * ───────────────────────────────────────────────────────────────────────────
- *  以前 NO 的全部信息挤在一个对象里：名字、坐标、颜色、标签、衰减率、可调参数
- *  全写在一起。问题是「改布局」和「改平衡」是两种完全不同的动机，却被绑在同一段
- *  代码上 —— 想统一挪动七个节点，得在几十行里翻找 x / y；想换配色，得小心别
- *  手滑改到 baseDecay。
- *
- *  现在按「变化的理由」切分：改颜色只会碰 VIEW，改手感只会碰 KINETICS。
- *  改坐标不可能影响模拟结果，改衰减率也不可能让画面歪掉。
- *
- * ───────────────────────────────────────────────────────────────────────────
- *  看到一个参数，问自己一句话，就知道它该放哪层
- * ───────────────────────────────────────────────────────────────────────────
- *    「谁影响谁？」                 → ② BIOLOGY      例：PKG → PDE5
- *    「谁有资格和谁碰？」            → ③ INTERACTION  例：PDE_Target 标签
- *    「影响有多强、多快、多容易？」   → ④ KINETICS     例：hill = 1.4 / decay = 0.05
- *    「玩家怎么玩、怎样算赢？」       → ⑤ GAME         例：Ca 目标 45 / 药物 4 种
- *    「屏幕上长什么样？」            → ① VIEW         例：x = 630 / 紫色
- *    「界面上写什么字？」            → ⑥ COPY
- *
- * ───────────────────────────────────────────────────────────────────────────
- *  想调什么 → 去哪一层
- * ───────────────────────────────────────────────────────────────────────────
- *    画面歪了 / 想换配色 / 改连线文字    → ① VIEW
- *    加一个分子 / 加一条反应 / 改机制    → ② BIOLOGY（先改这里，再去 ④ 补数字）
- *    让两个分子不再互相碰撞              → ③ INTERACTION（删标签比删反应边更符合机制本意）
- *    太难 / 太简单 / 时间不够            → ⑤ GAME.outcome（胜负配方）
- *    分子动力学、反应强度                → ④ KINETICS
- *    药物剂量、机制、数量                → ⑤ GAME.drugs
- *    玩家能调哪些滑块                    → ⑤ GAME.editable
- *    指标怎么算 / 曲线画什么              → ⑤ GAME.metrics / chart
- *    结算弹窗写什么话                    → ⑥ COPY.outcomeText
- *    改教学文案                          → ⑥ COPY
- *
- *    ⚠️ 引擎手感（Buff 衰减倍率、随机抖动、激活阈值等）不在本文件，
- *       它们在 src/engine.js 顶部的 TUNING —— 而且改了会影响所有关卡。
- *
- * ───────────────────────────────────────────────────────────────────────────
- *  ⚠️ 本次改动只挪位置，不挪数字
- * ───────────────────────────────────────────────────────────────────────────
- *  这次重构的要求是「架构改变 ≠ 模拟规则改变」。改完后两件事应当完全一致：
- *    node tools/balance.mjs sweep     ← 10 个随机种子的结局分布
- *    node tools/balance.mjs           ← 5 个标准场景的推演过程
- *  如果数字变了，说明组装车间漏搬了字段，回去查 NODE_ORDER / REACTION_ORDER。
- *  改完请务必跑：
- *    node tools/build.js && node tools/smoke.mjs
- *
- * ───────────────────────────────────────────────────────────────────────────
- *  做第二关的正确姿势
- * ───────────────────────────────────────────────────────────────────────────
- *  复制本文件改数据即可。引擎 / 渲染器 / UI 都不用动：
- *    · 分子与拓扑       → ② BIOLOGY + ③ INTERACTION + ④ KINETICS
- *    · 指标怎么算       → ⑤ METRICS 里挑 kind（driven / mirror / derived）
- *    · 判胜判负         → ⑤ OUTCOME（换指标、换分子、换阈值都在这一张表）
- *    · 结算文案         → ⑥ COPY.outcomeText
- *    · 曲线画什么       → ⑤ CHART.series
- *  这样第二关消耗 ATP 而不是 GTP、判的是别的分子、死法也完全不同，都不用改 engine.js。
- */
-
-/* ══════════════════════════════════════════════════════════════════════════
- * ① VIEW —— 屏幕呈现层
- *    纯视觉。这一层的任何改动都不可能影响模拟结果，可以放心大胆地调。
- * ══════════════════════════════════════════════════════════════════════════*/
-
 const VIEW = {
-  /** 设计稿逻辑坐标。渲染层会按容器实际尺寸自动缩放，所以这里填设计稿尺寸即可。 */
-  canvas: { w: 1000, h: 400 },
-
-  /**
-   * 节点在画布上的位置（设计稿坐标，不是像素）。
-   * 布局思路：主干 NO → sGC → cGMP → PKG → MLCP 横排一行（y = 95）；
-   *           负反馈支路 PDE5 与药物西地那非放在下方（y = 290）。
-   * 想整体挪动或重排，改这里七行就够了 —— 不用去别的层里一个个找 x / y。
-   */
-  layout: {
-    NO:         { x: 215, y: 95 },
-    sGC:        { x: 350, y: 95 },
-    cGMP:       { x: 490, y: 95 },
-    PKG:        { x: 630, y: 95 },
-    MLCP:       { x: 770, y: 95 },
-    PDE5:       { x: 490, y: 290 },
-    Sildenafil: { x: 300, y: 290 },
-  },
-
-  /**
-   * 节点配色 —— 语义色，不是随便挑的：
-   *   蓝青  信使分子（NO / sGC / cGMP）
-   *   紫    激酶（PKG）
-   *   黄    效应器（MLCP）
-   *   红    负反馈与红线相关（PDE5）
-   *   粉    药物（西地那非）
-   * 画布上的节点与右侧道具栏的按钮共用这里的色值，改一处两边同步。
-   */
-  colors: {
-    NO: '#8fd3ff',
-    sGC: '#4dd0c7',
-    cGMP: '#5ee0c8',
-    PKG: '#b39dff',
-    MLCP: '#ffd479',
-    PDE5: '#ff7a6b',
-    Sildenafil: '#ff9de2',
-  },
-
-  /**
-   * 反应边的显示样式（不填就是默认的实线 + 普通箭头）。
-   * 为什么连线文字放这里而不是 BIOLOGY：
-   *   BIOLOGY 里的「PKG → PDE5 + activate」已经把生物学事实说清楚了；
-   *   画布上那句「旁路唤醒」是给玩家看的游戏化短标签，属于呈现。
-   *   negate   true 画成抑制样式（虚线 + ⊥ 形封口）
-   *   label    连线上显示的文字
-   *   waypoints 折线拐点
-   */
-  edges: {
-    r1: { label: '密码匹配' },
-    r2: { label: 'GTP → cGMP' },
-    r3: { label: '数量淹没' },
-    r4: { label: '磷酸化' },
-    // 这条要绕行，否则箭头会穿过主干那一排节点
-    r5: {
-      label: '旁路唤醒',
-      waypoints: [{ x: 630, y: 200 }, { x: 630, y: 290 }],
+    /** 设计稿逻辑坐标。渲染层会按容器实际尺寸自动缩放，所以这里填设计稿尺寸即可。 */
+    canvas: { w: 1000, h: 400 },
+    /**
+     * 节点在画布上的位置（设计稿坐标，不是像素）。
+     * 布局思路：主干 NO → sGC → cGMP → PKG → MLCP 横排一行（y = 95）；
+     *           负反馈支路 PDE5 与药物西地那非放在下方（y = 290）。
+     * 想整体挪动或重排，改这里七行就够了 —— 不用去别的层里一个个找 x / y。
+     */
+    layout: {
+        NO: { x: 215, y: 95 },
+        sGC: { x: 350, y: 95 },
+        cGMP: { x: 490, y: 95 },
+        PKG: { x: 630, y: 95 },
+        MLCP: { x: 770, y: 95 },
+        PDE5: { x: 490, y: 290 },
+        Sildenafil: { x: 300, y: 290 },
     },
-    r6: { label: '槽位降解', negate: true },
-  },
+    /**
+     * 节点配色 —— 语义色，不是随便挑的：
+     *   蓝青  信使分子（NO / sGC / cGMP）
+     *   紫    激酶（PKG）
+     *   黄    效应器（MLCP）
+     *   红    负反馈与红线相关（PDE5）
+     *   粉    药物（西地那非）
+     * 画布上的节点与右侧道具栏的按钮共用这里的色值，改一处两边同步。
+     */
+    colors: {
+        NO: '#8fd3ff',
+        sGC: '#4dd0c7',
+        cGMP: '#5ee0c8',
+        PKG: '#b39dff',
+        MLCP: '#ffd479',
+        PDE5: '#ff7a6b',
+        Sildenafil: '#ff9de2',
+    },
+    /**
+     * 反应边的显示样式（不填就是默认的实线 + 普通箭头）。
+     * 为什么连线文字放这里而不是 BIOLOGY：
+     *   BIOLOGY 里的「PKG → PDE5 + activate」已经把生物学事实说清楚了；
+     *   画布上那句「旁路唤醒」是给玩家看的游戏化短标签，属于呈现。
+     *   negate   true 画成抑制样式（虚线 + ⊥ 形封口）
+     *   label    连线上显示的文字
+     *   waypoints 折线拐点
+     */
+    edges: {
+        r1: { label: '密码匹配' },
+        r2: { label: 'GTP → cGMP' },
+        r3: { label: '数量淹没' },
+        r4: { label: '磷酸化' },
+        // 这条要绕行，否则箭头会穿过主干那一排节点
+        r5: {
+            label: '旁路唤醒',
+            waypoints: [{ x: 630, y: 200 }, { x: 630, y: 290 }],
+        },
+        r6: { label: '槽位降解', negate: true },
+    },
 };
-
 /* ══════════════════════════════════════════════════════════════════════════
  * ② BIOLOGY —— 生物学事实层
  *    ⚠️ 这一层【一个数字都不能有】。
@@ -1275,67 +1168,64 @@ const VIEW = {
  *    这样分的好处：以后查到真实文献数据（比如 NO 的半衰期），
  *    改的是 KINETICS 里的 baseDecay，而「NO 激活 sGC」这个生物学事实纹丝不动。
  * ══════════════════════════════════════════════════════════════════════════*/
-
 const BIOLOGY = {
-  /**
-   * 分子档案。字段：
-   *   name / cn  显示名 / 中文全名
-   *   role       分类标记，画布与检查器会用它决定图标样式
-   *              messenger 信使 | amplifier 放大器 | kinase 激酶
-   *              effector 效应器 | decoy 诱饵 | donor 供体
-   *   kind       'node' 内源分子（默认，可不写）| 'drug' 外来药物
-   *   desc       点开节点后显示的档案卡文案
-   */
-  nodes: {
-    NO: {
-      name: 'NO', cn: '一氧化氮', role: 'messenger',
-      desc: '由内皮细胞脉冲释放的气体信使。无视细胞膜地形阻挡，但半衰期极短 —— 它来去如风，靠的是「频率」而不是「存量」。',
+    /**
+     * 分子档案。字段：
+     *   name / cn  显示名 / 中文全名
+     *   role       分类标记，画布与检查器会用它决定图标样式
+     *              messenger 信使 | amplifier 放大器 | kinase 激酶
+     *              effector 效应器 | decoy 诱饵 | donor 供体
+     *   kind       'node' 内源分子（默认，可不写）| 'drug' 外来药物
+     *   desc       点开节点后显示的档案卡文案
+     */
+    nodes: {
+        NO: {
+            name: 'NO', cn: '一氧化氮', role: 'messenger',
+            desc: '由内皮细胞脉冲释放的气体信使。无视细胞膜地形阻挡，但半衰期极短 —— 它来去如风，靠的是「频率」而不是「存量」。',
+        },
+        sGC: {
+            name: 'sGC', cn: '可溶性鸟苷酸环化酶', role: 'amplifier',
+            desc: '放大器。接收频段窄、较难被随机碰撞激活；但一旦与 NO 密码匹配，就以极高的放大倍数把 GTP 批量转化成 cGMP。',
+        },
+        cGMP: {
+            name: 'cGMP', cn: '环磷酸鸟苷', role: 'messenger',
+            desc: '次级信使。它不靠单打独斗，而是靠庞大的数量去「淹没」下游分子的结合口袋 —— 数量本身就是它的信号强度。',
+        },
+        PKG: {
+            name: 'PKG', cn: 'cGMP 依赖性蛋白激酶', role: 'kinase',
+            desc: '调控核心。平时休眠，被 cGMP 激活后执行双线任务：主线磷酸化靶蛋白降低钙离子；旁路则顺手唤醒沉默的 PDE5 —— 这是整个死局的种子。',
+        },
+        MLCP: {
+            name: '靶蛋白', cn: 'MLCP / 钙离子调控复合体', role: 'effector',
+            desc: '效应器。被 PKG 磷酸化后主动降低胞内钙离子浓度。它的激活度衰减很快 —— PKG 一旦哑火，钙离子立刻反弹。',
+        },
+        PDE5: {
+            name: 'PDE5', cn: '5 型磷酸二酯酶', role: 'decoy',
+            desc: '负反馈核心。初始休眠，被 PKG 旁路唤醒后，按固定槽位总额降解所有带 PDE_Target 标签的分子。槽位有限 —— 这正是它的弱点。',
+        },
+        Sildenafil: {
+            name: '西地那非', cn: 'PDE5 竞争性抑制剂', role: 'decoy', kind: 'drug',
+            desc: '长得和 cGMP 极像的诱饵：拥有相同的 PDE_Target 密码，能被 PDE5 识别结合，但放大乘数为 0 且不可被降解。它凭数量优势塞满 PDE5 的槽位，让酶的算力全部浪费在它身上。',
+        },
     },
-    sGC: {
-      name: 'sGC', cn: '可溶性鸟苷酸环化酶', role: 'amplifier',
-      desc: '放大器。接收频段窄、较难被随机碰撞激活；但一旦与 NO 密码匹配，就以极高的放大倍数把 GTP 批量转化成 cGMP。',
+    /**
+     * 反应关系 —— 整个网络的拓扑。加减通路从这里开始。
+     *   from / to  起点 / 终点分子 id（必须是上面 nodes 里出现过的）
+     *   effect     activate 激活 | inhibit 沉默 | produce 产出 | consume 槽位降解
+     *
+     * 想加一条新通路：这里加一行 → ③ 给两端配好标签 → ④ 补动力学数字。
+     * 想「切断」一条通路：优先去 ③ 把共享标签摘掉，而不是删这行 ——
+     * 删行等于这个生物学关系不存在了，摘标签只是让它碰不上，后者更符合引擎机制的本意。
+     */
+    reactions: {
+        r1: { from: 'NO', to: 'sGC', effect: 'activate' },
+        r2: { from: 'sGC', to: 'cGMP', effect: 'produce' },
+        r3: { from: 'cGMP', to: 'PKG', effect: 'activate' },
+        r4: { from: 'PKG', to: 'MLCP', effect: 'activate' },
+        r5: { from: 'PKG', to: 'PDE5', effect: 'activate' },
+        r6: { from: 'PDE5', to: 'cGMP', effect: 'consume' },
     },
-    cGMP: {
-      name: 'cGMP', cn: '环磷酸鸟苷', role: 'messenger',
-      desc: '次级信使。它不靠单打独斗，而是靠庞大的数量去「淹没」下游分子的结合口袋 —— 数量本身就是它的信号强度。',
-    },
-    PKG: {
-      name: 'PKG', cn: 'cGMP 依赖性蛋白激酶', role: 'kinase',
-      desc: '调控核心。平时休眠，被 cGMP 激活后执行双线任务：主线磷酸化靶蛋白降低钙离子；旁路则顺手唤醒沉默的 PDE5 —— 这是整个死局的种子。',
-    },
-    MLCP: {
-      name: '靶蛋白', cn: 'MLCP / 钙离子调控复合体', role: 'effector',
-      desc: '效应器。被 PKG 磷酸化后主动降低胞内钙离子浓度。它的激活度衰减很快 —— PKG 一旦哑火，钙离子立刻反弹。',
-    },
-    PDE5: {
-      name: 'PDE5', cn: '5 型磷酸二酯酶', role: 'decoy',
-      desc: '负反馈核心。初始休眠，被 PKG 旁路唤醒后，按固定槽位总额降解所有带 PDE_Target 标签的分子。槽位有限 —— 这正是它的弱点。',
-    },
-    Sildenafil: {
-      name: '西地那非', cn: 'PDE5 竞争性抑制剂', role: 'decoy', kind: 'drug',
-      desc: '长得和 cGMP 极像的诱饵：拥有相同的 PDE_Target 密码，能被 PDE5 识别结合，但放大乘数为 0 且不可被降解。它凭数量优势塞满 PDE5 的槽位，让酶的算力全部浪费在它身上。',
-    },
-  },
-
-  /**
-   * 反应关系 —— 整个网络的拓扑。加减通路从这里开始。
-   *   from / to  起点 / 终点分子 id（必须是上面 nodes 里出现过的）
-   *   effect     activate 激活 | inhibit 沉默 | produce 产出 | consume 槽位降解
-   *
-   * 想加一条新通路：这里加一行 → ③ 给两端配好标签 → ④ 补动力学数字。
-   * 想「切断」一条通路：优先去 ③ 把共享标签摘掉，而不是删这行 ——
-   * 删行等于这个生物学关系不存在了，摘标签只是让它碰不上，后者更符合引擎机制的本意。
-   */
-  reactions: {
-    r1: { from: 'NO',         to: 'sGC',  effect: 'activate' },
-    r2: { from: 'sGC',        to: 'cGMP', effect: 'produce'  },
-    r3: { from: 'cGMP',       to: 'PKG',  effect: 'activate' },
-    r4: { from: 'PKG',        to: 'MLCP', effect: 'activate' },
-    r5: { from: 'PKG',        to: 'PDE5', effect: 'activate' },
-    r6: { from: 'PDE5',       to: 'cGMP', effect: 'consume'  },
-  },
 };
-
 /* ══════════════════════════════════════════════════════════════════════════
  * ③ INTERACTION —— 碰撞资格层（标签密码表）
  *
@@ -1354,17 +1244,15 @@ const BIOLOGY = {
  *      · cGMP 与西地那非共享 PDE_Target → 制造了竞争抑制（两个底物抢同一批槽位）
  *    想让 PDE5 不再误伤 cGMP，改标签比改反应边更符合这套机制的本意。
  * ══════════════════════════════════════════════════════════════════════════*/
-
 const TAGS = {
-  NO:         ['NO_Signal'],
-  sGC:        ['NO_Signal', 'receptor_sGC'],
-  cGMP:       ['cGMP_like', 'PDE_Target'],
-  PKG:        ['cGMP_like', 'PKG_dock'],
-  MLCP:       ['PKG_dock', 'effector'],
-  PDE5:       ['PKG_dock', 'PDE5'],
-  Sildenafil: ['PDE_Target'],
+    NO: ['NO_Signal'],
+    sGC: ['NO_Signal', 'receptor_sGC'],
+    cGMP: ['cGMP_like', 'PDE_Target'],
+    PKG: ['cGMP_like', 'PKG_dock'],
+    MLCP: ['PKG_dock', 'effector'],
+    PDE5: ['PKG_dock', 'PDE5'],
+    Sildenafil: ['PDE_Target'],
 };
-
 /* ══════════════════════════════════════════════════════════════════════════
  * ④ KINETICS —— 动力学层
  *    回答「这个作用多强、多快、多容易发生」。
@@ -1377,109 +1265,103 @@ const TAGS = {
  *    （这条产线多大功率）跟着反应 r2 走。混在一起就会在「调一个酶」时误伤
  *    所有以它为起点的反应。
  * ══════════════════════════════════════════════════════════════════════════*/
-
 const KINETICS = {
-  /** ── 分子自身的动力学参数 ──────────────────────────────────────────────
-   *   drive       推动力来源：count 数量驱动 | activation 激活度驱动 | pulse 脉冲
-   *   K           半饱和常数：多少个分子能把推动力推到 50%
-   *   band        命中频段 [lo, hi]（节点级，见下方 ⚠️）
-   *   decay       激活度每 tick 的衰减比例（酶 / 激酶用）
-   *   baseDecay   物质自然降解速率（信使分子 / 药物用）
-   *   buffTicks   一次命中后增益 Buff 持续的 tick 数
-   *   degradable  是否可被降解酶清除（默认 true）
-   *   metabolism  药物被机体清除、退出战场的速率
-   */
-  nodes: {
-    NO: {
-      drive: 'count', K: 30, baseDecay: 0.115,
+    /** ── 分子自身的动力学参数 ──────────────────────────────────────────────
+     *   drive       推动力来源：count 数量驱动 | activation 激活度驱动 | pulse 脉冲
+     *   K           半饱和常数：多少个分子能把推动力推到 50%
+     *   band        命中频段 [lo, hi]（节点级，见下方 ⚠️）
+     *   decay       激活度每 tick 的衰减比例（酶 / 激酶用）
+     *   baseDecay   物质自然降解速率（信使分子 / 药物用）
+     *   buffTicks   一次命中后增益 Buff 持续的 tick 数
+     *   degradable  是否可被降解酶清除（默认 true）
+     *   metabolism  药物被机体清除、退出战场的速率
+     */
+    nodes: {
+        NO: {
+            drive: 'count', K: 30, baseDecay: 0.115,
+        },
+        sGC: {
+            drive: 'activation', decay: 0.015, buffTicks: 18,
+            // ⚠️ 已知问题（待办，不在本次重构范围内）：
+            //    节点级 band 目前【不参与任何计算】—— 引擎只认 ④ KINETICS.reactions
+            //    里每条反应自己的 band。所以玩家在 sGC 上拖「命中频段宽度」滑块，
+            //    实际不会改变模拟结果。要让它生效，得改 engine.js 的 _resolveReaction，
+            //    让它优先取来源节点的 band。这里先原样保留，避免动到平衡。
+            band: [0, 85],
+        },
+        cGMP: {
+            drive: 'count', K: 62, baseDecay: 0.022, // `baseDecay``0.022`自然降解率—— 每个 tick 自动消失 2.2%。
+        },
+        PKG: {
+            drive: 'activation', decay: 0.05, buffTicks: 20,
+        },
+        MLCP: {
+            drive: 'activation', decay: 0.085, buffTicks: 12,
+        },
+        PDE5: {
+            drive: 'activation', decay: 0.03, buffTicks: 26,
+        },
+        Sildenafil: {
+            drive: 'count', K: 200,
+            // degradable: false 是这关全部玩法的支点：西地那非照样占 PDE5 的槽位，
+            // 但占完不被清除 → 酶的算力被永久浪费。它表面是个动力学开关，
+            // 实际决定了「竞争性抑制」能否成立（跨层的典型例子，改这里要三思）。
+            degradable: false,
+            metabolism: 0.006,
+        },
     },
-    sGC: {
-      drive: 'activation', decay: 0.015, buffTicks: 18,
-      // ⚠️ 已知问题（待办，不在本次重构范围内）：
-      //    节点级 band 目前【不参与任何计算】—— 引擎只认 ④ KINETICS.reactions
-      //    里每条反应自己的 band。所以玩家在 sGC 上拖「命中频段宽度」滑块，
-      //    实际不会改变模拟结果。要让它生效，得改 engine.js 的 _resolveReaction，
-      //    让它优先取来源节点的 band。这里先原样保留，避免动到平衡。
-      band: [0, 85],
+    /** ── 每条反应的动力学参数 ──────────────────────────────────────────────
+     *   band     命中频段 [lo, hi]，骰子落进 [lo, lo + 宽度 × 推动力^hill] 才算命中
+     *   hill     协同系数，> 1 表示需要多个分子协同（S 形响应）
+     *            ⚠️ 想改响应曲线的陡峭度改 hill，不要去改 power ——
+     *               改 power 只会把曲线整体压扁成「开关」，协同性就丢了
+     *   power    activate / inhibit 的力度
+     *   amplify  produce 的放大乘数（每 tick 最多产出多少）
+     *   gtpCost  每次产出消耗的资源量（0 = 不耗能量）
+     *   costPool 消耗哪个资源池（'GTP' | 'ATP' | …）。引擎不认识 GTP 这个名字，
+     *            它只按这里填的键去 pools 里扣钱 —— 第二关想改用 ATP，改这个字符串即可
+     *   slots    consume 专用：酶的处理槽位总量
+     *   slotTag  consume 专用：识别底物的标签
+     */
+    reactions: {
+        r1: { band: [0, 58], hill: 1.4, power: 22 },
+        r2: { band: [0, 72], hill: 1, amplify: 14, gtpCost: 1.0, costPool: 'GTP' },
+        r3: { band: [0, 62], hill: 1.6, power: 42 },
+        r4: { band: [0, 78], hill: 1, power: 48 },
+        r5: { band: [0, 52], hill: 1.4, power: 30 },
+        r6: { slots: 7.5, slotTag: 'PDE_Target' },
     },
-    cGMP: {
-      drive: 'count', K: 62, baseDecay: 0.022,
-    },
-    PKG: {
-      drive: 'activation', decay: 0.05, buffTicks: 20,
-    },
-    MLCP: {
-      drive: 'activation', decay: 0.085, buffTicks: 12,
-    },
-    PDE5: {
-      drive: 'activation', decay: 0.03, buffTicks: 26,
-    },
-    Sildenafil: {
-      drive: 'count', K: 200,
-      // degradable: false 是这关全部玩法的支点：西地那非照样占 PDE5 的槽位，
-      // 但占完不被清除 → 酶的算力被永久浪费。它表面是个动力学开关，
-      // 实际决定了「竞争性抑制」能否成立（跨层的典型例子，改这里要三思）。
-      degradable: false,
-      metabolism: 0.006,
-    },
-  },
-
-  /** ── 每条反应的动力学参数 ──────────────────────────────────────────────
-   *   band     命中频段 [lo, hi]，骰子落进 [lo, lo + 宽度 × 推动力^hill] 才算命中
-   *   hill     协同系数，> 1 表示需要多个分子协同（S 形响应）
-   *            ⚠️ 想改响应曲线的陡峭度改 hill，不要去改 power ——
-   *               改 power 只会把曲线整体压扁成「开关」，协同性就丢了
-   *   power    activate / inhibit 的力度
-   *   amplify  produce 的放大乘数（每 tick 最多产出多少）
-   *   gtpCost  每次产出消耗的资源量（0 = 不耗能量）
-   *   costPool 消耗哪个资源池（'GTP' | 'ATP' | …）。引擎不认识 GTP 这个名字，
-   *            它只按这里填的键去 pools 里扣钱 —— 第二关想改用 ATP，改这个字符串即可
-   *   slots    consume 专用：酶的处理槽位总量
-   *   slotTag  consume 专用：识别底物的标签
-   */
-  reactions: {
-    r1: { band: [0, 58], hill: 1.4, power: 22 },
-    r2: { band: [0, 72], hill: 1, amplify: 14, gtpCost: 1.0, costPool: 'GTP' },
-    r3: { band: [0, 62], hill: 1.6, power: 42 },
-    r4: { band: [0, 78], hill: 1, power: 48 },
-    r5: { band: [0, 52], hill: 1.4, power: 30 },
-    r6: { slots: 7.5, slotTag: 'PDE_Target' },
-  },
 };
-
 /* ══════════════════════════════════════════════════════════════════════════
  * ⑤ GAME —— 游戏层
  *    「玩家怎么玩」的一切：时长、胜负、红线、资源、药物、可调参数。
  *    同一套生物学模型，换一套 GAME 就能变成另一个难度 / 另一种玩法。
  * ══════════════════════════════════════════════════════════════════════════*/
-
 /**
  * 关卡规则。调难度主要动这一块。
  */
 const RULES = {
-  /**
-   * 外部信号源：内皮细胞脉冲，每 16 tick（约 1.6 秒）喷一发 NO。
-   * 这是整个网络唯一的外部驱动，也是负反馈环赖以振荡的能量输入。
-   *   node    往哪个分子里喷
-   *   period  喷发间隔（tick）
-   *   amount  每发数量（会被硝酸甘油的 boostPulse 放大）
-   *   cap     堆积上限，防止无限累积
-   */
-  pulse: { node: 'NO', period: 16, amount: 30, cap: 90 },
-
-  /**
-   * 全局能量池 GTP —— 合成 cGMP 的「货币」。上限就是初始值。
-   * 调参血泪史（详见 .workbuddy/memory/2026-09-04.md 与 gifts/ 里的 Gemini 评审）：
-   *   · 早期试过 600 / 再生 1.2 → 连基础 sGC 本底合成都把池子烧穿，细胞在正常状态下
-   *     也会「饿死」，导致任何玩法都通不了关；且 GTP 因能量守恒封顶而停在低位不再触 0，
-   *     能量枯竭死法反而失效，已弃。
-   *   · 现取 1000 / 3.0：基础合成 ≈ 再生，稳态可持续。
-   *     阈值的最终配平暂缓（见 engine.js 中 _judge 上方的 TODO）。
-   */
-  pools: { GTP: 1000 },     // 初始能量池 GTP
-  poolsRegen: { GTP: 3.0 }, // GTP 再生率
+    /**
+     * 外部信号源：内皮细胞脉冲，每 16 tick（约 1.6 秒）喷一发 NO。
+     * 这是整个网络唯一的外部驱动，也是负反馈环赖以振荡的能量输入。
+     *   node    往哪个分子里喷
+     *   period  喷发间隔（tick）
+     *   amount  每发数量（会被硝酸甘油的 boostPulse 放大）
+     *   cap     堆积上限，防止无限累积
+     */
+    pulse: { node: 'NO', period: 16, amount: 30, cap: 90 },
+    /**
+     * 全局能量池 GTP —— 合成 cGMP 的「货币」。上限就是初始值。
+     * 调参血泪史（详见 .workbuddy/memory/2026-09-04.md 与 gifts/ 里的 Gemini 评审）：
+     *   · 早期试过 600 / 再生 1.2 → 连基础 sGC 本底合成都把池子烧穿，细胞在正常状态下
+     *     也会「饿死」，导致任何玩法都通不了关；且 GTP 因能量守恒封顶而停在低位不再触 0，
+     *     能量枯竭死法反而失效，已弃。
+     *   · 现取 1000 / 3.0：基础合成 ≈ 再生，稳态可持续。
+     *     阈值的最终配平暂缓（见 engine.js 中 _judge 上方的 TODO）。
+     */
+    pools: { GTP: 1000 }, // 初始能量池 GTP
+    poolsRegen: { GTP: 3.0 }, // GTP 再生率
 };
-
 /**
  * 胜负判定配方 —— 四个结局的「形状」由引擎提供，数值全在这里。
  *
@@ -1493,47 +1375,43 @@ const RULES = {
  *     { kind: 'pool',   id: 'GTP' }
  */
 const OUTCOME = {
-  /** ── 结局 ①：稳态恢复（win）──────────────────────────────────────────
-   *   metric   判哪个宏观指标（id 对应 METRICS）
-   *   below    降到该值以下算达标
-   *   hold     连续保持多少 tick 才算赢（50 tick = 5 秒）
-   *   slipPerTick 没达标时进度回退多少（比 +1 涨得快，抖动着蒙混过关是不行的）
-   *   safe     「绝对安全」前置条件，必须【全部满足】才累积胜利进度。
-   *            这是为了防止玩家在"过量致死的瞬间"抢先被判胜：
-   *              · cGMP 未越红线 —— 不在过量致死的边缘
-   *              · GTP 高于池容 10% —— 细胞代谢底物没被烧穿
-   */
-  win: {
-    metric: 'Ca',
-    below: 45,
-    hold: 50,
-    slipPerTick: 2,
-    safe: [
-      { kind: 'node', id: 'cGMP', prop: 'count', below: 190 },
-      { kind: 'pool', id: 'GTP', aboveRatio: 0.1 },
-    ],
-  },
-
-  /** ── 结局 ②：能量枯竭（死法 A）───────────────────────────────────────
-   *   pool          判哪个资源池
-   *   emptyBelow    低于这个值算"见底"
-   *   sustainTicks  持续见底多少 tick 才判负（20 tick = 2 秒，留一点缓冲避免抖动误判）
-   */
-  starve: { pool: 'GTP', emptyBelow: 0.5, sustainTicks: 20 },
-
-  /** ── 结局 ③：脱靶毒性（死法 B，红区超载）─────────────────────────────
-   *   above         越过这个值算"越线"
-   *   sustainTicks  持续越线多少 tick 才判负（40 tick = 4 秒）
-   */
-  toxicity: { kind: 'node', id: 'cGMP', prop: 'count', above: 190, sustainTicks: 40 },
-
-  /** ── 结局 ④：干预失效（死法 C，超时）─────────────────────────────────
-   *   ticks  跑满多少 tick 仍未进入安全区就判负（2000 tick = 200 秒，
-   *          留足余量 —— 正解约 40 秒通关）
-   */
-  timeout: { ticks: 2000 },
+    /** ── 结局 ①：稳态恢复（win）──────────────────────────────────────────
+     *   metric   判哪个宏观指标（id 对应 METRICS）
+     *   below    降到该值以下算达标
+     *   hold     连续保持多少 tick 才算赢（50 tick = 5 秒）
+     *   slipPerTick 没达标时进度回退多少（比 +1 涨得快，抖动着蒙混过关是不行的）
+     *   safe     「绝对安全」前置条件，必须【全部满足】才累积胜利进度。
+     *            这是为了防止玩家在"过量致死的瞬间"抢先被判胜：
+     *              · cGMP 未越红线 —— 不在过量致死的边缘
+     *              · GTP 高于池容 10% —— 细胞代谢底物没被烧穿
+     */
+    win: {
+        metric: 'Ca',
+        below: 45,
+        hold: 50,
+        slipPerTick: 2,
+        safe: [
+            { kind: 'node', id: 'cGMP', prop: 'count', below: 190 },
+            { kind: 'pool', id: 'GTP', aboveRatio: 0.1 },
+        ],
+    },
+    /** ── 结局 ②：能量枯竭（死法 A）───────────────────────────────────────
+     *   pool          判哪个资源池
+     *   emptyBelow    低于这个值算"见底"
+     *   sustainTicks  持续见底多少 tick 才判负（20 tick = 2 秒，留一点缓冲避免抖动误判）
+     */
+    starve: { pool: 'GTP', emptyBelow: 0.5, sustainTicks: 20 },
+    /** ── 结局 ③：脱靶毒性（死法 B，红区超载）─────────────────────────────
+     *   above         越过这个值算"越线"
+     *   sustainTicks  持续越线多少 tick 才判负（40 tick = 4 秒）
+     */
+    toxicity: { kind: 'node', id: 'cGMP', prop: 'count', above: 190, sustainTicks: 40 },
+    /** ── 结局 ④：干预失效（死法 C，超时）─────────────────────────────────
+     *   ticks  跑满多少 tick 仍未进入安全区就判负（2000 tick = 200 秒，
+     *          留足余量 —— 正解约 40 秒通关）
+     */
+    timeout: { ticks: 2000 },
 };
-
 /**
  * 宏观指标 —— 不在网络中流动，而是网络效应的「读数」。
  * 玩家盯着的是它们，关卡胜负也由它们判定。
@@ -1561,18 +1439,17 @@ const OUTCOME = {
  * 现在改成关卡声明 kind、引擎执行通式 —— 做第二关不用再回引擎加分支。
  */
 const METRICS = [
-  {
-    id: 'Ca', name: '钙离子浓度', unit: '', kind: 'driven',
-    driver: 'MLCP', base: 100, drain: 3.2, restore: 0.045, min: 0, max: 200,
-    color: '#ff7a6b',
-  },
-  {
-    id: 'cGMP', name: 'cGMP 浓度', unit: '', kind: 'mirror',
-    driver: 'cGMP', base: 0,
-    color: '#4dd0c7',
-  },
+    {
+        id: 'Ca', name: '钙离子浓度', unit: '', kind: 'driven',
+        driver: 'MLCP', base: 100, drain: 3.2, restore: 0.045, min: 0, max: 200,
+        color: '#ff7a6b',
+    },
+    {
+        id: 'cGMP', name: 'cGMP 浓度', unit: '', kind: 'mirror',
+        driver: 'cGMP', base: 0,
+        color: '#4dd0c7',
+    },
 ];
-
 /**
  * 折线图配置 —— 决定右下角那张曲线画什么、纵坐标量程是多少。
  * 引擎每 2 个 tick 按 series 采样一条快照，渲染层按同一份配置画线。
@@ -1590,13 +1467,12 @@ const METRICS = [
  *   采样和绘制会同时生效，不用改 engine.js 或 render.js。
  */
 const CHART = {
-  max: 160,
-  series: [
-    { key: 'Ca', label: 'Ca²⁺', color: '#ff7a6b', kind: 'metric', id: 'Ca' },
-    { key: 'cGMP', label: 'cGMP', color: '#4dd0c7', kind: 'node', id: 'cGMP', prop: 'count' },
-  ],
+    max: 160,
+    series: [
+        { key: 'Ca', label: 'Ca²⁺', color: '#ff7a6b', kind: 'metric', id: 'Ca' },
+        { key: 'cGMP', label: 'cGMP', color: '#4dd0c7', kind: 'node', id: 'cGMP', prop: 'count' },
+    ],
 };
-
 /**
  * 玩家可投放的药物。
  *   id       药物标识（applyDrug 用这个）
@@ -1613,32 +1489,31 @@ const CHART = {
  *              restore    补充资源池（pool / amount）
  */
 const DRUGS = [
-  {
-    id: 'sildenafil', name: '西地那非', en: 'Sildenafil', charges: 2, hotkey: '1',
-    color: VIEW.colors.Sildenafil, icon: 'pill',
-    desc: 'PDE5 竞争性抑制剂。不可降解的诱饵，抢占降解槽位，切断负反馈。',
-    effects: [{ kind: 'spawn', target: 'Sildenafil', amount: 620, metabolism: 0.006 }],
-  },
-  {
-    id: 'ntg', name: '硝酸甘油', en: 'Nitroglycerin', charges: 3, hotkey: '2',
-    color: '#8fd3ff', icon: 'flask',
-    desc: 'NO 供体。80 秒内把内皮的 NO 脉冲幅度提升到 2.2 倍 —— 代价是 GTP 消耗剧增。',
-    effects: [{ kind: 'boostPulse', ticks: 90, factor: 2.0, periodScale: 0.55 }],
-  },
-  {
-    id: 'odq', name: 'ODQ', en: 'sGC 抑制剂', charges: 1, hotkey: '3',
-    color: '#ffd479', icon: 'block',
-    desc: '选择性沉默 sGC。用来验证「上游某分子被阻断后，下游会怎样」这个经典问题。',
-    effects: [{ kind: 'mute', target: 'sGC', ticks: 70 }],
-  },
-  {
-    id: 'gtp', name: '能量合剂', en: 'GTP Replenisher', charges: 2, hotkey: '4',
-    color: '#7ee08a', icon: 'bolt',
-    desc: '补充 400 单位 GTP。当细胞代谢底物被抽干时用它续命。',
-    effects: [{ kind: 'restore', pool: 'GTP', amount: 400 }],
-  },
+    {
+        id: 'sildenafil', name: '西地那非', en: 'Sildenafil', charges: 2, hotkey: '1',
+        color: VIEW.colors.Sildenafil, icon: 'pill',
+        desc: 'PDE5 竞争性抑制剂。不可降解的诱饵，抢占降解槽位，切断负反馈。',
+        effects: [{ kind: 'spawn', target: 'Sildenafil', amount: 620, metabolism: 0.006 }],
+    },
+    {
+        id: 'ntg', name: '硝酸甘油', en: 'Nitroglycerin', charges: 3, hotkey: '2',
+        color: '#8fd3ff', icon: 'flask',
+        desc: 'NO 供体。80 秒内把内皮的 NO 脉冲幅度提升到 2.2 倍 —— 代价是 GTP 消耗剧增。',
+        effects: [{ kind: 'boostPulse', ticks: 90, factor: 2.0, periodScale: 0.55 }],
+    },
+    {
+        id: 'odq', name: 'ODQ', en: 'sGC 抑制剂', charges: 1, hotkey: '3',
+        color: '#ffd479', icon: 'block',
+        desc: '选择性沉默 sGC。用来验证「上游某分子被阻断后，下游会怎样」这个经典问题。',
+        effects: [{ kind: 'mute', target: 'sGC', ticks: 70 }],
+    },
+    {
+        id: 'gtp', name: '能量合剂', en: 'GTP Replenisher', charges: 2, hotkey: '4',
+        color: '#7ee08a', icon: 'bolt',
+        desc: '补充 400 单位 GTP。当细胞代谢底物被抽干时用它续命。',
+        effects: [{ kind: 'restore', pool: 'GTP', amount: 400 }],
+    },
 ];
-
 /**
  * 玩家可调参数白名单（80/20 规则里的那 20%）。
  *
@@ -1651,72 +1526,64 @@ const DRUGS = [
  * 滑块的名称 / 取值范围 / 说明文字定义在 ui.js 的 PARAM_META。
  */
 const EDITABLE = {
-  NO:         ['baseDecay'],
-  sGC:        ['band', 'decay'],
-  cGMP:       ['baseDecay', 'K'],
-  PKG:        ['decay'],
-  MLCP:       ['decay'],
-  PDE5:       ['decay'],
-  Sildenafil: ['metabolism'],
+    NO: ['baseDecay'],
+    sGC: ['band', 'decay'],
+    cGMP: ['baseDecay', 'K'],
+    PKG: ['decay'],
+    MLCP: ['decay'],
+    PDE5: ['decay'],
+    Sildenafil: ['metabolism'],
 };
-
 /* ══════════════════════════════════════════════════════════════════════════
  * ⑥ COPY —— 文案层
  *    纯文本，改这里不影响任何逻辑。
  * ══════════════════════════════════════════════════════════════════════════*/
-
 const COPY = {
-  /** 关卡简报：开场弹窗与检查器默认页显示 */
-  brief:
-    '内皮细胞脉冲释放 NO，激活 sGC 大量合成 cGMP，cGMP 激活 PKG 后降低钙离子浓度、使平滑肌舒张。' +
-    '但 PKG 会旁路唤醒 PDE5，反过来降解 cGMP —— 一个典型的负反馈自限环路。' +
-    '你的任务：让钙离子浓度降到 45 以下并稳定维持 3 秒。',
-
-  /** 开场提示：引导玩家先观战再动手 */
-  hint:
-    '先别急着给药，观战一会儿。你会看到 cGMP 冲高、PKG 亮起、钙离子开始下降……然后 PDE5 苏醒，一切反弹回去。',
-
-  /** 结算窗里展示的关卡小知识（教学点） */
-  lessons: [
-    '负反馈不是 bug，是细胞防止信号过载的保护机制。PDE5 的存在让血管不会一直舒张下去。',
-    '西地那非并不「增强」任何东西 —— 它只是让 PDE5 的算力被无效占用。竞争性抑制的本质是抢占。',
-    'NO 供体（硝酸甘油）让信号更强，但 cGMP 合成要消耗 GTP。推得太猛，细胞会被自己的代谢拖垮。',
-    '临床上西地那非与硝酸甘油绝对禁忌联用，正是因为它们叠加会造成顽固性低血压 —— 这一关里这就是「死法 B」。',
-  ],
-
-  /**
-   * 四种结局的标题与详情文案。
-   * 以前这些句子硬编码在 engine.js 里，还带着 cGMP / GTP / 2000 秒这样的具体数值 ——
-   * 引擎为了说一句话，就得认识这些名字。现在文案回到关卡，运行时数值用 {占位符} 注入，
-   * 引擎只管填，不管内容。
-   *
-   * 可用占位符（由 engine.js 的 _judge() 提供）：
-   *   homeostasis  {metric} 核心指标显示名   {value} 达标时的当前值
-   *   starvation   {pool}   被抽干的资源池名
-   *   toxicity     {node} 越线分子名         {redline} 红线值
-   *   timeout      {seconds} 总时长（秒）     {metric} 核心指标显示名
-   * 键名必须对应 _judge() 里的 reason：homeostasis / starvation / toxicity / timeout。
-   */
-  outcomeText: {
-    homeostasis: {
-      title: '稳态恢复',
-      detail: '{metric}稳定在 {value}，平滑肌充分舒张。你在不摧毁网络的前提下切断了负反馈。',
+    /** 关卡简报：开场弹窗与检查器默认页显示 */
+    brief: '内皮细胞脉冲释放 NO，激活 sGC 大量合成 cGMP，cGMP 激活 PKG 后降低钙离子浓度、使平滑肌舒张。' +
+        '但 PKG 会旁路唤醒 PDE5，反过来降解 cGMP —— 一个典型的负反馈自限环路。' +
+        '你的任务：让钙离子浓度降到 45 以下并稳定维持 3 秒。',
+    /** 开场提示：引导玩家先观战再动手 */
+    hint: '先别急着给药，观战一会儿。你会看到 cGMP 冲高、PKG 亮起、钙离子开始下降……然后 PDE5 苏醒，一切反弹回去。',
+    /** 结算窗里展示的关卡小知识（教学点） */
+    lessons: [
+        '负反馈不是 bug，是细胞防止信号过载的保护机制。PDE5 的存在让血管不会一直舒张下去。',
+        '西地那非并不「增强」任何东西 —— 它只是让 PDE5 的算力被无效占用。竞争性抑制的本质是抢占。',
+        'NO 供体（硝酸甘油）让信号更强，但 cGMP 合成要消耗 GTP。推得太猛，细胞会被自己的代谢拖垮。',
+        '临床上西地那非与硝酸甘油绝对禁忌联用，正是因为它们叠加会造成顽固性低血压 —— 这一关里这就是「死法 B」。',
+    ],
+    /**
+     * 四种结局的标题与详情文案。
+     * 以前这些句子硬编码在 engine.js 里，还带着 cGMP / GTP / 2000 秒这样的具体数值 ——
+     * 引擎为了说一句话，就得认识这些名字。现在文案回到关卡，运行时数值用 {占位符} 注入，
+     * 引擎只管填，不管内容。
+     *
+     * 可用占位符（由 engine.js 的 _judge() 提供）：
+     *   homeostasis  {metric} 核心指标显示名   {value} 达标时的当前值
+     *   starvation   {pool}   被抽干的资源池名
+     *   toxicity     {node} 越线分子名         {redline} 红线值
+     *   timeout      {seconds} 总时长（秒）     {metric} 核心指标显示名
+     * 键名必须对应 _judge() 里的 reason：homeostasis / starvation / toxicity / timeout。
+     */
+    outcomeText: {
+        homeostasis: {
+            title: '稳态恢复',
+            detail: '{metric}稳定在 {value}，平滑肌充分舒张。你在不摧毁网络的前提下切断了负反馈。',
+        },
+        starvation: {
+            title: '能量枯竭',
+            detail: '{pool} 池被抽干，依赖它的合成反应全部停摆，细胞进入静默。你给药过猛，把细胞的代谢底物烧光了。',
+        },
+        toxicity: {
+            title: '脱靶毒性',
+            detail: '{node} 浓度突破 {redline} 红线并居高不下。{node} 过量引发顽固性低血压，系统崩溃。',
+        },
+        timeout: {
+            title: '干预失效',
+            detail: '{seconds} 秒内 {metric} 从未进入安全区间。负反馈牢牢锁死了这条通路。',
+        },
     },
-    starvation: {
-      title: '能量枯竭',
-      detail: '{pool} 池被抽干，依赖它的合成反应全部停摆，细胞进入静默。你给药过猛，把细胞的代谢底物烧光了。',
-    },
-    toxicity: {
-      title: '脱靶毒性',
-      detail: '{node} 浓度突破 {redline} 红线并居高不下。{node} 过量引发顽固性低血压，系统崩溃。',
-    },
-    timeout: {
-      title: '干预失效',
-      detail: '{seconds} 秒内 {metric} 从未进入安全区间。负反馈牢牢锁死了这条通路。',
-    },
-  },
 };
-
 /* ══════════════════════════════════════════════════════════════════════════
  * 组装车间 —— 按 id 把上面六层查表合并，拼成引擎认识的扁平结构
  *
@@ -1732,31 +1599,25 @@ const COPY = {
  *  因为引擎里 MoleculeTemplate / Reaction 是用 Object.assign(默认值, 配置) 建的，
  *  如果配置里带了 undefined，会把默认值覆盖成 undefined，渲染时可能炸。
  * ══════════════════════════════════════════════════════════════════════════*/
-
 const NODE_ORDER = ['NO', 'sGC', 'cGMP', 'PKG', 'MLCP', 'PDE5', 'Sildenafil'];
 const REACTION_ORDER = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6'];
-
 /** 去掉值为 undefined 的键，好让引擎里的类默认值正常生效 */
-const clean = (obj) =>
-  Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined));
-
+const clean = (obj) => Object.fromEntries(Object.entries(obj).filter(([, v]) => v !== undefined));
 const NODES = NODE_ORDER.map((id) => clean({
-  id,
-  ...BIOLOGY.nodes[id],   // name / cn / role / kind / desc   ← ②
-  ...VIEW.layout[id],     // x / y                            ← ①
-  color: VIEW.colors[id], // 配色                             ← ①
-  tags: TAGS[id],         // 标签密码                          ← ③
-  ...KINETICS.nodes[id],  // drive / K / decay / baseDecay / … ← ④
-  editable: EDITABLE[id], // 玩家可调白名单                    ← ⑤
+    id,
+    ...BIOLOGY.nodes[id], // name / cn / role / kind / desc   ← ②
+    ...VIEW.layout[id], // x / y                            ← ①
+    color: VIEW.colors[id], // 配色                             ← ①
+    tags: TAGS[id], // 标签密码                          ← ③
+    ...KINETICS.nodes[id], // drive / K / decay / baseDecay / … ← ④
+    editable: EDITABLE[id], // 玩家可调白名单                    ← ⑤
 }));
-
 const REACTIONS = REACTION_ORDER.map((id) => clean({
-  id,
-  ...BIOLOGY.reactions[id],  // from / to / effect                          ← ②
-  ...KINETICS.reactions[id], // band / hill / power / amplify / slots / …    ← ④
-  ...VIEW.edges[id],         // label / negate / waypoints                   ← ①
+    id,
+    ...BIOLOGY.reactions[id], // from / to / effect                          ← ②
+    ...KINETICS.reactions[id], // band / hill / power / amplify / slots / …    ← ④
+    ...VIEW.edges[id], // label / negate / waypoints                   ← ①
 }));
-
 /* ───────────────────────────────────────────────────────────────────────────
  * 最终导出：这就是引擎拿到的关卡对象
  *
@@ -1767,31 +1628,26 @@ const REACTIONS = REACTION_ORDER.map((id) => clean({
  *   等哪天把 ui.js / render.js 也改成直接读 outcome，这三个就可以删掉了。
  * ───────────────────────────────────────────────────────────────────────────*/
 const LEVEL_NO_CGMP = {
-  id: 'no-cgmp',
-  name: '第一关 · 血管舒张',
-  subtitle: 'NO – sGC – cGMP – PKG – PDE5',
-
-  canvas: VIEW.canvas,
-
-  ...RULES,
-  timeout: OUTCOME.timeout.ticks,
-  goal: {
-    metric: OUTCOME.win.metric,
-    target: OUTCOME.win.below,
-    hold: OUTCOME.win.hold,
-  },
-  // 键名用 OUTCOME.toxicity.id，这样红线的名字也只有一个来源
-  redline: { [OUTCOME.toxicity.id]: OUTCOME.toxicity.above },
-
-  metrics: METRICS,
-  nodes: NODES,
-  reactions: REACTIONS,
-  drugs: DRUGS,
-
-  chart: CHART,
-  outcome: OUTCOME,
-
-  ...COPY,
+    id: 'no-cgmp',
+    name: '第一关 · 血管舒张',
+    subtitle: 'NO – sGC – cGMP – PKG – PDE5',
+    canvas: VIEW.canvas,
+    ...RULES,
+    timeout: OUTCOME.timeout.ticks,
+    goal: {
+        metric: OUTCOME.win.metric,
+        target: OUTCOME.win.below,
+        hold: OUTCOME.win.hold,
+    },
+    // 键名用 OUTCOME.toxicity.id，这样红线的名字也只有一个来源
+    redline: { [OUTCOME.toxicity.id]: OUTCOME.toxicity.above },
+    metrics: METRICS,
+    nodes: NODES,
+    reactions: REACTIONS,
+    drugs: DRUGS,
+    chart: CHART,
+    outcome: OUTCOME,
+    ...COPY,
 };
 return { LEVEL_NO_CGMP: LEVEL_NO_CGMP, default: LEVEL_NO_CGMP };
 })();
@@ -1804,7 +1660,6 @@ const { Status } = __MODULES__["engine.js"];
  *   · 只读 Simulator 的状态，从不反向写入
  *   · 逻辑 10 Hz、渲染 60 fps 解耦：粒子在这里按真实 dt 插值补间
  * ==========================================================================*/
-
 /* 【这个文件做了什么】
  * 把 Simulator 内部的状态画到屏幕上。两个主要对象：
  *
@@ -1820,526 +1675,536 @@ const { Status } = __MODULES__["engine.js"];
  * 输入：Simulator 的状态（只读）
  * 输出：Canvas 上的像素（不写回任何状态）
  */
-
 /* import from ./engine.js */
-
 const NODE_W = 118;
 const NODE_H = 62;
-
 /* ------------------------------------------------------------ 路径工具 */
 function edgePoint(node, tx, ty, pad = 8) {
-  const dx = tx - node.x, dy = ty - node.y;
-  if (dx === 0 && dy === 0) return { x: node.x, y: node.y };
-  const hw = NODE_W / 2 + pad, hh = NODE_H / 2 + pad;
-  const sx = dx === 0 ? Infinity : hw / Math.abs(dx);
-  const sy = dy === 0 ? Infinity : hh / Math.abs(dy);
-  const s = Math.min(sx, sy);
-  return { x: node.x + dx * s, y: node.y + dy * s };
+    const dx = tx - node.x, dy = ty - node.y;
+    if (dx === 0 && dy === 0)
+        return { x: node.x, y: node.y };
+    const hw = NODE_W / 2 + pad, hh = NODE_H / 2 + pad;
+    const sx = dx === 0 ? Infinity : hw / Math.abs(dx);
+    const sy = dy === 0 ? Infinity : hh / Math.abs(dy);
+    const s = Math.min(sx, sy);
+    return { x: node.x + dx * s, y: node.y + dy * s };
 }
-
 function buildPath(from, to, waypoints = []) {
-  const pts = [{ x: from.x, y: from.y }, ...waypoints, { x: to.x, y: to.y }];
-  if (pts.length >= 2) {
-    pts[0] = edgePoint(from, pts[1].x, pts[1].y);
-    const n = pts.length;
-    pts[n - 1] = edgePoint(to, pts[n - 2].x, pts[n - 2].y);
-  }
-  return pts;
-}
-
-function pathLength(pts) {
-  let L = 0;
-  for (let i = 1; i < pts.length; i++) L += Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y);
-  return L;
-}
-
-function pointAt(pts, t) {
-  const total = pathLength(pts);
-  let d = Math.max(0, Math.min(1, t)) * total;
-  for (let i = 1; i < pts.length; i++) {
-    const seg = Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y);
-    if (d <= seg || i === pts.length - 1) {
-      const k = seg === 0 ? 0 : d / seg;
-      return { x: pts[i - 1].x + (pts[i].x - pts[i - 1].x) * k, y: pts[i - 1].y + (pts[i].y - pts[i - 1].y) * k };
+    const pts = [{ x: from.x, y: from.y }, ...waypoints, { x: to.x, y: to.y }];
+    if (pts.length >= 2) {
+        pts[0] = edgePoint(from, pts[1].x, pts[1].y);
+        const n = pts.length;
+        pts[n - 1] = edgePoint(to, pts[n - 2].x, pts[n - 2].y);
     }
-    d -= seg;
-  }
-  return pts[pts.length - 1];
+    return pts;
 }
-
+function pathLength(pts) {
+    let L = 0;
+    for (let i = 1; i < pts.length; i++)
+        L += Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y);
+    return L;
+}
+function pointAt(pts, t) {
+    const total = pathLength(pts);
+    let d = Math.max(0, Math.min(1, t)) * total;
+    for (let i = 1; i < pts.length; i++) {
+        const seg = Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y);
+        if (d <= seg || i === pts.length - 1) {
+            const k = seg === 0 ? 0 : d / seg;
+            return { x: pts[i - 1].x + (pts[i].x - pts[i - 1].x) * k, y: pts[i - 1].y + (pts[i].y - pts[i - 1].y) * k };
+        }
+        d -= seg;
+    }
+    return pts[pts.length - 1];
+}
 function roundRect(ctx, x, y, w, h, r) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.arcTo(x + w, y, x + w, y + h, r);
-  ctx.arcTo(x + w, y + h, x, y + h, r);
-  ctx.arcTo(x, y + h, x, y, r);
-  ctx.arcTo(x, y, x + w, y, r);
-  ctx.closePath();
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
 }
-
 /* --------------------------------------------------------- 渲染器主体 */
 class Renderer {
-  constructor(canvas, level, sim) {
-    this.canvas = canvas;
-    this.ctx = canvas.getContext('2d');
-    this.level = level;
-    this.sim = sim;
-    this.scale = 1;
-    this.particles = [];
-    this.acc = new Map();
-    this.t = 0;
-    this.hover = null;
-    this.paths = new Map();
-    this._buildPaths();
-    this.resize();
-  }
-
-  _buildPaths() {
-    const nodeById = Object.fromEntries(this.level.nodes.map((n) => [n.id, n]));
-    for (const rx of this.level.reactions) {
-      const from = nodeById[rx.from], to = nodeById[rx.to];
-      // 降解反应画成「底物 → 酶」，视觉上表现分子被抽走
-      const a = rx.effect === 'consume' ? to : from;
-      const b = rx.effect === 'consume' ? from : to;
-      const wp = rx.effect === 'consume' ? [] : (rx.waypoints || []);
-      this.paths.set(rx.id, buildPath(a, b, wp));
+    constructor(canvas, level, sim) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.level = level;
+        this.sim = sim;
+        this.scale = 1;
+        this.particles = [];
+        this.acc = new Map();
+        this.t = 0;
+        this.hover = null;
+        this.paths = new Map();
+        this._buildPaths();
+        this.resize();
     }
-  }
-
-  resize() {
-    const rect = this.canvas.parentElement.getBoundingClientRect();
-    // 首帧容器可能还没完成布局，给一个兜底尺寸，避免除零与空白画布
-    const w = Math.max(320, rect.width || 900);
-    const h = Math.max(200, rect.height || 380);
-    const dpr = window.devicePixelRatio || 1;
-    this.canvas.width = w * dpr;
-    this.canvas.height = h * dpr;
-    this.canvas.style.width = w + 'px';
-    this.canvas.style.height = h + 'px';
-    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    this.viewW = w;
-    this.viewH = h;
-    this.scale = Math.min(w / this.level.canvas.w, h / this.level.canvas.h);
-    this.ox = (w - this.level.canvas.w * this.scale) / 2;
-    this.oy = (h - this.level.canvas.h * this.scale) / 2;
-  }
-
-  /** 容器尺寸变化检测：由主循环低频调用，保证任何时刻都能自愈 */
-  autoResize() {
-    const rect = this.canvas.parentElement.getBoundingClientRect();
-    if (Math.abs((rect.width || 0) - this.viewW) > 1 || Math.abs((rect.height || 0) - this.viewH) > 1) {
-      this.resize();
-      return true;
+    _buildPaths() {
+        const nodeById = Object.fromEntries(this.level.nodes.map((n) => [n.id, n]));
+        for (const rx of this.level.reactions) {
+            const from = nodeById[rx.from], to = nodeById[rx.to];
+            // 降解反应画成「底物 → 酶」，视觉上表现分子被抽走
+            const a = rx.effect === 'consume' ? to : from;
+            const b = rx.effect === 'consume' ? from : to;
+            const wp = rx.effect === 'consume' ? [] : (rx.waypoints || []);
+            this.paths.set(rx.id, buildPath(a, b, wp));
+        }
     }
-    return false;
-  }
-
-  toWorld(px, py) {
-    const rect = this.canvas.getBoundingClientRect();
-    return { x: (px - rect.left - this.ox) / this.scale, y: (py - rect.top - this.oy) / this.scale };
-  }
-
-  hitTest(px, py) {
-    const w = this.toWorld(px, py);
-    for (const n of this.level.nodes) {
-      const m = this.sim.node(n.id);
-      if (m.isDrug && m.count < 1) continue; // 未投放的药物不可点
-      if (Math.abs(w.x - n.x) <= NODE_W / 2 && Math.abs(w.y - n.y) <= NODE_H / 2) return n.id;
+    resize() {
+        const rect = this.canvas.parentElement.getBoundingClientRect();
+        // 首帧容器可能还没完成布局，给一个兜底尺寸，避免除零与空白画布
+        const w = Math.max(320, rect.width || 900);
+        const h = Math.max(200, rect.height || 380);
+        const dpr = window.devicePixelRatio || 1;
+        this.canvas.width = w * dpr;
+        this.canvas.height = h * dpr;
+        this.canvas.style.width = w + 'px';
+        this.canvas.style.height = h + 'px';
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        this.viewW = w;
+        this.viewH = h;
+        this.scale = Math.min(w / this.level.canvas.w, h / this.level.canvas.h);
+        this.ox = (w - this.level.canvas.w * this.scale) / 2;
+        this.oy = (h - this.level.canvas.h * this.scale) / 2;
     }
-    return null;
-  }
-
-  /* ---------------------------------------------------------- 粒子发射 */
-  /** 把 sim.lastGain / lastHit 翻译成「每帧该吐几个粒子」。
-   *
-   * 因为渲染按 60 fps 跑而逻辑按 10 Hz 跑，每帧可能该吐好几个粒子 —— 用 `acc` 累加器
-   * 把"分数个粒子"攒起来，攒够一个就发一个；防止帧间隔抖动让粒子忽多忽少。
-   *
-   *   produce 反应  —— 按 sim.lastGain（刚生成的分子数）× 1.1 吐，颜色用 cGMP 绿
-   *   consume 反应  —— 按被降解的量 × 1.4 吐，颜色用 PDE5 红（飞向酶）
-   *   activate 反应 —— 流速 = 上游推动力 × 26；命中瞬间额外 +10（闪爆发）
-   *
-   * 上限：每帧最多补 6 个。卡顿回来后也不会雪崩。
-   */
-  _emit(dt) {
-    for (const rx of this.level.reactions) {
-      const src = this.sim.node(rx.from);
-      if (!src) continue;
-      let rate = 0, color = '#4dd0c7', size = 2.4, life = 1.0;
-
-      if (rx.effect === 'produce') {
-        rate = src.lastGain * 1.1;
-        color = '#5ee0c8'; size = 3.0;
-      } else if (rx.effect === 'consume') {
-        rate = src.lastGain * 1.4;
-        color = '#ff8f7a'; size = 2.4; life = 0.85;
-      } else {
-        // 激活类：流速正比于上游推动力，命中瞬间额外迸发
-        rate = src.drive * 26 + (src.lastHit ? 10 : 0);
-        color = src.tpl.color || '#4dd0c7'; size = 2.2;
-      }
-      if (this.sim.node(rx.from).isMuted) rate = 0;
-
-      const acc = (this.acc.get(rx.id) || 0) + rate * dt;
-      let n = Math.floor(acc);
-      this.acc.set(rx.id, acc - n);
-      n = Math.min(n, 6); // 每帧最多补 6 个，防止卡顿后雪崩
-      for (let i = 0; i < n; i++) {
-        this.particles.push({ rx: rx.id, t: -i * 0.06, color, size, life });
-      }
+    /** 容器尺寸变化检测：由主循环低频调用，保证任何时刻都能自愈 */
+    autoResize() {
+        const rect = this.canvas.parentElement.getBoundingClientRect();
+        if (Math.abs((rect.width || 0) - this.viewW) > 1 || Math.abs((rect.height || 0) - this.viewH) > 1) {
+            this.resize();
+            return true;
+        }
+        return false;
     }
-  }
-
-  _updateParticles(dt) {
-    const speed = 0.62;
-    for (const p of this.particles) p.t += dt * speed / (p.life || 1);
-    this.particles = this.particles.filter((p) => p.t < 1.05);
-    if (this.particles.length > 900) this.particles.splice(0, this.particles.length - 900);
-  }
-
-  /* -------------------------------------------------------------- 主绘 */
-  /** 每帧被 main.js 调一次。按顺序画：背景网格 → 反应边 → 粒子 → 节点 → 内皮。
-   * 顺序很重要 —— 后画的盖在先画的上方。所以节点必须最后画，否则粒子会盖掉节点标签。
-   *
-   * dt 参数是"自上一帧以来真实经过的秒数 × 倍速"，用于粒子插值。
-   * 暂停时传入 0，所以粒子原地"冻住"而不继续飞。
-   */
-  draw(dt) {
-    const ctx = this.ctx;
-    this.t += dt;
-    if (!this.sim.paused && !this.sim.outcome) { this._emit(dt); this._updateParticles(dt); }
-
-    ctx.clearRect(0, 0, this.viewW, this.viewH);
-    ctx.save();
-    ctx.translate(this.ox, this.oy);
-    ctx.scale(this.scale, this.scale);
-
-    this._drawBackdrop(ctx);
-    for (const rx of this.level.reactions) this._drawEdge(ctx, rx);
-    this._drawParticles(ctx);
-    for (const n of this.level.nodes) this._drawNode(ctx, n);
-    this._drawEndothelium(ctx);
-
-    ctx.restore();
-  }
-
-  _drawBackdrop(ctx) {
-    const { w, h } = this.level.canvas;
-    ctx.save();
-    // 细胞内的淡淡网格
-    ctx.strokeStyle = 'rgba(255,255,255,0.028)';
-    ctx.lineWidth = 1;
-    for (let x = 0; x <= w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
-    for (let y = 0; y <= h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
-
-    // 细胞膜
-    ctx.strokeStyle = 'rgba(120,200,220,0.16)';
-    ctx.lineWidth = 2;
-    roundRect(ctx, 14, 14, w - 28, h - 28, 26);
-    ctx.stroke();
-    ctx.fillStyle = 'rgba(120,200,220,0.30)';
-    ctx.font = '11px ui-monospace, monospace';
-    ctx.fillText('平滑肌细胞 · 胞质', 28, 34);
-    ctx.restore();
-  }
-
-  _drawEndothelium(ctx) {
-    // 左侧内皮细胞：NO 的来源，会随脉冲搏动
-    const m = this.sim.node('NO');
-    const pulse = Math.max(0, 1 - (this.sim._pulseClock / this.level.pulse.period) * 1.6);
-    const glow = m ? Math.min(1, m.count / 55) : 0;
-    const x = 62, y = 95;
-    ctx.save();
-    ctx.globalAlpha = 0.9;
-    ctx.fillStyle = 'rgba(143,211,255,0.07)';
-    ctx.strokeStyle = `rgba(143,211,255,${0.28 + glow * 0.5})`;
-    ctx.lineWidth = 1.5;
-    roundRect(ctx, x - 46, y - 40, 92, 80, 18);
-    ctx.fill(); ctx.stroke();
-    ctx.fillStyle = 'rgba(143,211,255,0.85)';
-    ctx.font = '12px ui-sans-serif, system-ui';
-    ctx.textAlign = 'center';
-    ctx.fillText('内皮细胞', x, y - 4);
-    ctx.fillStyle = 'rgba(143,211,255,0.45)';
-    ctx.font = '10px ui-monospace, monospace';
-    ctx.fillText('NO 脉冲源', x, y + 12);
-
-    // 搏动环
-    if (pulse > 0) {
-      ctx.globalAlpha = pulse * 0.5;
-      ctx.beginPath();
-      ctx.arc(x, y, 34 + (1 - pulse) * 16, 0, Math.PI * 2);
-      ctx.strokeStyle = '#8fd3ff';
-      ctx.lineWidth = 2;
-      ctx.stroke();
+    toWorld(px, py) {
+        const rect = this.canvas.getBoundingClientRect();
+        return { x: (px - rect.left - this.ox) / this.scale, y: (py - rect.top - this.oy) / this.scale };
     }
-    ctx.restore();
-  }
-
-  _drawEdge(ctx, rx) {
-    const pts = this.paths.get(rx.id);
-    if (!pts || pts.length < 2) return;
-    const src = this.sim.node(rx.from);
-    const dst = this.sim.node(rx.to);
-    const active = src && !src.isMuted && (src.drive > 0.02 || src.lastGain > 0.05);
-    const isNeg = rx.negate;
-
-    ctx.save();
-    ctx.beginPath();
-    ctx.moveTo(pts[0].x, pts[0].y);
-    for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i].x, pts[i].y);
-
-    ctx.strokeStyle = isNeg
-      ? (active ? 'rgba(255,122,107,0.55)' : 'rgba(255,122,107,0.16)')
-      : (active ? 'rgba(120,220,210,0.42)' : 'rgba(150,170,190,0.15)');
-    ctx.lineWidth = active ? 2 : 1.4;
-    if (isNeg) ctx.setLineDash([7, 5]);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    // 抑制末端的「⊥」形封口
-    if (isNeg) {
-      const e = pts[pts.length - 1], p = pts[pts.length - 2];
-      const a = Math.atan2(e.y - p.y, e.x - p.x);
-      ctx.translate(e.x, e.y); ctx.rotate(a);
-      ctx.beginPath();
-      ctx.moveTo(-6, 0); ctx.lineTo(-6, -7); ctx.moveTo(-6, 0); ctx.lineTo(-6, 7);
-      ctx.strokeStyle = active ? 'rgba(255,122,107,0.85)' : 'rgba(255,122,107,0.3)';
-      ctx.lineWidth = 2; ctx.stroke();
-    } else {
-      // 箭头
-      const e = pts[pts.length - 1], p = pts[pts.length - 2];
-      const a = Math.atan2(e.y - p.y, e.x - p.x);
-      ctx.translate(e.x, e.y); ctx.rotate(a);
-      ctx.beginPath();
-      ctx.moveTo(0, 0); ctx.lineTo(-9, -4.5); ctx.lineTo(-9, 4.5); ctx.closePath();
-      ctx.fillStyle = active ? 'rgba(120,220,210,0.75)' : 'rgba(150,170,190,0.3)';
-      ctx.fill();
+    hitTest(px, py) {
+        const w = this.toWorld(px, py);
+        for (const n of this.level.nodes) {
+            const m = this.sim.node(n.id);
+            if (m.isDrug && m.count < 1)
+                continue; // 未投放的药物不可点
+            if (Math.abs(w.x - n.x) <= NODE_W / 2 && Math.abs(w.y - n.y) <= NODE_H / 2)
+                return n.id;
+        }
+        return null;
     }
-    ctx.restore();
-
-    // 反应标签
-    if (rx.label) {
-      const mid = pointAt(pts, 0.5);
-      ctx.save();
-      ctx.font = '10px ui-monospace, monospace';
-      ctx.textAlign = 'center';
-      ctx.fillStyle = active ? 'rgba(190,220,235,0.6)' : 'rgba(150,170,190,0.28)';
-      ctx.fillText(rx.label, mid.x, mid.y - 8);
-      ctx.restore();
+    /* ---------------------------------------------------------- 粒子发射 */
+    /** 把 sim.lastGain / lastHit 翻译成「每帧该吐几个粒子」。
+     *
+     * 因为渲染按 60 fps 跑而逻辑按 10 Hz 跑，每帧可能该吐好几个粒子 —— 用 `acc` 累加器
+     * 把"分数个粒子"攒起来，攒够一个就发一个；防止帧间隔抖动让粒子忽多忽少。
+     *
+     *   produce 反应  —— 按 sim.lastGain（刚生成的分子数）× 1.1 吐，颜色用 cGMP 绿
+     *   consume 反应  —— 按被降解的量 × 1.4 吐，颜色用 PDE5 红（飞向酶）
+     *   activate 反应 —— 流速 = 上游推动力 × 26；命中瞬间额外 +10（闪爆发）
+     *
+     * 上限：每帧最多补 6 个。卡顿回来后也不会雪崩。
+     */
+    _emit(dt) {
+        for (const rx of this.level.reactions) {
+            const src = this.sim.node(rx.from);
+            if (!src)
+                continue;
+            let rate = 0, color = '#4dd0c7', size = 2.4, life = 1.0;
+            if (rx.effect === 'produce') {
+                rate = src.lastGain * 1.1;
+                color = '#5ee0c8';
+                size = 3.0;
+            }
+            else if (rx.effect === 'consume') {
+                rate = src.lastGain * 1.4;
+                color = '#ff8f7a';
+                size = 2.4;
+                life = 0.85;
+            }
+            else {
+                // 激活类：流速正比于上游推动力，命中瞬间额外迸发
+                rate = src.drive * 26 + (src.lastHit ? 10 : 0);
+                color = src.tpl.color || '#4dd0c7';
+                size = 2.2;
+            }
+            if (this.sim.node(rx.from).isMuted)
+                rate = 0;
+            const acc = (this.acc.get(rx.id) || 0) + rate * dt;
+            let n = Math.floor(acc);
+            this.acc.set(rx.id, acc - n);
+            n = Math.min(n, 6); // 每帧最多补 6 个，防止卡顿后雪崩
+            for (let i = 0; i < n; i++) {
+                this.particles.push({ rx: rx.id, t: -i * 0.06, color, size, life });
+            }
+        }
     }
-  }
-
-  _drawParticles(ctx) {
-    ctx.save();
-    for (const p of this.particles) {
-      if (p.t < 0) continue;
-      const pts = this.paths.get(p.rx);
-      if (!pts) continue;
-      const pos = pointAt(pts, p.t);
-      const fade = p.t > 0.85 ? (1.05 - p.t) / 0.2 : 1;
-      ctx.globalAlpha = Math.max(0, Math.min(1, fade)) * 0.9;
-      ctx.fillStyle = p.color;
-      ctx.beginPath();
-      ctx.arc(pos.x, pos.y, p.size, 0, Math.PI * 2);
-      ctx.fill();
+    _updateParticles(dt) {
+        const speed = 0.62;
+        for (const p of this.particles)
+            p.t += dt * speed / (p.life || 1);
+        this.particles = this.particles.filter((p) => p.t < 1.05);
+        if (this.particles.length > 900)
+            this.particles.splice(0, this.particles.length - 900);
     }
-    ctx.restore();
-  }
-
-  _drawNode(ctx, def) {
-    const m = this.sim.node(def.id);
-    if (!m) return;
-    if (m.isDrug && m.count < 1) return; // 未投放不画
-
-    const sat = m.saturation;
-    const muted = m.isMuted;
-    const selected = this.sim.selected === def.id;
-    const base = def.color || '#4dd0c7';
-
-    // 命中闪光
-    const flash = m.flash;
-    const alpha = muted ? 0.3 : 0.14 + sat * 0.72;
-
-    ctx.save();
-    // 外发光：激活度越高越亮
-    if (!muted && sat > 0.02) {
-      ctx.shadowColor = base;
-      ctx.shadowBlur = 10 + sat * 26 + flash * 14;
+    /* -------------------------------------------------------------- 主绘 */
+    /** 每帧被 main.js 调一次。按顺序画：背景网格 → 反应边 → 粒子 → 节点 → 内皮。
+     * 顺序很重要 —— 后画的盖在先画的上方。所以节点必须最后画，否则粒子会盖掉节点标签。
+     *
+     * dt 参数是"自上一帧以来真实经过的秒数 × 倍速"，用于粒子插值。
+     * 暂停时传入 0，所以粒子原地"冻住"而不继续飞。
+     */
+    draw(dt) {
+        const ctx = this.ctx;
+        this.t += dt;
+        if (!this.sim.paused && !this.sim.outcome) {
+            this._emit(dt);
+            this._updateParticles(dt);
+        }
+        ctx.clearRect(0, 0, this.viewW, this.viewH);
+        ctx.save();
+        ctx.translate(this.ox, this.oy);
+        ctx.scale(this.scale, this.scale);
+        this._drawBackdrop(ctx);
+        for (const rx of this.level.reactions)
+            this._drawEdge(ctx, rx);
+        this._drawParticles(ctx);
+        for (const n of this.level.nodes)
+            this._drawNode(ctx, n);
+        this._drawEndothelium(ctx);
+        ctx.restore();
     }
-    ctx.fillStyle = this._alpha(base, alpha);
-    ctx.strokeStyle = selected ? '#ffffff' : this._alpha(base, muted ? 0.35 : 0.55 + sat * 0.45);
-    ctx.lineWidth = selected ? 2.4 : 1.5;
-    roundRect(ctx, def.x - NODE_W / 2, def.y - NODE_H / 2, NODE_W, NODE_H, 12);
-    ctx.fill();
-    ctx.shadowBlur = 0;
-    ctx.stroke();
-    ctx.restore();
-
-    // 文本
-    ctx.save();
-    ctx.textAlign = 'center';
-    ctx.fillStyle = muted ? 'rgba(230,240,250,0.4)' : '#eaf4ff';
-    ctx.font = '600 15px ui-sans-serif, system-ui';
-    ctx.fillText(def.name, def.x, def.y - 10);
-    ctx.font = '10px ui-monospace, monospace';
-    ctx.fillStyle = muted ? 'rgba(230,240,250,0.3)' : 'rgba(220,235,250,0.55)';
-    ctx.fillText(this._countText(m, def), def.x, def.y + 6);
-
-    // 激活度条
-    const bw = NODE_W - 26;
-    const bx = def.x - bw / 2, by = def.y + 15;
-    ctx.fillStyle = 'rgba(255,255,255,0.10)';
-    roundRect(ctx, bx, by, bw, 4, 2); ctx.fill();
-    ctx.fillStyle = muted ? '#6b7480' : base;
-    roundRect(ctx, bx, by, bw * (muted ? 0 : sat), 4, 2); ctx.fill();
-
-    // 状态徽标
-    if (muted) {
-      ctx.fillStyle = '#ff7a6b';
-      ctx.font = '600 9px ui-sans-serif, system-ui';
-      ctx.fillText('MUTED', def.x, def.y + 30);
-    } else if (m.status === Status.ACTIVE) {
-      ctx.fillStyle = this._alpha(base, 0.95);
-      ctx.font = '600 9px ui-sans-serif, system-ui';
-      ctx.fillText('ACTIVE', def.x, def.y + 30);
+    _drawBackdrop(ctx) {
+        const { w, h } = this.level.canvas;
+        ctx.save();
+        // 细胞内的淡淡网格
+        ctx.strokeStyle = 'rgba(255,255,255,0.028)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x <= w; x += 40) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, h);
+            ctx.stroke();
+        }
+        for (let y = 0; y <= h; y += 40) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(w, y);
+            ctx.stroke();
+        }
+        // 细胞膜
+        ctx.strokeStyle = 'rgba(120,200,220,0.16)';
+        ctx.lineWidth = 2;
+        roundRect(ctx, 14, 14, w - 28, h - 28, 26);
+        ctx.stroke();
+        ctx.fillStyle = 'rgba(120,200,220,0.30)';
+        ctx.font = '11px ui-monospace, monospace';
+        ctx.fillText('平滑肌细胞 · 胞质', 28, 34);
+        ctx.restore();
     }
-    // 命中闪光环
-    if (flash > 0.02) {
-      ctx.globalAlpha = flash * 0.55;
-      ctx.strokeStyle = base;
-      ctx.lineWidth = 2;
-      roundRect(ctx, def.x - NODE_W / 2 - 5, def.y - NODE_H / 2 - 5, NODE_W + 10, NODE_H + 10, 15);
-      ctx.stroke();
-      ctx.globalAlpha = 1;
+    _drawEndothelium(ctx) {
+        // 左侧内皮细胞：NO 的来源，会随脉冲搏动
+        const m = this.sim.node('NO');
+        const pulse = Math.max(0, 1 - (this.sim._pulseClock / this.level.pulse.period) * 1.6);
+        const glow = m ? Math.min(1, m.count / 55) : 0;
+        const x = 62, y = 95;
+        ctx.save();
+        ctx.globalAlpha = 0.9;
+        ctx.fillStyle = 'rgba(143,211,255,0.07)';
+        ctx.strokeStyle = `rgba(143,211,255,${0.28 + glow * 0.5})`;
+        ctx.lineWidth = 1.5;
+        roundRect(ctx, x - 46, y - 40, 92, 80, 18);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = 'rgba(143,211,255,0.85)';
+        ctx.font = '12px ui-sans-serif, system-ui';
+        ctx.textAlign = 'center';
+        ctx.fillText('内皮细胞', x, y - 4);
+        ctx.fillStyle = 'rgba(143,211,255,0.45)';
+        ctx.font = '10px ui-monospace, monospace';
+        ctx.fillText('NO 脉冲源', x, y + 12);
+        // 搏动环
+        if (pulse > 0) {
+            ctx.globalAlpha = pulse * 0.5;
+            ctx.beginPath();
+            ctx.arc(x, y, 34 + (1 - pulse) * 16, 0, Math.PI * 2);
+            ctx.strokeStyle = '#8fd3ff';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+        ctx.restore();
     }
-    ctx.restore();
-  }
-
-  _countText(m, def) {
-    if (def.drive === 'count' || def.drive === 'pulse') {
-      return m.count < 10 ? m.count.toFixed(1) : Math.round(m.count).toString();
+    _drawEdge(ctx, rx) {
+        const pts = this.paths.get(rx.id);
+        if (!pts || pts.length < 2)
+            return;
+        const src = this.sim.node(rx.from);
+        const dst = this.sim.node(rx.to);
+        const active = src && !src.isMuted && (src.drive > 0.02 || src.lastGain > 0.05);
+        const isNeg = rx.negate;
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        for (let i = 1; i < pts.length; i++)
+            ctx.lineTo(pts[i].x, pts[i].y);
+        ctx.strokeStyle = isNeg
+            ? (active ? 'rgba(255,122,107,0.55)' : 'rgba(255,122,107,0.16)')
+            : (active ? 'rgba(120,220,210,0.42)' : 'rgba(150,170,190,0.15)');
+        ctx.lineWidth = active ? 2 : 1.4;
+        if (isNeg)
+            ctx.setLineDash([7, 5]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        // 抑制末端的「⊥」形封口
+        if (isNeg) {
+            const e = pts[pts.length - 1], p = pts[pts.length - 2];
+            const a = Math.atan2(e.y - p.y, e.x - p.x);
+            ctx.translate(e.x, e.y);
+            ctx.rotate(a);
+            ctx.beginPath();
+            ctx.moveTo(-6, 0);
+            ctx.lineTo(-6, -7);
+            ctx.moveTo(-6, 0);
+            ctx.lineTo(-6, 7);
+            ctx.strokeStyle = active ? 'rgba(255,122,107,0.85)' : 'rgba(255,122,107,0.3)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+        else {
+            // 箭头
+            const e = pts[pts.length - 1], p = pts[pts.length - 2];
+            const a = Math.atan2(e.y - p.y, e.x - p.x);
+            ctx.translate(e.x, e.y);
+            ctx.rotate(a);
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(-9, -4.5);
+            ctx.lineTo(-9, 4.5);
+            ctx.closePath();
+            ctx.fillStyle = active ? 'rgba(120,220,210,0.75)' : 'rgba(150,170,190,0.3)';
+            ctx.fill();
+        }
+        ctx.restore();
+        // 反应标签
+        if (rx.label) {
+            const mid = pointAt(pts, 0.5);
+            ctx.save();
+            ctx.font = '10px ui-monospace, monospace';
+            ctx.textAlign = 'center';
+            ctx.fillStyle = active ? 'rgba(190,220,235,0.6)' : 'rgba(150,170,190,0.28)';
+            ctx.fillText(rx.label, mid.x, mid.y - 8);
+            ctx.restore();
+        }
     }
-    return Math.round(m.activation) + '%';
-  }
-
-  _alpha(hex, a) {
-    const h = hex.replace('#', '');
-    const r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
-    return `rgba(${r},${g},${b},${a})`;
-  }
+    _drawParticles(ctx) {
+        ctx.save();
+        for (const p of this.particles) {
+            if (p.t < 0)
+                continue;
+            const pts = this.paths.get(p.rx);
+            if (!pts)
+                continue;
+            const pos = pointAt(pts, p.t);
+            const fade = p.t > 0.85 ? (1.05 - p.t) / 0.2 : 1;
+            ctx.globalAlpha = Math.max(0, Math.min(1, fade)) * 0.9;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(pos.x, pos.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        ctx.restore();
+    }
+    _drawNode(ctx, def) {
+        const m = this.sim.node(def.id);
+        if (!m)
+            return;
+        if (m.isDrug && m.count < 1)
+            return; // 未投放不画
+        const sat = m.saturation;
+        const muted = m.isMuted;
+        const selected = this.sim.selected === def.id;
+        const base = def.color || '#4dd0c7';
+        // 命中闪光
+        const flash = m.flash;
+        const alpha = muted ? 0.3 : 0.14 + sat * 0.72;
+        ctx.save();
+        // 外发光：激活度越高越亮
+        if (!muted && sat > 0.02) {
+            ctx.shadowColor = base;
+            ctx.shadowBlur = 10 + sat * 26 + flash * 14;
+        }
+        ctx.fillStyle = this._alpha(base, alpha);
+        ctx.strokeStyle = selected ? '#ffffff' : this._alpha(base, muted ? 0.35 : 0.55 + sat * 0.45);
+        ctx.lineWidth = selected ? 2.4 : 1.5;
+        roundRect(ctx, def.x - NODE_W / 2, def.y - NODE_H / 2, NODE_W, NODE_H, 12);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.stroke();
+        ctx.restore();
+        // 文本
+        ctx.save();
+        ctx.textAlign = 'center';
+        ctx.fillStyle = muted ? 'rgba(230,240,250,0.4)' : '#eaf4ff';
+        ctx.font = '600 15px ui-sans-serif, system-ui';
+        ctx.fillText(def.name, def.x, def.y - 10);
+        ctx.font = '10px ui-monospace, monospace';
+        ctx.fillStyle = muted ? 'rgba(230,240,250,0.3)' : 'rgba(220,235,250,0.55)';
+        ctx.fillText(this._countText(m, def), def.x, def.y + 6);
+        // 激活度条
+        const bw = NODE_W - 26;
+        const bx = def.x - bw / 2, by = def.y + 15;
+        ctx.fillStyle = 'rgba(255,255,255,0.10)';
+        roundRect(ctx, bx, by, bw, 4, 2);
+        ctx.fill();
+        ctx.fillStyle = muted ? '#6b7480' : base;
+        roundRect(ctx, bx, by, bw * (muted ? 0 : sat), 4, 2);
+        ctx.fill();
+        // 状态徽标
+        if (muted) {
+            ctx.fillStyle = '#ff7a6b';
+            ctx.font = '600 9px ui-sans-serif, system-ui';
+            ctx.fillText('MUTED', def.x, def.y + 30);
+        }
+        else if (m.status === Status.ACTIVE) {
+            ctx.fillStyle = this._alpha(base, 0.95);
+            ctx.font = '600 9px ui-sans-serif, system-ui';
+            ctx.fillText('ACTIVE', def.x, def.y + 30);
+        }
+        // 命中闪光环
+        if (flash > 0.02) {
+            ctx.globalAlpha = flash * 0.55;
+            ctx.strokeStyle = base;
+            ctx.lineWidth = 2;
+            roundRect(ctx, def.x - NODE_W / 2 - 5, def.y - NODE_H / 2 - 5, NODE_W + 10, NODE_H + 10, 15);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+        }
+        ctx.restore();
+    }
+    _countText(m, def) {
+        if (def.drive === 'count' || def.drive === 'pulse') {
+            return m.count < 10 ? m.count.toFixed(1) : Math.round(m.count).toString();
+        }
+        return Math.round(m.activation) + '%';
+    }
+    _alpha(hex, a) {
+        const h = hex.replace('#', '');
+        const r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
+        return `rgba(${r},${g},${b},${a})`;
+    }
 }
-
 /* --------------------------------------------------------- 折线图渲染 */
-  /** 画右下角那张 Ca/cGMP 时间曲线。逻辑很简单：
-   *   · 拿 sim.history（每 2 个 tick 推一条的快照）
-   *   · 把每个值用 `yOf` 函数映射到画布像素
-   *   · Ca ≤ 目标值画绿色"安全带"，玩家一眼能看出"什么时候进绿区"
-   *
-   * 与 Renderer 共享坐标系思路但完全独立的 canvas —— 它单独有自己的 resize 逻辑。
-   */
+/** 画右下角那张 Ca/cGMP 时间曲线。逻辑很简单：
+ *   · 拿 sim.history（每 2 个 tick 推一条的快照）
+ *   · 把每个值用 `yOf` 函数映射到画布像素
+ *   · Ca ≤ 目标值画绿色"安全带"，玩家一眼能看出"什么时候进绿区"
+ *
+ * 与 Renderer 共享坐标系思路但完全独立的 canvas —— 它单独有自己的 resize 逻辑。
+ */
 class Chart {
-  constructor(canvas, level, sim) {
-    this.canvas = canvas;
-    this.ctx = canvas.getContext('2d');
-    this.level = level;
-    this.sim = sim;
-    this.resize();
-  }
-
-  resize() {
-    const rect = this.canvas.parentElement.getBoundingClientRect();
-    const w = Math.max(320, rect.width || 340);
-    const h = Math.max(100, rect.height || 124);
-    const dpr = window.devicePixelRatio || 1;
-    this.canvas.width = w * dpr;
-    this.canvas.height = h * dpr;
-    this.canvas.style.width = w + 'px';
-    this.canvas.style.height = h + 'px';
-    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    this.w = w; this.h = h;
-  }
-
-  autoResize() {
-    const rect = this.canvas.parentElement.getBoundingClientRect();
-    if (Math.abs((rect.width || 0) - this.w) > 1 || Math.abs((rect.height || 0) - this.h) > 1) {
-      this.resize();
-      return true;
+    constructor(canvas, level, sim) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.level = level;
+        this.sim = sim;
+        this.resize();
     }
-    return false;
-  }
-
-  draw() {
-    const ctx = this.ctx, w = this.w, h = this.h;
-    const pad = { l: 34, r: 44, t: 12, b: 18 };
-    const iw = w - pad.l - pad.r, ih = h - pad.t - pad.b;
-    ctx.clearRect(0, 0, w, h);
-
-    const hist = this.sim.history;
-    const goal = this.level.goal.target;
-    // 纵轴量程与要画哪几条曲线，全部由关卡的 chart 配置决定 ——
-    // 这里不再写死「画 Ca 和 cGMP」。改关卡的 CHART 即可，本文件不用动。
-    const yMax = this.level.chart.max;
-    const series = this.level.chart.series;
-
-    // 安全区间带（核心指标 ≤ target 为安全）
-    const yOf = (v) => pad.t + ih - (Math.max(0, Math.min(yMax, v)) / yMax) * ih;
-    ctx.fillStyle = 'rgba(126,224,138,0.09)';
-    ctx.fillRect(pad.l, yOf(goal), iw, pad.t + ih - yOf(goal));
-    ctx.strokeStyle = 'rgba(126,224,138,0.45)';
-    ctx.setLineDash([4, 4]);
-    ctx.beginPath(); ctx.moveTo(pad.l, yOf(goal)); ctx.lineTo(pad.l + iw, yOf(goal)); ctx.stroke();
-    ctx.setLineDash([]);
-
-    // 刻度：按量程均分四段（量程 160 → 0 / 40 / 80 / 120 / 160）
-    const TICKS = 4;
-    ctx.fillStyle = 'rgba(139,152,165,0.75)';
-    ctx.font = '9px ui-monospace, monospace';
-    ctx.textAlign = 'right';
-    for (let i = 0; i <= TICKS; i++) {
-      const v = (yMax / TICKS) * i;
-      const y = yOf(v);
-      ctx.strokeStyle = 'rgba(255,255,255,0.05)';
-      ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l + iw, y); ctx.stroke();
-      ctx.fillText(String(v), pad.l - 6, y + 3);
+    resize() {
+        const rect = this.canvas.parentElement.getBoundingClientRect();
+        const w = Math.max(320, rect.width || 340);
+        const h = Math.max(100, rect.height || 124);
+        const dpr = window.devicePixelRatio || 1;
+        this.canvas.width = w * dpr;
+        this.canvas.height = h * dpr;
+        this.canvas.style.width = w + 'px';
+        this.canvas.style.height = h + 'px';
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        this.w = w;
+        this.h = h;
     }
-
-    if (hist.length < 2) return;
-
-    const n = hist.length;
-    const xOf = (i) => pad.l + (i / Math.max(1, n - 1)) * iw;
-
-    for (const s of series) {
-      ctx.beginPath();
-      for (let i = 0; i < n; i++) {
-        const y = yOf(hist[i][s.key]);
-        i === 0 ? ctx.moveTo(xOf(i), y) : ctx.lineTo(xOf(i), y);
-      }
-      ctx.strokeStyle = s.color;
-      ctx.lineWidth = 1.8;
-      ctx.stroke();
-      // 当前值端点
-      const lastY = yOf(hist[n - 1][s.key]);
-      ctx.beginPath(); ctx.arc(xOf(n - 1), lastY, 3, 0, Math.PI * 2);
-      ctx.fillStyle = s.color; ctx.fill();
-      ctx.textAlign = 'left';
-      ctx.fillStyle = s.color;
-      ctx.font = '10px ui-monospace, monospace';
-      // 端点标注取「当前实时值」，不走 history —— history 是每 2 tick 才存一条的
-      const lv = this.sim._readValue(s).toFixed(0);
-      ctx.fillText(lv, pad.l + iw + 6, lastY + 3);
+    autoResize() {
+        const rect = this.canvas.parentElement.getBoundingClientRect();
+        if (Math.abs((rect.width || 0) - this.w) > 1 || Math.abs((rect.height || 0) - this.h) > 1) {
+            this.resize();
+            return true;
+        }
+        return false;
     }
-    // 图例
-    ctx.textAlign = 'left';
-    ctx.font = '10px ui-sans-serif, system-ui';
-    let lx = pad.l + 4;
-    for (const s of series) {
-      ctx.fillStyle = s.color;
-      ctx.fillRect(lx, pad.t + 2, 8, 2.5);
-      ctx.fillText(s.label, lx + 12, pad.t + 6);
-      lx += 52;
+    draw() {
+        const ctx = this.ctx, w = this.w, h = this.h;
+        const pad = { l: 34, r: 44, t: 12, b: 18 };
+        const iw = w - pad.l - pad.r, ih = h - pad.t - pad.b;
+        ctx.clearRect(0, 0, w, h);
+        const hist = this.sim.history;
+        const goal = this.level.goal.target;
+        // 纵轴量程与要画哪几条曲线，全部由关卡的 chart 配置决定 ——
+        // 这里不再写死「画 Ca 和 cGMP」。改关卡的 CHART 即可，本文件不用动。
+        const yMax = this.level.chart.max;
+        const series = this.level.chart.series;
+        // 安全区间带（核心指标 ≤ target 为安全）
+        const yOf = (v) => pad.t + ih - (Math.max(0, Math.min(yMax, v)) / yMax) * ih;
+        ctx.fillStyle = 'rgba(126,224,138,0.09)';
+        ctx.fillRect(pad.l, yOf(goal), iw, pad.t + ih - yOf(goal));
+        ctx.strokeStyle = 'rgba(126,224,138,0.45)';
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(pad.l, yOf(goal));
+        ctx.lineTo(pad.l + iw, yOf(goal));
+        ctx.stroke();
+        ctx.setLineDash([]);
+        // 刻度：按量程均分四段（量程 160 → 0 / 40 / 80 / 120 / 160）
+        const TICKS = 4;
+        ctx.fillStyle = 'rgba(139,152,165,0.75)';
+        ctx.font = '9px ui-monospace, monospace';
+        ctx.textAlign = 'right';
+        for (let i = 0; i <= TICKS; i++) {
+            const v = (yMax / TICKS) * i;
+            const y = yOf(v);
+            ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+            ctx.beginPath();
+            ctx.moveTo(pad.l, y);
+            ctx.lineTo(pad.l + iw, y);
+            ctx.stroke();
+            ctx.fillText(String(v), pad.l - 6, y + 3);
+        }
+        if (hist.length < 2)
+            return;
+        const n = hist.length;
+        const xOf = (i) => pad.l + (i / Math.max(1, n - 1)) * iw;
+        for (const s of series) {
+            ctx.beginPath();
+            for (let i = 0; i < n; i++) {
+                const y = yOf(hist[i][s.key]);
+                i === 0 ? ctx.moveTo(xOf(i), y) : ctx.lineTo(xOf(i), y);
+            }
+            ctx.strokeStyle = s.color;
+            ctx.lineWidth = 1.8;
+            ctx.stroke();
+            // 当前值端点
+            const lastY = yOf(hist[n - 1][s.key]);
+            ctx.beginPath();
+            ctx.arc(xOf(n - 1), lastY, 3, 0, Math.PI * 2);
+            ctx.fillStyle = s.color;
+            ctx.fill();
+            ctx.textAlign = 'left';
+            ctx.fillStyle = s.color;
+            ctx.font = '10px ui-monospace, monospace';
+            // 端点标注取「当前实时值」，不走 history —— history 是每 2 tick 才存一条的
+            const lv = this.sim._readValue(s).toFixed(0);
+            ctx.fillText(lv, pad.l + iw + 6, lastY + 3);
+        }
+        // 图例
+        ctx.textAlign = 'left';
+        ctx.font = '10px ui-sans-serif, system-ui';
+        let lx = pad.l + 4;
+        for (const s of series) {
+            ctx.fillStyle = s.color;
+            ctx.fillRect(lx, pad.t + 2, 8, 2.5);
+            ctx.fillText(s.label, lx + 12, pad.t + 6);
+            lx += 52;
+        }
     }
-  }
 }
 return { Renderer: Renderer, Chart: Chart };
 })();
@@ -2350,7 +2215,6 @@ const { Status, TPS } = __MODULES__["engine.js"];
 /* ============================================================================
  * UI 层 —— DOM 绑定与仪表盘
  * ==========================================================================*/
-
 /* 【这个文件做了什么】
  * 这是整个 app 唯一的 DOM 操作层。它把 HTML 模板里的 `<div id="...">` 全部缓存起来，
  * 然后按需更新文本和样式。功能分两块：
@@ -2365,26 +2229,21 @@ const { Status, TPS } = __MODULES__["engine.js"];
  * 性能上还有一个小心机：仪表盘更新被降到 ~20 Hz（main.js 里 uiAcc 累加），
  * 不会每帧重写 DOM，避免拖慢主循环。
  */
-
 /* import from ./engine.js */
-
 const PARAM_META = {
-  band: { label: '命中频段宽度', min: 10, max: 100, step: 1, note: '骰子能落进的区间越宽，越容易被上游撞上' },
-  decay: { label: '失活速率', min: 0.005, max: 0.12, step: 0.005, note: '每帧衰减的激活度比例，越大越难维持' },
-  baseDecay: { label: '自然降解率', min: 0.005, max: 0.12, step: 0.005, note: '分子在胞质中被自发水解的速率' },
-  K: { label: '半饱和常数 K', min: 20, max: 220, step: 5, note: '达到 50% 推动力所需的分子数量' },
-  metabolism: { label: '代谢清除率', min: 0.001, max: 0.04, step: 0.001, note: '药物被肝脏清除、退出战场的速率' },
+    band: { label: '命中频段宽度', min: 10, max: 100, step: 1, note: '骰子能落进的区间越宽，越容易被上游撞上' },
+    decay: { label: '失活速率', min: 0.005, max: 0.12, step: 0.005, note: '每帧衰减的激活度比例，越大越难维持' },
+    baseDecay: { label: '自然降解率', min: 0.005, max: 0.12, step: 0.005, note: '分子在胞质中被自发水解的速率' },
+    K: { label: '半饱和常数 K', min: 20, max: 220, step: 5, note: '达到 50% 推动力所需的分子数量' },
+    metabolism: { label: '代谢清除率', min: 0.001, max: 0.04, step: 0.001, note: '药物被肝脏清除、退出战场的速率' },
 };
-
 const ICONS = {
-  pill: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="8" width="20" height="8" rx="4"/><path d="M12 8v8"/><path d="M6.5 11.5c0-1 .6-1.6 1.6-1.6s1.7.6 1.7 1.6-.6 2.1-1.7 2.1-1.6-1.1-1.6-2.1z" fill="currentColor" stroke="none" opacity=".5"/></svg>',
-  flask: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3h6M10 3v6L4.6 18a2 2 0 0 0 1.7 3h11.4a2 2 0 0 0 1.7-3L14 9V3"/><path d="M7.5 14h9"/></svg>',
-  block: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>',
-  bolt: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>',
+    pill: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="8" width="20" height="8" rx="4"/><path d="M12 8v8"/><path d="M6.5 11.5c0-1 .6-1.6 1.6-1.6s1.7.6 1.7 1.6-.6 2.1-1.7 2.1-1.6-1.1-1.6-2.1z" fill="currentColor" stroke="none" opacity=".5"/></svg>',
+    flask: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3h6M10 3v6L4.6 18a2 2 0 0 0 1.7 3h11.4a2 2 0 0 0 1.7-3L14 9V3"/><path d="M7.5 14h9"/></svg>',
+    block: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>',
+    bolt: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>',
 };
-
 const $ = (id) => document.getElementById(id);
-
 /**
  * 生成说明窗里那四条「结算规则」。
  * 以前这段文案直接写死在这里（"GTP 池被抽干" / "cGMP 持续突破 190 红线"），
@@ -2392,133 +2251,128 @@ const $ = (id) => document.getElementById(id);
  * 现在全部从 level.outcome 读，标题从 level.outcomeText 读，只有一份数据源。
  */
 function briefRules(level) {
-  const O = level.outcome;
-  const T = level.outcomeText;
-  const li = (color, title, body) =>
-    `<li><b style="color:${color}">${title}</b>：${body}</li>`;
-  return [
-    li('#7ee08a', T.homeostasis.title,
-      `${metricName(level, O.win.metric)}降到 ${O.win.below} 以下，并稳定维持 ${(O.win.hold / TPS).toFixed(0)} 秒`),
-    li('#ff7a6b', T.starvation.title,
-      `${O.starve.pool} 池被抽干，细胞代谢停摆`),
-    li('#ff7a6b', T.toxicity.title,
-      `${nodeName(level, O.toxicity.id)} 持续突破 ${O.toxicity.above} 红线，引发顽固性低血压`),
-    li('#ff7a6b', T.timeout.title,
-      `${(O.timeout.ticks / TPS).toFixed(0)} 秒内指标从未进入安全区间`),
-  ].join('');
+    const O = level.outcome;
+    const T = level.outcomeText;
+    const li = (color, title, body) => `<li><b style="color:${color}">${title}</b>：${body}</li>`;
+    return [
+        li('#7ee08a', T.homeostasis.title, `${metricName(level, O.win.metric)}降到 ${O.win.below} 以下，并稳定维持 ${(O.win.hold / TPS).toFixed(0)} 秒`),
+        li('#ff7a6b', T.starvation.title, `${O.starve.pool} 池被抽干，细胞代谢停摆`),
+        li('#ff7a6b', T.toxicity.title, `${nodeName(level, O.toxicity.id)} 持续突破 ${O.toxicity.above} 红线，引发顽固性低血压`),
+        li('#ff7a6b', T.timeout.title, `${(O.timeout.ticks / TPS).toFixed(0)} 秒内指标从未进入安全区间`),
+    ].join('');
 }
-
 /** 指标 id → 显示名；找不到就用 id 兜底 */
-const metricName = (level, id) =>
-  level.metrics.find((m) => m.id === id)?.name ?? id;
-
+const metricName = (level, id) => level.metrics.find((m) => m.id === id)?.name ?? id;
 /** 分子 id → 显示名；找不到就用 id 兜底 */
-const nodeName = (level, id) =>
-  level.nodes.find((n) => n.id === id)?.name ?? id;
-
+const nodeName = (level, id) => level.nodes.find((n) => n.id === id)?.name ?? id;
 class UI {
-  constructor(ctx) {
-    this.ctx = ctx; // { sim, level, renderer, chart, reset, togglePause, setSpeed }
-    this.el = {
-      levelName: $('levelName'), clock: $('clock'), clockTotal: $('clockTotal'),
-      btnPause: $('btnPause'), btnSpeed: $('btnSpeed'), btnReset: $('btnReset'), btnHelp: $('btnHelp'),
-      dock: $('dock'), caVal: $('caVal'), caFill: $('caFill'), caSafe: $('caSafe'),
-      caTarget: $('caTarget'), caGoal: $('caGoal'), caHold: $('caHold'),
-      relaxVal: $('relaxVal'), relaxFill: $('relaxFill'),
-      cgmpVal: $('cgmpVal'), cgmpFill: $('cgmpFill'),
-      gtpVal: $('gtpVal'), gtpFill: $('gtpFill'),
-      inspector: $('inspector'), inspectorTitle: $('inspectorTitle'),
-      log: $('log'), modal: $('modal'), modalCard: $('modalCard'),
-      tooltip: $('tooltip'), phaseTag: $('phaseTag'), tickTag: $('tickTag'),
-    };
-    this._lastLogLen = -1;
-    this._bind();
-    this._buildDock();
-    this.renderInspector();
-    this.renderBrief();
-  }
-
-  /* ------------------------------------------------------------ 绑定 */
-  /** 把 UI 控件的事件挂上对应的动作。
-   * 这里你能看到一个 JS 里的常见模式：监听 canvas 上的 mousemove 事件，
-   * 根据鼠标坐标调用 renderer.hitTest() 找到下面的节点，再把节点的"档案卡"显示出来。
-   */
-  _bind() {
-    const { level, renderer } = this.ctx;
-    const canvas = renderer.canvas;
-
-    this.el.levelName.textContent =
-      `${level.name} · ${level.subtitle}`;
-    this.el.clockTotal.textContent = `/ ${(level.timeout / TPS).toFixed(0)}s`;
-    this.el.caGoal.textContent = level.goal.target;
-    this.el.caSafe.style.width = `${(level.goal.target / level.chart.max) * 100}%`;
-    this.el.caTarget.style.left = `${(level.goal.target / level.chart.max) * 100}%`;
-
-    this.el.btnPause.onclick = () => this.ctx.togglePause();
-    this.el.btnSpeed.onclick = () => this.ctx.cycleSpeed();
-    this.el.btnReset.onclick = () => this.ctx.reset();
-    this.el.btnHelp.onclick = () => this.renderBrief($('briefModal'));
-
-    canvas.addEventListener('click', (e) => {
-      const id = renderer.hitTest(e.clientX, e.clientY);
-      this.ctx.sim.selected = id;
-      this.renderInspector();
-    });
-
-    canvas.addEventListener('mousemove', (e) => {
-      const id = renderer.hitTest(e.clientX, e.clientY);
-      if (!id) { this.el.tooltip.classList.remove('show'); return; }
-      const def = level.nodes.find((n) => n.id === id);
-      const m = this.ctx.sim.node(id);
-      const rect = canvas.getBoundingClientRect();
-      this.el.tooltip.innerHTML =
-        `<b>${def.name}</b> <span style="color:#8b98a5">${def.cn}</span>` +
-        `<div class="tt-desc">${def.desc}</div>` +
-        `<div class="tt-tags">${def.tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>`;
-      this.el.tooltip.classList.add('show');
-      const tx = e.clientX - rect.left + 16, ty = e.clientY - rect.top + 14;
-      this.el.tooltip.style.left = Math.min(tx, rect.width - 290) + 'px';
-      this.el.tooltip.style.top = ty + 'px';
-    });
-    canvas.addEventListener('mouseleave', () => this.el.tooltip.classList.remove('show'));
-
-    window.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'INPUT') return;
-      const k = e.key.toLowerCase();
-      if (k === ' ') { e.preventDefault(); this.ctx.togglePause(); }
-      else if (k === 'r') this.ctx.reset();
-      else if (k === 'escape') { $('briefModal').style.display = 'none'; }
-      else {
-        const d = level.drugs.find((x) => x.hotkey === e.key);
-        if (d) { this.ctx.applyDrug(d.id); this._buildDock(); }
-      }
-    });
-
-    $('briefModal').addEventListener('click', (e) => {
-      if (e.target.id === 'briefModal') $('briefModal').style.display = 'none';
-    });
-    document.querySelectorAll('.modal .btn-close').forEach((b) => {
-      b.onclick = () => { $('briefModal').style.display = 'none'; };
-    });
-
-    window.addEventListener('resize', () => {
-      this.ctx.renderer.resize();
-      this.ctx.chart.resize();
-    });
-  }
-
-  /* ---------------------------------------------------------- 道具栏 */
-  /** 根据 level.drugs 数组渲染右侧的药物按钮。
-   * 每次投放后都重新调一次（用完的就 disabled），保持与 sim.drugState 一致。
-   * 注意：道具按钮的 HTML 是字符串拼接生成的，不是用 createElement —— 因为没有交互逻辑，
-   * 用 innerHTML + querySelectorAll 一遍遍历更短。
-   */
-  _buildDock() {
-    const { level, sim } = this.ctx;
-    this.el.dock.innerHTML = level.drugs.map((d) => {
-      const st = sim.drugState.get(d.id);
-      const left = d.charges - st.uses;
-      return `<button class="drug" data-drug="${d.id}" ${left <= 0 ? 'disabled' : ''}>
+    constructor(ctx) {
+        this.ctx = ctx; // { sim, level, renderer, chart, reset, togglePause, setSpeed }
+        this.el = {
+            levelName: $('levelName'), clock: $('clock'), clockTotal: $('clockTotal'),
+            btnPause: $('btnPause'), btnSpeed: $('btnSpeed'), btnReset: $('btnReset'), btnHelp: $('btnHelp'),
+            dock: $('dock'), caVal: $('caVal'), caFill: $('caFill'), caSafe: $('caSafe'),
+            caTarget: $('caTarget'), caGoal: $('caGoal'), caHold: $('caHold'),
+            relaxVal: $('relaxVal'), relaxFill: $('relaxFill'),
+            cgmpVal: $('cgmpVal'), cgmpFill: $('cgmpFill'),
+            gtpVal: $('gtpVal'), gtpFill: $('gtpFill'),
+            inspector: $('inspector'), inspectorTitle: $('inspectorTitle'),
+            log: $('log'), modal: $('modal'), modalCard: $('modalCard'),
+            tooltip: $('tooltip'), phaseTag: $('phaseTag'), tickTag: $('tickTag'),
+        };
+        this._lastLogLen = -1;
+        this._bind();
+        this._buildDock();
+        this.renderInspector();
+        this.renderBrief();
+    }
+    /* ------------------------------------------------------------ 绑定 */
+    /** 把 UI 控件的事件挂上对应的动作。
+     * 这里你能看到一个 JS 里的常见模式：监听 canvas 上的 mousemove 事件，
+     * 根据鼠标坐标调用 renderer.hitTest() 找到下面的节点，再把节点的"档案卡"显示出来。
+     */
+    _bind() {
+        const { level, renderer } = this.ctx;
+        const canvas = renderer.canvas;
+        this.el.levelName.textContent =
+            `${level.name} · ${level.subtitle}`;
+        this.el.clockTotal.textContent = `/ ${(level.timeout / TPS).toFixed(0)}s`;
+        this.el.caGoal.textContent = level.goal.target;
+        this.el.caSafe.style.width = `${(level.goal.target / level.chart.max) * 100}%`;
+        this.el.caTarget.style.left = `${(level.goal.target / level.chart.max) * 100}%`;
+        this.el.btnPause.onclick = () => this.ctx.togglePause();
+        this.el.btnSpeed.onclick = () => this.ctx.cycleSpeed();
+        this.el.btnReset.onclick = () => this.ctx.reset();
+        this.el.btnHelp.onclick = () => this.renderBrief($('briefModal'));
+        canvas.addEventListener('click', (e) => {
+            const id = renderer.hitTest(e.clientX, e.clientY);
+            this.ctx.sim.selected = id;
+            this.renderInspector();
+        });
+        canvas.addEventListener('mousemove', (e) => {
+            const id = renderer.hitTest(e.clientX, e.clientY);
+            if (!id) {
+                this.el.tooltip.classList.remove('show');
+                return;
+            }
+            const def = level.nodes.find((n) => n.id === id);
+            const m = this.ctx.sim.node(id);
+            const rect = canvas.getBoundingClientRect();
+            this.el.tooltip.innerHTML =
+                `<b>${def.name}</b> <span style="color:#8b98a5">${def.cn}</span>` +
+                    `<div class="tt-desc">${def.desc}</div>` +
+                    `<div class="tt-tags">${def.tags.map((t) => `<span class="tag">${t}</span>`).join('')}</div>`;
+            this.el.tooltip.classList.add('show');
+            const tx = e.clientX - rect.left + 16, ty = e.clientY - rect.top + 14;
+            this.el.tooltip.style.left = Math.min(tx, rect.width - 290) + 'px';
+            this.el.tooltip.style.top = ty + 'px';
+        });
+        canvas.addEventListener('mouseleave', () => this.el.tooltip.classList.remove('show'));
+        window.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT')
+                return;
+            const k = e.key.toLowerCase();
+            if (k === ' ') {
+                e.preventDefault();
+                this.ctx.togglePause();
+            }
+            else if (k === 'r')
+                this.ctx.reset();
+            else if (k === 'escape') {
+                $('briefModal').style.display = 'none';
+            }
+            else {
+                const d = level.drugs.find((x) => x.hotkey === e.key);
+                if (d) {
+                    this.ctx.applyDrug(d.id);
+                    this._buildDock();
+                }
+            }
+        });
+        $('briefModal').addEventListener('click', (e) => {
+            if (e.target.id === 'briefModal')
+                $('briefModal').style.display = 'none';
+        });
+        document.querySelectorAll('.modal .btn-close').forEach((b) => {
+            b.onclick = () => { $('briefModal').style.display = 'none'; };
+        });
+        window.addEventListener('resize', () => {
+            this.ctx.renderer.resize();
+            this.ctx.chart.resize();
+        });
+    }
+    /* ---------------------------------------------------------- 道具栏 */
+    /** 根据 level.drugs 数组渲染右侧的药物按钮。
+     * 每次投放后都重新调一次（用完的就 disabled），保持与 sim.drugState 一致。
+     * 注意：道具按钮的 HTML 是字符串拼接生成的，不是用 createElement —— 因为没有交互逻辑，
+     * 用 innerHTML + querySelectorAll 一遍遍历更短。
+     */
+    _buildDock() {
+        const { level, sim } = this.ctx;
+        this.el.dock.innerHTML = level.drugs.map((d) => {
+            const st = sim.drugState.get(d.id);
+            const left = d.charges - st.uses;
+            return `<button class="drug" data-drug="${d.id}" ${left <= 0 ? 'disabled' : ''}>
         <div class="dicon" style="background:${d.color}1f;color:${d.color}">${ICONS[d.icon] || ICONS.pill}</div>
         <div style="min-width:0">
           <div class="dname">${d.name}</div>
@@ -2528,110 +2382,107 @@ class UI {
         <span class="dkey">${d.hotkey}</span>
         <span class="dcount">${left}/${d.charges}</span>
       </button>`;
-    }).join('');
-
-    this.el.dock.querySelectorAll('.drug').forEach((b) => {
-      b.onclick = () => {
-        this.ctx.applyDrug(b.dataset.drug);
-        this._buildDock();
-      };
-    });
-  }
-
-  /* -------------------------------------------------------- 每帧刷新 */
-  /** ~20 Hz 由主循环调一次。把所有"会变的"仪表盘数字、进度条、相位标签刷一遍。
-   * 关键优化：日志列表只在长度变化时才重写（_lastLogLen 缓存），
-   * 否则即便没有新事件也走一遍字符串拼接挺浪费。
-   */
-  update() {
-    const { sim, level } = this.ctx;
-    const Ca = sim.metrics.Ca;
-    const goal = level.goal.target;
-    // 仪表量程与折线图量程共用同一份配置（level.chart.max），改一处两边同步
-    const caMax = level.chart.max;
-    const cgmp = sim.node(level.outcome.toxicity.id)?.count ?? 0;
-
-    this.el.clock.textContent = sim.time.toFixed(1) + 's';
-    this.el.caVal.textContent = Ca.toFixed(0);
-    const good = Ca <= goal;
-    this.el.caVal.className = 'gauge-val' + (good ? ' good' : '');
-    this.el.caFill.style.width = `${Math.min(100, (Ca / caMax) * 100)}%`;
-    this.el.caFill.className = 'gauge-fill' + (good ? ' good' : '');
-
-    const hold = (sim.holdTicks / TPS).toFixed(1);
-    this.el.caHold.textContent = `已稳定 ${hold}s / ${(level.goal.hold / TPS).toFixed(1)}s`;
-
-    const relax = Math.max(0, Math.min(100, 100 - Ca));
-    this.el.relaxVal.textContent = relax.toFixed(0) + '%';
-    this.el.relaxFill.style.width = relax + '%';
-
-    this.el.cgmpVal.textContent = cgmp.toFixed(0);
-    this.el.cgmpFill.style.width = `${Math.min(100, (cgmp / (level.redline.cGMP || 320)) * 100)}%`;
-
-    const gtp = sim.pools.GTP ?? 0;
-    const gtpMax = sim.poolsMax.GTP || 1;
-    this.el.gtpVal.textContent = gtp.toFixed(0);
-    this.el.gtpFill.style.width = `${(gtp / gtpMax) * 100}%`;
-
-    // 相位标签
-    let tag = '推演中', cls = 'panel-tag';
-    if (sim.outcome) {
-      tag = sim.outcome.result === 'win'
-        ? level.outcomeText.homeostasis.title : '系统崩溃';
-      cls += sim.outcome.result === 'win' ? ' good' : ' warn';
+        }).join('');
+        this.el.dock.querySelectorAll('.drug').forEach((b) => {
+            b.onclick = () => {
+                this.ctx.applyDrug(b.dataset.drug);
+                this._buildDock();
+            };
+        });
     }
-    else if (sim.paused) { tag = '已暂停'; }
-    else if (cgmp >= (level.redline.cGMP || 320) * 0.8) { tag = 'cGMP 逼近红线'; cls += ' warn'; }
-    else if (gtp < gtpMax * 0.15) { tag = '能量告急'; cls += ' warn'; }
-    else if (good) { tag = '进入安全区'; cls += ' good'; }
-    this.el.phaseTag.textContent = tag;
-    this.el.phaseTag.className = cls;
-    this.el.tickTag.textContent = sim.speed === 1 ? '10 Hz' : `${10 * sim.speed} Hz`;
-
-    this._renderLog();
-    if (this.ctx.sim.selected) this._updateInspectorValues();
-  }
-
-  _renderLog() {
-    const ev = this.ctx.sim.events;
-    if (ev.length === this._lastLogLen) return;
-    this._lastLogLen = ev.length;
-    this.el.log.innerHTML = ev.slice(0, 30).map((e) =>
-      `<div class="log-item k-${e.kind}"><span class="lt">${e.t}s</span><span>${e.text}</span></div>`
-    ).join('') || '<div class="log-item"><span style="color:#5c6b7a">等待事件…</span></div>';
-  }
-
-  /* ---------------------------------------------------------- 检查器 */
-  /** 渲染点中节点后的右侧详情面板。这里会做两件事：
-   *   1. 节点档案（desc + 标签徽标 + 当前数值）
-   *   2. 列出该节点 `editable` 白名单里的参数，每个参数生成一个 range 滑块
-   *
-   * 滑块 oninput 时直接调 sim.setParam(id, key, value) —— 见 engine.js 末尾的速查表。
-   */
-  renderInspector() {
-    const { sim, level } = this.ctx;
-    const id = sim.selected;
-    const def = id ? level.nodes.find((n) => n.id === id) : null;
-
-    if (!def) {
-      this.el.inspectorTitle.textContent = '关卡简报';
-      this.el.inspector.innerHTML =
-        `<div class="hint-box">${level.hint}</div>` +
-        `<div class="insp-desc">${level.brief}</div>` +
-        level.lessons.map((l) => `<div class="lesson">${l}</div>`).join('') +
-        `<div class="insp-desc" style="margin-top:12px;font-size:11px;color:#5c6b7a">
+    /* -------------------------------------------------------- 每帧刷新 */
+    /** ~20 Hz 由主循环调一次。把所有"会变的"仪表盘数字、进度条、相位标签刷一遍。
+     * 关键优化：日志列表只在长度变化时才重写（_lastLogLen 缓存），
+     * 否则即便没有新事件也走一遍字符串拼接挺浪费。
+     */
+    update() {
+        const { sim, level } = this.ctx;
+        const Ca = sim.metrics.Ca;
+        const goal = level.goal.target;
+        // 仪表量程与折线图量程共用同一份配置（level.chart.max），改一处两边同步
+        const caMax = level.chart.max;
+        const cgmp = sim.node(level.outcome.toxicity.id)?.count ?? 0;
+        this.el.clock.textContent = sim.time.toFixed(1) + 's';
+        this.el.caVal.textContent = Ca.toFixed(0);
+        const good = Ca <= goal;
+        this.el.caVal.className = 'gauge-val' + (good ? ' good' : '');
+        this.el.caFill.style.width = `${Math.min(100, (Ca / caMax) * 100)}%`;
+        this.el.caFill.className = 'gauge-fill' + (good ? ' good' : '');
+        const hold = (sim.holdTicks / TPS).toFixed(1);
+        this.el.caHold.textContent = `已稳定 ${hold}s / ${(level.goal.hold / TPS).toFixed(1)}s`;
+        const relax = Math.max(0, Math.min(100, 100 - Ca));
+        this.el.relaxVal.textContent = relax.toFixed(0) + '%';
+        this.el.relaxFill.style.width = relax + '%';
+        this.el.cgmpVal.textContent = cgmp.toFixed(0);
+        this.el.cgmpFill.style.width = `${Math.min(100, (cgmp / (level.redline.cGMP || 320)) * 100)}%`;
+        const gtp = sim.pools.GTP ?? 0;
+        const gtpMax = sim.poolsMax.GTP || 1;
+        this.el.gtpVal.textContent = gtp.toFixed(0);
+        this.el.gtpFill.style.width = `${(gtp / gtpMax) * 100}%`;
+        // 相位标签
+        let tag = '推演中', cls = 'panel-tag';
+        if (sim.outcome) {
+            tag = sim.outcome.result === 'win'
+                ? level.outcomeText.homeostasis.title : '系统崩溃';
+            cls += sim.outcome.result === 'win' ? ' good' : ' warn';
+        }
+        else if (sim.paused) {
+            tag = '已暂停';
+        }
+        else if (cgmp >= (level.redline.cGMP || 320) * 0.8) {
+            tag = 'cGMP 逼近红线';
+            cls += ' warn';
+        }
+        else if (gtp < gtpMax * 0.15) {
+            tag = '能量告急';
+            cls += ' warn';
+        }
+        else if (good) {
+            tag = '进入安全区';
+            cls += ' good';
+        }
+        this.el.phaseTag.textContent = tag;
+        this.el.phaseTag.className = cls;
+        this.el.tickTag.textContent = sim.speed === 1 ? '10 Hz' : `${10 * sim.speed} Hz`;
+        this._renderLog();
+        if (this.ctx.sim.selected)
+            this._updateInspectorValues();
+    }
+    _renderLog() {
+        const ev = this.ctx.sim.events;
+        if (ev.length === this._lastLogLen)
+            return;
+        this._lastLogLen = ev.length;
+        this.el.log.innerHTML = ev.slice(0, 30).map((e) => `<div class="log-item k-${e.kind}"><span class="lt">${e.t}s</span><span>${e.text}</span></div>`).join('') || '<div class="log-item"><span style="color:#5c6b7a">等待事件…</span></div>';
+    }
+    /* ---------------------------------------------------------- 检查器 */
+    /** 渲染点中节点后的右侧详情面板。这里会做两件事：
+     *   1. 节点档案（desc + 标签徽标 + 当前数值）
+     *   2. 列出该节点 `editable` 白名单里的参数，每个参数生成一个 range 滑块
+     *
+     * 滑块 oninput 时直接调 sim.setParam(id, key, value) —— 见 engine.js 末尾的速查表。
+     */
+    renderInspector() {
+        const { sim, level } = this.ctx;
+        const id = sim.selected;
+        const def = id ? level.nodes.find((n) => n.id === id) : null;
+        if (!def) {
+            this.el.inspectorTitle.textContent = '关卡简报';
+            this.el.inspector.innerHTML =
+                `<div class="hint-box">${level.hint}</div>` +
+                    `<div class="insp-desc">${level.brief}</div>` +
+                    level.lessons.map((l) => `<div class="lesson">${l}</div>`).join('') +
+                    `<div class="insp-desc" style="margin-top:12px;font-size:11px;color:#5c6b7a">
           点击通路图中任意节点，可查看档案并调节它的关键参数。
         </div>`;
-      return;
-    }
-
-    const m = sim.node(id);
-    this.el.inspectorTitle.textContent = `${def.name} · ${def.cn}`;
-    const tags = def.tags.map((t) => `<span class="tag" style="font-family:var(--mono);font-size:9.5px;padding:1.5px 5px;border-radius:4px;background:rgba(77,208,199,.12);color:#4dd0c7;border:1px solid rgba(77,208,199,.25)">${t}</span>`).join('');
-
-    const isCount = def.drive === 'count' || def.drive === 'pulse';
-    this.el.inspector.innerHTML =
-      `<div class="insp-desc">${def.desc}</div>
+            return;
+        }
+        const m = sim.node(id);
+        this.el.inspectorTitle.textContent = `${def.name} · ${def.cn}`;
+        const tags = def.tags.map((t) => `<span class="tag" style="font-family:var(--mono);font-size:9.5px;padding:1.5px 5px;border-radius:4px;background:rgba(77,208,199,.12);color:#4dd0c7;border:1px solid rgba(77,208,199,.25)">${t}</span>`).join('');
+        const isCount = def.drive === 'count' || def.drive === 'pulse';
+        this.el.inspector.innerHTML =
+            `<div class="insp-desc">${def.desc}</div>
        <div class="insp-tags">${tags}</div>
        <div class="insp-stats">
          <div class="insp-stat"><div class="k">${isCount ? 'MOLECULES' : 'ACTIVATION'}</div><div class="v" data-f="main">—</div></div>
@@ -2644,60 +2495,62 @@ class UI {
          白色描边表示当前选中。只有列入白名单的参数可调 —— 其余 80% 的分子参数由引擎写死，
          以保证网络能稳定涌现出负反馈与稳态。
        </div>`;
-
-    const box = $('params');
-    for (const key of (def.editable || [])) {
-      const meta = PARAM_META[key];
-      if (!meta) continue;
-      const raw = m.tpl[key];
-      const val = Array.isArray(raw) ? raw[1] : raw;
-      const wrap = document.createElement('div');
-      wrap.className = 'param';
-      wrap.innerHTML =
-        `<div class="param-row"><span class="pk">${meta.label}</span><span class="pv" data-v="${key}">${val}</span></div>
+        const box = $('params');
+        for (const key of (def.editable || [])) {
+            const meta = PARAM_META[key];
+            if (!meta)
+                continue;
+            const raw = m.tpl[key];
+            const val = Array.isArray(raw) ? raw[1] : raw;
+            const wrap = document.createElement('div');
+            wrap.className = 'param';
+            wrap.innerHTML =
+                `<div class="param-row"><span class="pk">${meta.label}</span><span class="pv" data-v="${key}">${val}</span></div>
          <input type="range" min="${meta.min}" max="${meta.max}" step="${meta.step}" value="${val}" data-k="${key}">
          <div class="param-note">${meta.note}</div>`;
-      const input = wrap.querySelector('input');
-      const out = wrap.querySelector('.pv');
-      input.oninput = () => {
-        const v = parseFloat(input.value);
-        out.textContent = v;
-        sim.setParam(id, key, Array.isArray(raw) ? [0, v] : v);
-      };
-      box.appendChild(wrap);
+            const input = wrap.querySelector('input');
+            const out = wrap.querySelector('.pv');
+            input.oninput = () => {
+                const v = parseFloat(input.value);
+                out.textContent = v;
+                sim.setParam(id, key, Array.isArray(raw) ? [0, v] : v);
+            };
+            box.appendChild(wrap);
+        }
+        this._updateInspectorValues();
     }
-    this._updateInspectorValues();
-  }
-
-  _updateInspectorValues() {
-    const { sim, level } = this.ctx;
-    const id = sim.selected;
-    if (!id) return;
-    const m = sim.node(id);
-    const def = level.nodes.find((n) => n.id === id);
-    if (!m || !def) return;
-    const isCount = def.drive === 'count' || def.drive === 'pulse';
-    const set = (f, v) => { const e = this.el.inspector.querySelector(`[data-f="${f}"]`); if (e) e.textContent = v; };
-    set('main', isCount ? (m.count < 10 ? m.count.toFixed(1) : Math.round(m.count)) : Math.round(m.activation) + '%');
-    set('status', m.isMuted ? 'Muted' : m.status);
-    set('drive', m.drive.toFixed(2));
-    // 原式 Math.round(m.timer / 10 * 10) 等于 Math.round(m.timer) —— 就是剩余帧数
-    set('timer', Math.round(m.timer) + 'f');
-  }
-
-  /* ---------------------------------------------------------- 结算窗 */
-  /** 模拟结束（sim.outcome != null）时被调。把结果摘要填进弹窗。
-   * 注意：时间、Ca 终值、峰值 cGMP 都从 sim 直接读取，是"赛后快照"。
-   * "再看说明"按钮复用 briefModal 模态框 —— 同一份 HTML 容器塞两种内容。
-   */
-  showOutcome() {
-    const { sim, level } = this.ctx;
-    const o = sim.outcome;
-    if (!o) return;
-    const win = o.result === 'win';
-    const node = (id) => sim.node(id);
-    this.el.modalCard.innerHTML =
-      `<h2>${win ? '稳态恢复' : o.title}
+    _updateInspectorValues() {
+        const { sim, level } = this.ctx;
+        const id = sim.selected;
+        if (!id)
+            return;
+        const m = sim.node(id);
+        const def = level.nodes.find((n) => n.id === id);
+        if (!m || !def)
+            return;
+        const isCount = def.drive === 'count' || def.drive === 'pulse';
+        const set = (f, v) => { const e = this.el.inspector.querySelector(`[data-f="${f}"]`); if (e)
+            e.textContent = v; };
+        set('main', isCount ? (m.count < 10 ? m.count.toFixed(1) : Math.round(m.count)) : Math.round(m.activation) + '%');
+        set('status', m.isMuted ? 'Muted' : m.status);
+        set('drive', m.drive.toFixed(2));
+        // 原式 Math.round(m.timer / 10 * 10) 等于 Math.round(m.timer) —— 就是剩余帧数
+        set('timer', Math.round(m.timer) + 'f');
+    }
+    /* ---------------------------------------------------------- 结算窗 */
+    /** 模拟结束（sim.outcome != null）时被调。把结果摘要填进弹窗。
+     * 注意：时间、Ca 终值、峰值 cGMP 都从 sim 直接读取，是"赛后快照"。
+     * "再看说明"按钮复用 briefModal 模态框 —— 同一份 HTML 容器塞两种内容。
+     */
+    showOutcome() {
+        const { sim, level } = this.ctx;
+        const o = sim.outcome;
+        if (!o)
+            return;
+        const win = o.result === 'win';
+        const node = (id) => sim.node(id);
+        this.el.modalCard.innerHTML =
+            `<h2>${win ? '稳态恢复' : o.title}
          <span class="badge ${win ? 'win' : 'lose'}">${win ? 'SUCCESS' : 'FAILED'}</span></h2>
        <p class="m-desc">${o.detail}</p>
        <div class="m-stats">
@@ -2715,18 +2568,16 @@ class UI {
          <button class="btn" onclick="document.getElementById('briefModal').style.display='grid'">再看说明</button>
          <button class="btn primary" id="againBtn">重新推演</button>
        </div>`;
-    this.el.modal.hidden = false;
-    $('againBtn').onclick = () => { this.el.modal.hidden = true; this.ctx.reset(); };
-  }
-
-  hideOutcome() { this.el.modal.hidden = true; }
-
-  /* ---------------------------------------------------------- 说明窗 */
-  renderBrief(modal) {
-    const { level } = this.ctx;
-    const target = modal || $('briefModal');
-    $('briefCard').innerHTML =
-      `<h2>${level.name}<span class="badge win" style="margin-left:8px">${level.subtitle}</span></h2>
+        this.el.modal.hidden = false;
+        $('againBtn').onclick = () => { this.el.modal.hidden = true; this.ctx.reset(); };
+    }
+    hideOutcome() { this.el.modal.hidden = true; }
+    /* ---------------------------------------------------------- 说明窗 */
+    renderBrief(modal) {
+        const { level } = this.ctx;
+        const target = modal || $('briefModal');
+        $('briefCard').innerHTML =
+            `<h2>${level.name}<span class="badge win" style="margin-left:8px">${level.subtitle}</span></h2>
        <p>${level.brief}</p>
        <p style="color:#8b98a5;font-size:12px">${level.hint}</p>
        <p style="margin-top:14px"><b style="color:#4dd0c7">怎么玩</b></p>
@@ -2742,16 +2593,16 @@ class UI {
        <div class="m-actions" style="margin-top:20px">
          <button class="btn primary btn-close">开始推演</button>
        </div>`;
-    target.style.display = 'grid';
-    const btn = document.querySelector('#briefCard .btn-close');
-    if (btn) btn.onclick = () => { target.style.display = 'none'; };
-  }
-
-  refreshSpeed(speed) { this.el.btnSpeed.textContent = speed + '×'; }
-  refreshPause(paused) {
-    this.el.btnPause.textContent = paused ? '继续' : '暂停';
-    this.el.btnPause.classList.toggle('on', paused);
-  }
+        target.style.display = 'grid';
+        const btn = document.querySelector('#briefCard .btn-close');
+        if (btn)
+            btn.onclick = () => { target.style.display = 'none'; };
+    }
+    refreshSpeed(speed) { this.el.btnSpeed.textContent = speed + '×'; }
+    refreshPause(paused) {
+        this.el.btnPause.textContent = paused ? '继续' : '暂停';
+        this.el.btnPause.classList.toggle('on', paused);
+    }
 }
 return { PARAM_META: PARAM_META, UI: UI };
 })();
@@ -2766,7 +2617,6 @@ const { UI } = __MODULES__["ui.js"];
  * 入口 —— 装配引擎 / 渲染 / UI，并驱动双时钟主循环
  *   逻辑 10 Hz（固定步长累加器），渲染 60 fps（requestAnimationFrame）
  * ==========================================================================*/
-
 /* 【这个文件做了什么】
  * 它是整个 app 的"启动器"和"主循环"，不存任何游戏逻辑。
  *
@@ -2782,12 +2632,10 @@ const { UI } = __MODULES__["ui.js"];
  * 为什么叫"双时钟"：逻辑走自己的固定步长（10 Hz），渲染走浏览器的刷新率（60 fps）。
  * 两者解耦后，无论玩家在不在看、屏幕多大，逻辑推演的"故事"都按同样的速度演。
  */
-
 /* import from ./engine.js */
 /* import from ./pathways/nocgmp.js */
 /* import from ./render.js */
 /* import from ./ui.js */
-
 // 加载关卡 NO – sGC – cGMP – PKG – PDE5
 const level = LEVEL_NO_CGMP;
 // 初始化模拟器
@@ -2807,10 +2655,8 @@ const renderer = new Renderer(document.getElementById('pathway'), level, sim);
 //   level  —— 关卡实例，包含所有逻辑和数据
 //   sim    —— 模拟器实例，状态
 const chart = new Chart(document.getElementById('chart'), level, sim);
-
 const SPEEDS = [1, 2, 4]; // 模拟器倍速选项
 let speedIdx = 0; // 当前倍速索引，0 表示 1 倍速
-
 /*
  * 玩家动作的统一入口
  *   togglePause() —— 切换暂停状态
@@ -2819,33 +2665,33 @@ let speedIdx = 0; // 当前倍速索引，0 表示 1 倍速
  *   reset()       —— 重置模拟器
  */
 const actions = {
-  sim, level, renderer, chart,
-  togglePause() {
-    sim.paused = !sim.paused;
-    ui.refreshPause(sim.paused);
-  },
-  cycleSpeed() {
-    speedIdx = (speedIdx + 1) % SPEEDS.length;
-    sim.speed = SPEEDS[speedIdx];
-    ui.refreshSpeed(sim.speed);
-  },
-  applyDrug(id) {
-    if (sim.outcome) return;
-    sim.applyDrug(id);
-  },
-  reset() {
-    sim.reset((Date.now() % 100000) + 7);
-    renderer.particles.length = 0;
-    renderer.acc.clear();
-    ui.hideOutcome();
-    ui._buildDock();
-    ui._lastLogLen = -1;
-    ui.renderInspector();
-    sim.paused = false;
-    ui.refreshPause(false);
-  },
+    sim, level, renderer, chart,
+    togglePause() {
+        sim.paused = !sim.paused;
+        ui.refreshPause(sim.paused);
+    },
+    cycleSpeed() {
+        speedIdx = (speedIdx + 1) % SPEEDS.length;
+        sim.speed = SPEEDS[speedIdx];
+        ui.refreshSpeed(sim.speed);
+    },
+    applyDrug(id) {
+        if (sim.outcome)
+            return;
+        sim.applyDrug(id);
+    },
+    reset() {
+        sim.reset((Date.now() % 100000) + 7);
+        renderer.particles.length = 0;
+        renderer.acc.clear();
+        ui.hideOutcome();
+        ui._buildDock();
+        ui._lastLogLen = -1;
+        ui.renderInspector();
+        sim.paused = false;
+        ui.refreshPause(false);
+    },
 };
-
 /*
  * 初始化 UI
  *   actions —— 玩家动作的统一入口
@@ -2853,7 +2699,6 @@ const actions = {
 const ui = new UI(actions);
 ui.refreshSpeed(sim.speed);
 ui.refreshPause(false);
-
 /* ---------------- 主循环 ---------------- */
 /* 【小白版：它就是 cocos 的 update】
  * Cocos 组件有生命周期函数 update(dt)：引擎每帧自动调用它一次，dt 是这一帧过了多久。
@@ -2865,7 +2710,6 @@ ui.refreshPause(false);
  * 不同的设备，模拟跑的速度就不一样了。所以要用累加器把真实流逝的时间
  * 攒起来，攒满 100ms 才跑一次 sim.tick()。渲染则仍按每帧走，画面才顺滑。
  */
-
 /** 累加器用到的四个变量：
  *   last   —— 上一次 frame() 的时刻（毫秒，performance.now() 提供）
  *   acc    —— 自上次 sim.tick() 以来积攒的"逻辑时间"（毫秒）
@@ -2876,49 +2720,46 @@ let last = performance.now();
 let acc = 0;
 let uiAcc = 0;
 let frames = 0;
-
-function frame(now) { 
-  // 夹住时间步长：标签页切回来时的巨大间隔、或异常时间戳都不该打乱推演
-  // raw 是「真实帧间隔」（秒），限制在 0.25s 内（避免帧率过快）
-  const raw = Math.max(0, Math.min(0.25, (now - last) / 1000));
-  last = now; // now 是当前时间戳（毫秒，performance.now() 提供）
-
-  if (!sim.paused && !sim.outcome) {
-    // 累加器循环：把「真实流逝的毫秒 × 倍速」攒进 acc，每攒满 100ms 就跑一步 tick ——
-    // 就像每帧往存钱罐丢硬币，丢满 100 分才花一次；倍速只是让丢钱更快。
-    // guard < 12 防止一帧内跑出几百步把浏览器卡死。
-    acc += raw * 1000 * sim.speed;
-    let guard = 0;
-    while (acc >= TICK_MS && guard < 12) {
-      sim.tick();
-      acc -= TICK_MS;
-      guard += 1;
-      if (sim.outcome) break;
+function frame(now) {
+    // 夹住时间步长：标签页切回来时的巨大间隔、或异常时间戳都不该打乱推演
+    // raw 是「真实帧间隔」（秒），限制在 0.25s 内（避免帧率过快）
+    const raw = Math.max(0, Math.min(0.25, (now - last) / 1000));
+    last = now; // now 是当前时间戳（毫秒，performance.now() 提供）
+    if (!sim.paused && !sim.outcome) {
+        // 累加器循环：把「真实流逝的毫秒 × 倍速」攒进 acc，每攒满 100ms 就跑一步 tick ——
+        // 就像每帧往存钱罐丢硬币，丢满 100 分才花一次；倍速只是让丢钱更快。
+        // guard < 12 防止一帧内跑出几百步把浏览器卡死。
+        acc += raw * 1000 * sim.speed;
+        let guard = 0;
+        while (acc >= TICK_MS && guard < 12) {
+            sim.tick();
+            acc -= TICK_MS;
+            guard += 1;
+            if (sim.outcome)
+                break;
+        }
+        if (sim.outcome) {
+            ui.showOutcome();
+        }
     }
-    if (sim.outcome) {
-      ui.showOutcome();
+    // 低频自适应：容器尺寸变化（窗口缩放 / 首帧布局未就绪）时重建画布
+    if (++frames % 30 === 0) {
+        renderer.autoResize();
+        chart.autoResize();
     }
-  }
-
-  // 低频自适应：容器尺寸变化（窗口缩放 / 首帧布局未就绪）时重建画布
-  if (++frames % 30 === 0) {
-    renderer.autoResize();
-    chart.autoResize();
-  }
-
-  // 注意 raw 用的是「实际帧间隔」而不是 sim.tick 的固定 100ms：
-  // 粒子位置要按真实经过的时间插值，看起来才"顺"而不是"跳"
-  renderer.draw(raw * (sim.paused ? 0 : sim.speed));
-  chart.draw();
-
-  // DOM 仪表盘降到 ~20 Hz 刷新，避免每帧写 DOM
-  uiAcc += raw;
-  if (uiAcc >= 0.05) { ui.update(); uiAcc = 0; }
-
-  requestAnimationFrame(frame); // 递归调用，实现帧率控制
+    // 注意 raw 用的是「实际帧间隔」而不是 sim.tick 的固定 100ms：
+    // 粒子位置要按真实经过的时间插值，看起来才"顺"而不是"跳"
+    renderer.draw(raw * (sim.paused ? 0 : sim.speed));
+    chart.draw();
+    // DOM 仪表盘降到 ~20 Hz 刷新，避免每帧写 DOM
+    uiAcc += raw;
+    if (uiAcc >= 0.05) {
+        ui.update();
+        uiAcc = 0;
+    }
+    requestAnimationFrame(frame); // 递归调用，实现帧率控制
 }
 requestAnimationFrame(frame); // 启动主循环
-
 /* ---------------- 调试出口 ---------------- */
 /* 打包后每个模块都被包进 IIFE（见 tools/build.js），各文件的顶层 const 不再
  * 暴露到全局 —— 好处是彻底消除命名冲突，代价是浏览器控制台访问不到内部对象了。
@@ -2928,7 +2769,7 @@ requestAnimationFrame(frame); // 启动主循环
  *   __sim.actions.applyDrug('ntg') 手动投放药物做实验
  * 仅在浏览器环境生效；Node 下的配平脚本（tools/*.mjs）走的是 ESM，不会经过这里。 */
 if (typeof window !== 'undefined') {
-  window.__sim = { sim, level, renderer, chart, actions };
+    window.__sim = { sim, level, renderer, chart, actions };
 }
 return {};
 })();

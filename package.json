@@ -1,0 +1,16 @@
+{
+  "name": "signaling-pathway-simulator",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build:ts": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json --watch",
+    "build": "npm run build:ts && node tools/build.js",
+    "smoke": "node tools/smoke.mjs",
+    "check": "npm run build:ts && node tools/build.js && node tools/smoke.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

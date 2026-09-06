@@ -2,8 +2,8 @@
  * 自动配平：网格搜索满足全部五种结局的参数组合
  *   node tools/sweep.mjs
  * ==========================================================================*/
-import { Simulator, TPS } from '../src/engine.js';
-import { LEVEL_NO_CGMP as BASE } from '../src/pathways/nocgmp.js';
+import { Simulator, TPS } from '../build/engine.js';
+import { LEVEL_NO_CGMP as BASE } from '../build/pathways/nocgmp.js';
 
 const clone = (o) => JSON.parse(JSON.stringify(o));
 

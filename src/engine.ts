@@ -110,41 +110,257 @@ export const TUNING = {
  * 又提到关卡分子名的句子。文案属于关卡（COPY），数字属于运行时，
  * 用占位符把两边接起来，引擎就不用再拼字符串、也不用认识 cGMP 是什么了。
  */
-export function fillTemplate(tpl, vars) {
+export function fillTemplate(tpl: string, vars: Record<string, string | number>): string {
   return String(tpl).replace(/\{\s*(\w+)\s*\}/g, (all, key) =>
     key in vars ? String(vars[key]) : all
   );
 }
 
 /** 夹在 [lo, hi] 之间的小工具，_updateMetrics 里约束指标上下限用 */
-const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const clamp = (v: number, lo: number, hi: number): number =>
+  Math.max(lo, Math.min(hi, v));
 
 /* ---------------------------------------------------------------- 随机数 */
 /** mulberry32：可复现的伪随机源，便于关卡回放与参数敏感性分析 */
 export class RNG {
+  /** 触发种子（无符号整数） */
+  seed: number;
+  /** mulberry32 内部状态 */
+  s: number;
+
   constructor(seed = 20260904) {
     this.seed = seed >>> 0 || 1;
     this.s = this.seed;
   }
-  next() {
+  next(): number {
     this.s = (this.s + 0x6d2b79f5) >>> 0;
     let t = this.s;
     t = Math.imul(t ^ (t >>> 15), t | 1);
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   }
-  range(a, b) { return a + this.next() * (b - a); }
+  range(a: number, b: number): number { return a + this.next() * (b - a); }
   /** 掷一枚 0–100 的骰子 */
-  roll() { return this.next() * 100; }
-  reseed(seed) { this.seed = seed >>> 0 || 1; this.s = this.seed; }
+  roll(): number { return this.next() * 100; }
+  reseed(seed: number): void { this.seed = seed >>> 0 || 1; this.s = this.seed; }
 }
 
 /* ---------------------------------------------------------------- 状态枚举 */
-export const Status = {
+/** 节点运行状态。Molecule.status 只取这三个值之一。 */
+export type MoleculeStatus = 'Inactive' | 'Active' | 'Muted';
+
+export const Status: Record<string, MoleculeStatus> = {
   INACTIVE: 'Inactive', // 未激活 / 休眠
   ACTIVE: 'Active',     // 激活（挂载增益 Buff）
   MUTED: 'Muted',       // 沉默 / 被抑制
 };
+export const STATUS_INACTIVE = Status.INACTIVE as MoleculeStatus;
+export const STATUS_ACTIVE = Status.ACTIVE as MoleculeStatus;
+export const STATUS_MUTED = Status.MUTED as MoleculeStatus;
+
+/* ---------------------------------------------------------- 领域类型定义 */
+/* 这些接口把 PDF「关卡 = 数据」的理念落成类型：引擎只认识这些形状，
+ * 关卡文件（pathways/*.ts）只要让导出对象满足 LevelConfig，字段拼错 /
+ * 缺字段 / 类型不对都会在编译期被 tsc 当场拦住，而不是等到跑起来才炸。 */
+
+/** 驱动方式：激活度 / 数量 / 外部脉冲 */
+export type DriveKind = 'activation' | 'count' | 'pulse';
+/** 反应效应：激活 / 沉默 / 产出 / 槽位降解 */
+export type EffectKind = 'activate' | 'inhibit' | 'produce' | 'consume';
+/** 分子分类标记（决定画布与检查器的图标样式） */
+export type NodeRole = 'source' | 'messenger' | 'receptor' | 'amplifier' |
+  'kinase' | 'effector' | 'decoy' | 'donor' | 'generic';
+/** 指标算法通式 */
+export type MetricKind = 'driven' | 'mirror' | 'derived';
+
+/** 命中频段 [lo, hi]，骰子落在此区间才算命中 */
+export type Band = [number, number];
+
+/** 关卡里"取某个量"的统一引用（引擎 _readValue 认这三种） */
+export interface ValueRef {
+  kind: 'node' | 'metric' | 'pool';
+  id: string;
+  /** node 引用时读取 count 还是 activation（默认 count） */
+  prop?: 'count' | 'activation';
+}
+
+/** 分子模板的"出厂设定" —— MoleculeTemplate 由一份部分配置补齐默认值而成 */
+export interface MoleculeTemplateConfig {
+  id: string;
+  name: string;
+  cn?: string;
+  kind?: 'node' | 'drug';
+  role?: NodeRole;
+  tags?: string[];
+  x?: number; y?: number;
+  band?: Band;
+  K?: number;
+  hill?: number;
+  amplify?: number;
+  decay?: number;
+  baseDecay?: number;
+  buffTicks?: number;
+  drive?: DriveKind;
+  degradable?: boolean;
+  editable?: string[];
+  desc?: string;
+  color?: string;
+  /** 分子实例初始值（关卡里通过它设 count / activation） */
+  initialCount?: number;
+  initialActivation?: number;
+  metabolism?: number;
+}
+
+/** 单条反应边的配置（引擎再补 id 等默认值成 Reaction） */
+export interface ReactionConfig {
+  id?: string;
+  from: string;
+  to: string;
+  effect: EffectKind;
+  band?: Band;
+  hill?: number;
+  power?: number;
+  amplify?: number;
+  gtpCost?: number;
+  slots?: number;
+  slotTag?: string;
+  costPool?: string;
+  negate?: boolean;
+  label?: string;
+  waypoints?: { x: number; y: number }[];
+}
+
+/** Buff 条目 —— 挂在分子身上的带倒计时状态标签 */
+export interface Buff {
+  id: string;
+  name: string;
+  kind: 'mute' | string;
+  timer: number;
+  source: string;
+}
+
+/** 宏观指标配置 —— 指标怎么算（kind + 参数）由关卡声明 */
+export interface MetricConfig {
+  id: string;
+  name?: string;
+  unit?: string;
+  kind?: MetricKind;
+  /** driven / mirror 用：读哪个分子 */
+  driver?: string;
+  base?: number;
+  /** driven：每 tick 被效应器抽走的量 */
+  drain?: number;
+  /** driven：向 base 回归的速率 */
+  restore?: number;
+  /** driven：min/max 约束区间 */
+  min?: number;
+  max?: number;
+  /** derived：由哪个指标换算 */
+  from?: string;
+  /** derived：换算函数 */
+  transform?: (v: number) => number;
+  color?: string;
+}
+
+/** 折线图一条曲线 */
+export interface ChartSeries {
+  key: string;
+  label?: string;
+  color?: string;
+  kind: 'node' | 'metric' | 'pool';
+  id: string;
+  prop?: 'count' | 'activation';
+}
+
+/** 关卡结算文案模板 */
+export interface OutcomeText {
+  title: string;
+  detail: string;
+}
+
+/** 关卡完整结构 —— nocgmp.ts 导出的 LEVEL 必须满足它 */
+export interface LevelConfig {
+  id: string;
+  name: string;
+  subtitle?: string;
+  canvas: { w: number; h: number };
+  /** 外部信号源脉冲 */
+  pulse: { node: string; period: number; amount: number; cap: number };
+  pools: Record<string, number>;
+  poolsRegen?: Record<string, number>;
+  /** 关卡给玩家看的超时秒数（由 OUTCOME 反推） */
+  timeout: number;
+  goal: { metric: string; target: number; hold: number };
+  /** 红线：指标名 -> 阈值 */
+  redline?: Record<string, number>;
+  /** 分子模板列表 */
+  nodes: MoleculeTemplateConfig[];
+  /** 反应边列表 */
+  reactions: ReactionConfig[];
+  drugs: DrugConfig[];
+  metrics: MetricConfig[];
+  chart: { max: number; series: ChartSeries[] };
+  /** 四个结局的判定配方 */
+  outcome: OutcomeConfig;
+  /** 结算文案 */
+  brief: string;
+  hint: string;
+  lessons?: string[];
+  outcomeText: Record<string, OutcomeText>;
+}
+
+/** 药物可投放配置 */
+export interface DrugEffect {
+  kind: 'spawn' | 'mute' | 'boostPulse' | 'restore';
+  target?: string;
+  amount?: number;
+  metabolism?: number;
+  ticks?: number;
+  factor?: number;
+  periodScale?: number;
+  pool?: string;
+}
+
+export interface DrugConfig {
+  id: string;
+  name: string;
+  en?: string;
+  charges: number;
+  hotkey: string;
+  color: string;
+  icon: string;
+  desc: string;
+  effects: DrugEffect[];
+}
+
+/** 四结局判定配方 —— 由关卡 OUTCOME 提供，引擎只执行"判定形状" */
+export interface OutcomeConfig {
+  win: {
+    metric: string;
+    below: number;
+    hold: number;
+    slipPerTick: number;
+    safe: SafeCondition[];
+  };
+  starve: { pool: string; emptyBelow: number; sustainTicks: number };
+  toxicity: ValueRef & { above: number; sustainTicks: number };
+  timeout: { ticks: number };
+}
+
+/** 一条"安全前置条件"（win.safe 里的元素） */
+export interface SafeCondition extends ValueRef {
+  /** pool 用：当前量 > 池容 × aboveRatio */
+  aboveRatio?: number;
+  /** node/metric 用：当前值 < below */
+  below?: number;
+}
+export interface Outcome {
+  result: 'win' | 'lose';
+  reason: string;
+  title: string;
+  detail: string;
+  time: number;
+}
 
 /* ------------------------------------------------------- Molecule 模板 */
 /**
@@ -159,7 +375,27 @@ export const Status = {
  *   buffTicks —— 一次命中后增益 Buff 持续的 tick 数
  */
 export class MoleculeTemplate {
-  constructor(cfg) {
+  id: string;
+  name: string;
+  cn: string;
+  kind: 'node' | 'drug';
+  role: NodeRole;
+  tags: string[];
+  x: number; y: number;
+  band: Band;
+  K: number;
+  hill: number;
+  amplify: number;
+  decay: number;
+  baseDecay: number;
+  buffTicks: number;
+  drive: DriveKind;
+  degradable: boolean;
+  editable: string[];
+  desc: string;
+  color: string;
+
+  constructor(cfg: MoleculeTemplateConfig) {
     Object.assign(this, {
       id: 'mol',
       name: 'Molecule',
@@ -186,7 +422,22 @@ export class MoleculeTemplate {
 
 /* ------------------------------------------------------- Molecule 实例 */
 export class Molecule {
-  constructor(tpl) {
+  tpl: MoleculeTemplate;
+  id: string;
+  count: number;
+  activation: number;
+  nextCount: number;
+  nextActivation: number;
+  status: MoleculeStatus;
+  timer: number;
+  muteTimer: number;
+  buffs: Buff[];
+  flash: number;
+  lastGain: number;
+  lastHit: boolean;
+  metabolism: number;
+
+  constructor(tpl: MoleculeTemplate) {
     this.tpl = tpl;
     this.id = tpl.id;
     this.count = 0;           // 分子数量（信使 / 药物）
@@ -206,8 +457,8 @@ export class Molecule {
     this.metabolism = 0;      // 药物代谢清除速率
   }
 
-  get isDrug() { return this.tpl.kind === 'drug'; }
-  get isMuted() { return this.muteTimer > 0; }
+  get isDrug(): boolean { return this.tpl.kind === 'drug'; }
+  get isMuted(): boolean { return this.muteTimer > 0; }
 
   /** 对下游的推动力 0–1 —— 相当于连续模型里的「有效浓度」
    *
@@ -237,7 +488,7 @@ export class Molecule {
   /** 挂 Buff —— 第三步：化学修饰 → 带倒计时的状态标签
    *  双缓冲：写入 nextActivation（不是 this.activation）。增益的"天花板"仍用
    *  当前快照 this.activation 计算 room，保证同一 tick 内的多次激活不会自我叠加放大。 */
-  applyActivation(delta, ticks) {
+  applyActivation(delta: number, ticks: number): number {
     if (this.isMuted) return 0;
     const before = this.nextActivation;
     // 饱和趋近：越接近满值越难继续上升，避免无限堆叠
@@ -250,14 +501,14 @@ export class Molecule {
     return this.nextActivation - before;
   }
 
-  addBuff(buff) {
+  addBuff(buff: Buff): Buff {
     const exist = this.buffs.find((b) => b.id === buff.id);
     if (exist) { exist.timer = Math.max(exist.timer, buff.timer); return exist; }
     this.buffs.push({ ...buff });
     return buff;
   }
 
-  mute(ticks, source = '') {
+  mute(ticks: number, source = '') {
     this.muteTimer = Math.max(this.muteTimer, ticks);
     this.status = Status.MUTED;
     this.addBuff({ id: 'muted', name: '沉默', kind: 'mute', timer: ticks, source });
@@ -302,7 +553,23 @@ export class Molecule {
  *   consume  —— 槽位竞争降解：按数量比例瓜分酶的处理槽位
  */
 export class Reaction {
-  constructor(cfg) {
+  id: string;
+  from: string;
+  to: string;
+  effect: EffectKind;
+  band: Band;
+  hill: number;
+  power: number;
+  amplify: number;
+  gtpCost: number;
+  slots: number;
+  slotTag: string;
+  costPool: string;
+  negate: boolean;
+  label: string;
+  waypoints: { x: number; y: number }[];
+
+  constructor(cfg: ReactionConfig) {
     Object.assign(this, {
       id: '', from: '', to: '',
       effect: 'activate',
@@ -324,13 +591,51 @@ export class Reaction {
 
 /* ------------------------------------------------------------ Simulator */
 export class Simulator {
-  constructor(level, opts = {}) {
+  /** 关卡配置（引擎不认识具体分子名，一切内容都来自这里） */
+  level: LevelConfig;
+  rng: RNG;
+
+  tickCount: number;
+  time: number;
+  /** 分子运行实例表 id -> Molecule */
+  nodes: Map<string, Molecule>;
+  /** Reaction 实例列表（由关卡 reactions 配置生成） */
+  reactions: Reaction[];
+  /** 资源池当前量 id -> number */
+  pools: Record<string, number>;
+  /** 资源池上限（= 初始值，仅消耗不涨过它） */
+  poolsMax: Record<string, number>;
+  /** 宏观指标当前值 id -> number */
+  metrics: Record<string, number>;
+
+  /** 药物投放状态 id -> { uses, active } */
+  drugState: Map<string, { uses: number; active: boolean }>;
+
+  holdTicks: number;
+  dangerTicks: number;
+  starveTicks: number;
+  /** null 或已决出的结局 */
+  outcome: Outcome | null;
+  /** 折线图快照历史（每行含 t 与各系列键） */
+  history: Record<string, number>[];
+  /** 事件流水（log 写入，UI 展示） */
+  events: { t: string; text: string; kind: string }[];
+  selected: string | null;
+  paused: boolean;
+  speed: number;
+  /** 副产物/脉冲内部状态（被 boostPulse 等修改） */
+  _pulseClock: number;
+  _ntgBoost: number;
+  _ntgFactor: number;
+  _ntgPeriod: number;
+
+  constructor(level: LevelConfig, opts: { seed?: number } = {}) {
     this.level = level;
     this.rng = new RNG(opts.seed ?? 20260904);
     this.reset();
   }
 
-  reset(seed) {
+  reset(seed?: number): void {
     const L = this.level;
     if (seed !== undefined) this.rng.reseed(seed);
 
@@ -341,7 +646,7 @@ export class Simulator {
     this.pools = { ...L.pools };
     this.poolsMax = { ...L.pools };
     this.metrics = {};
-    for (const m of L.metrics) this.metrics[m.id] = m.base;
+    for (const m of L.metrics) this.metrics[m.id] = m.base ?? 0;
 
     for (const tpl of L.nodes) {
       const m = new Molecule(new MoleculeTemplate(tpl));
@@ -368,16 +673,16 @@ export class Simulator {
     this._ntgPeriod = 1;
   }
 
-  get nodeList() { return [...this.nodes.values()]; }
-  node(id) { return this.nodes.get(id); }
+  get nodeList(): Molecule[] { return [...this.nodes.values()]; }
+  node(id: string): Molecule | undefined { return this.nodes.get(id); }
 
-  log(text, kind = 'info') {
+  log(text: string, kind = 'info'): void {
     this.events.unshift({ t: this.time.toFixed(1), text, kind });
     if (this.events.length > TUNING.eventCap) this.events.pop();
   }
 
   /* ---------------------------------------------------------- 投放药物 */
-  applyDrug(drugId) {
+  applyDrug(drugId: string): boolean {
     const drug = this.level.drugs.find((d) => d.id === drugId);
     if (!drug) return false;
     const st = this.drugState.get(drugId);
@@ -389,12 +694,13 @@ export class Simulator {
     for (const eff of drug.effects) {
       if (eff.kind === 'spawn') {
         // 底物 / 竞争性类似物：直接投放分子实体进入战场
-        const m = this.node(eff.target);
-        m.count += eff.amount;
+        const m = this.node(eff.target!);
+        if (!m) continue;
+        m.count += eff.amount ?? 0;
         m.metabolism = eff.metabolism ?? 0;
       } else if (eff.kind === 'mute') {
-        const m = this.node(eff.target);
-        m.mute(eff.ticks, drug.name);
+        const m = this.node(eff.target!);
+        m?.mute(eff.ticks ?? 0, drug.name);
       } else if (eff.kind === 'boostPulse') {
         // 连续给药会累乘放大，而不是简单覆盖 —— 这正是「叠加用药出事」的机制来源
         this._ntgFactor = this._ntgBoost > 0
@@ -404,12 +710,15 @@ export class Simulator {
           this._ntgBoost > 0 ? this._ntgPeriod : 1,
           eff.periodScale ?? 1
         );
-        this._ntgBoost = Math.max(this._ntgBoost, eff.ticks);
+        this._ntgBoost = Math.max(this._ntgBoost, eff.ticks ?? 0);
       } else if (eff.kind === 'restore') {
-        this.pools[eff.pool] = Math.min(
-          this.poolsMax[eff.pool],
-          this.pools[eff.pool] + eff.amount
-        );
+        const pool = eff.pool;
+        if (pool && this.pools[pool] !== undefined) {
+          this.pools[pool] = Math.min(
+            this.poolsMax[pool] ?? this.pools[pool],
+            this.pools[pool] + (eff.amount ?? 0)
+          );
+        }
       }
     }
     this.log(`投放 ${drug.name} ×${st.uses}`, 'drug');
@@ -501,7 +810,7 @@ export class Simulator {
    *                 inhibit 给目标加沉默；degrade 走 _resolveConsume 槽位竞争
    *   ④ 乘数增量  —— produce 按 amplify 批量产出下游分子，并消耗 GTP
    */
-  _resolveReaction(rx) {
+  _resolveReaction(rx: Reaction) {
     const from = this.node(rx.from);
     const to = this.node(rx.to);
     if (!from || !to) return;
@@ -570,7 +879,7 @@ export class Simulator {
    *   - 西地那非的可调参（剂量、代谢率）自然映射到"占座多少"和"占多久"；
    *   - 玩家能推理出"为什么 PDE5 的槽位总是不够用"，而不只是死记"这个药就是抑制 PDE5 的"。
    */
-  _resolveConsume(rx) {
+  _resolveConsume(rx: Reaction) {
     const enzyme = this.node(rx.from);
     if (!enzyme || enzyme.isMuted) return;
     const cap = rx.slots * (enzyme.activation / TUNING.activationMax);
@@ -626,11 +935,13 @@ export class Simulator {
       if (m.kind === 'driven') {
         const eff = src ? src.activation / TUNING.activationMax : 0;
         const cur = this.metrics[m.id];
-        const next = cur + (m.base - cur) * m.restore - eff * m.drain;
+        const next = cur + ((m.base ?? 0) - cur) * (m.restore ?? 0) - eff * (m.drain ?? 0);
         this.metrics[m.id] = clamp(next, m.min ?? 0, m.max ?? Infinity);
       } else if (m.kind === 'derived') {
-        const v = this.metrics[m.from] ?? 0;
-        this.metrics[m.id] = clamp(m.transform(v), m.min ?? 0, m.max ?? 100);
+        const from = m.from!;
+        const v = this.metrics[from] ?? 0;
+        const tf = m.transform!;
+        this.metrics[m.id] = clamp(tf(v), m.min ?? 0, m.max ?? 100);
       } else {
         this.metrics[m.id] = src ? src.count : 0;
       }
@@ -644,7 +955,7 @@ export class Simulator {
    *    { kind: 'metric', id: 'Ca' }
    *    { kind: 'pool',   id: 'GTP' }
    */
-  _readValue(ref) {
+  _readValue(ref: ValueRef): number {
     if (ref.kind === 'pool') return this.pools[ref.id] ?? 0;
     if (ref.kind === 'metric') return this.metrics[ref.id] ?? 0;
     const n = this.node(ref.id);
@@ -653,7 +964,7 @@ export class Simulator {
   }
 
   /** 指标 id → 显示名，用于往结算文案里填「钙离子浓度」这样的中文名 */
-  _metricName(id) {
+  _metricName(id: string): string {
     return this.level.metrics.find((m) => m.id === id)?.name ?? id;
   }
 
@@ -737,17 +1048,17 @@ export class Simulator {
    *   池：当前量 > 池容 × aboveRatio
    *   分子/指标：当前值 < below
    */
-  _checkSafe(c) {
+  _checkSafe(c: SafeCondition): boolean {
     if (c.kind === 'pool') {
-      return (this.pools[c.id] ?? 0) > (this.poolsMax[c.id] ?? 0) * c.aboveRatio;
+      return (this.pools[c.id] ?? 0) > (this.poolsMax[c.id] ?? 0) * (c.aboveRatio ?? 0);
     }
-    return this._readValue(c) < c.below;
+    return this._readValue(c) < (c.below ?? 0);
   }
 
   /** 结束本局。标题与详情文案由关卡的 outcomeText 提供，
    *  引擎只负责把运行时的数值（当前值 / 红线 / 秒数 / 分子名）填进 {占位符}。
    *  这样第二关换个结局文案，不用碰引擎一行代码。 */
-  _finish(result, reason, vars = {}) {
+  _finish(result: Outcome['result'], reason: string, vars: Record<string, string | number> = {}): Outcome {
     const text = this.level.outcomeText?.[reason];
     const title = text?.title ?? reason;
     const detail = fillTemplate(text?.detail ?? '', vars);
@@ -758,8 +1069,8 @@ export class Simulator {
 
   /** 折线图快照。画哪些曲线由关卡的 chart.series 决定 ——
    *  引擎不再写死「要采 cGMP 和 Ca」，第二关想画别的曲线改关卡配置就行。 */
-  _snapshot() {
-    const row = { t: this.tickCount };
+  _snapshot(): void {
+    const row: Record<string, number> = { t: this.tickCount };
     for (const s of this.level.chart.series) {
       row[s.key] = this._readValue(s);
     }
@@ -769,11 +1080,11 @@ export class Simulator {
 
   /* ------------------------------------------------- 玩家侧边栏调参接口 */
   /** 只允许修改模板白名单内的参数（PDF 难点二：80% 写死，20% 开放） */
-  setParam(nodeId, key, value) {
+  setParam(nodeId: string, key: string, value: number): boolean {
     const m = this.node(nodeId);
     if (!m) return false;
     if (!m.tpl.editable.includes(key)) return false;
-    m.tpl[key] = value;
+    (m.tpl as unknown as Record<string, unknown>)[key] = value;
     this.log(`调节 ${m.tpl.name}.${key} = ${value}`, 'param');
     return true;
   }

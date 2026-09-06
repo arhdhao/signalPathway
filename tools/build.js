@@ -28,6 +28,9 @@ const vm = require('vm');
 
 const ROOT = path.resolve(__dirname, '..');
 const SRC = path.join(ROOT, 'src');
+/** 模块真源目录 —— 自 2026-09-06 起源码为 TypeScript，tools/ 先跑 tsc 编译到 build/，
+ *  本脚本只打包「已编译好的 ESM 产物」。CSS 与 HTML 模板仍从 src/ 读。 */
+const MOD = path.join(ROOT, 'build');
 const DIST = path.join(ROOT, 'dist');
 
 /** 入口。只有从这里可达的模块才会被打进产物。 */
@@ -101,7 +104,7 @@ function parseImportClause(clause) {
  *          exports 是 Map<对外导出名, 模块内局部名>
  */
 function parseModule(id) {
-  const raw = fs.readFileSync(path.join(SRC, id), 'utf8');
+  const raw = fs.readFileSync(path.join(MOD, id), 'utf8');
   const exportsMap = new Map();
   const imports = [];
   const deps = [];
@@ -167,7 +170,7 @@ function parseModule(id) {
 
 /* ================================================== 依赖图与拓扑排序 */
 
-const files = walk(SRC);
+const files = walk(MOD);
 const modules = new Map(files.map((f) => [f, parseModule(f)]));
 
 const order = [];
@@ -190,7 +193,7 @@ function visit(id) {
   order.push(id); // 后序：被依赖者先入列
 }
 
-if (!modules.has(ENTRY)) fail(`入口文件不存在：src/${ENTRY}`, '请检查 ENTRY 常量。');
+if (!modules.has(ENTRY)) fail(`入口文件不存在：${path.relative(ROOT, path.join(MOD, ENTRY))}`, '请检查 ENTRY 常量，或先跑 tsc 编译。');
 visit(ENTRY);
 
 /* ======================================================== 构建期校验 */

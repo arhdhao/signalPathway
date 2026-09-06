@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2020", "DOM"],
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    // 类字段普遍通过「构造器内 Object.assign(this, {…默认值}, cfg)」初始化，
+    // tsc 无法静态追踪这一模式，故关闭严格属性初始化（defaults 模式是刻意设计）。
+    "strictPropertyInitialization": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": false,
+    // 允许 .js 一起进编译：render.js / ui.js / main.js 尚未迁 TS，但仍要让 tsc
+    // 把它们拷进 build/ 并解析对 engine.ts 的相对 import（.js → .ts 替换）。
+    // 这样「打包输入」统一为 build/ 单目录，build.js 只需扫 build/ 即可。
+    "allowJs": true,
+    "checkJs": false,
+    "outDir": "build",
+    "rootDir": "src",
+    "declaration": false,
+    "sourceMap": false
+  },
+  "include": ["src/**/*.ts", "src/**/*.js"],
+  "exclude": ["node_modules", "build", "dist", "tools"]
+}

@@ -66,9 +66,10 @@ server.listen(PORT, () => {
   console.log('');
   console.log(`    浏览器打开: http://localhost:${PORT}/src/dev.html`);
   console.log('');
-  console.log('    之后的工作流：');
-  console.log('      改 src/ 下的参数或代码 → 保存 → 刷新浏览器 → 立即生效');
-  console.log('      （无需再跑 node tools/build.js）');
+    console.log('    之后的工作流：');
+    console.log('      先跑编译 watch（另开终端）： ./node_modules/.bin/tsc -w');
+    console.log('      改 src/ 下的 .ts/.js → tsc 自动重编到 build/ → 刷新浏览器即可');
+    console.log('      （浏览器不能直接跑 .ts，故 dev 页加载 build/ 产物）');
   console.log('');
   console.log('    要发布给别人用时才需要打包: node tools/build.js');
   console.log('    按 Ctrl+C 停止本服务器。');

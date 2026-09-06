@@ -1,0 +1,4 @@
+# 依赖与编译产物 —— 不入库
+node_modules/
+build/
+package-lock.json
