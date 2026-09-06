@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="zh-CN" data-page-node-id="hH7IBfKutGiDJisZTzPH1l">
+<head data-page-node-id="Aa11BvO6uvBa7Gw1qikPmc">
+<meta charset="UTF-8" data-page-node-id="IoeXqK9mBmnH2JwEKk0WGN">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="RrEV6kpS6ijuU3raOw6mxN">
 <title>信号通路模拟器 · Signaling Pathway Simulator</title>
 <style>:root{
   --bg:#0a0e13; --panel:#111821; --panel2:#151e29; --border:#212d3d;
@@ -199,115 +199,115 @@ body{
 }
 </style>
 </head>
-<body>
-<div id="app">
+<body data-page-node-id="sGb6IrEfa88P5pEqd9HSBC">
+<div id="app" data-page-node-id="Usp1C3vx2TNFH9EP1Ml4Hf">
 
-  <header class="topbar">
-    <div class="brand">
-      <svg class="logo" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
-        <circle cx="6" cy="16" r="3.4" fill="#4dd0c7"/>
-        <circle cx="16" cy="7" r="3.4" fill="#4dd0c7"/>
-        <circle cx="16" cy="25" r="3.4" fill="#ff7a6b"/>
-        <circle cx="26" cy="16" r="3.4" fill="#b39dff"/>
+  <header class="topbar" data-page-node-id="7SM5m7C3GU1WwagvVOo4ce">
+    <div class="brand" data-page-node-id="p2oDhIySnYQ0aAGj4QZ8QD">
+      <svg class="logo" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" data-page-node-id="2AE0Ibis93zxl1PPFkBBFM">
+        <circle cx="6" cy="16" r="3.4" fill="#4dd0c7" data-page-node-id="Wfu1yAKHxXNNnv0BSk5aaO"/>
+        <circle cx="16" cy="7" r="3.4" fill="#4dd0c7" data-page-node-id="BcyPiyzy6SVIBVgi1cnxQY"/>
+        <circle cx="16" cy="25" r="3.4" fill="#ff7a6b" data-page-node-id="8OGD1IeHOv2y8FNTMcHUVv"/>
+        <circle cx="26" cy="16" r="3.4" fill="#b39dff" data-page-node-id="q8rRwdhU7QbhAcO9qgZvGj"/>
         <path d="M6 16 L16 7 M6 16 L16 25 M16 7 L26 16 M16 25 L26 16"
-              stroke="#3a5560" stroke-width="1.6" fill="none"/>
+              stroke="#3a5560" stroke-width="1.6" fill="none" data-page-node-id="HuGQBtBJI5kFKYtgEuLgH5"/>
       </svg>
-      <div class="brand-text">
-        <h1>信号通路模拟器</h1>
-        <p id="levelName">—</p>
+      <div class="brand-text" data-page-node-id="74Kfi2nkvCtQObRHrJ5RNB">
+        <h1 data-page-node-id="pf7rqsB6PLjoDYaOh4okDS">信号通路模拟器</h1>
+        <p id="levelName" data-page-node-id="1QVi1D2r1HnIuobMJfM7fU">—</p>
       </div>
     </div>
 
-    <div class="clock">
-      <span class="clock-label">推演时间</span>
-      <span class="clock-value" id="clock">00.0s</span>
-      <span class="clock-total" id="clockTotal">/ 90s</span>
+    <div class="clock" data-page-node-id="cFVSghIBg6soDFM4uUyg5y">
+      <span class="clock-label" data-page-node-id="vmPPGcSExPED3HK7aFSXcX">推演时间</span>
+      <span class="clock-value" id="clock" data-page-node-id="sFTJ8lSWkky1ljYEb2Nkia">00.0s</span>
+      <span class="clock-total" id="clockTotal" data-page-node-id="rmzV5k0jkaTB6Aa0LM4QeN">/ 90s</span>
     </div>
 
-    <div class="controls">
-      <button class="btn" id="btnPause" title="空格键">暂停</button>
-      <button class="btn" id="btnSpeed" title="切换推演速度">1×</button>
-      <button class="btn ghost" id="btnReset" title="R 键">重置</button>
-      <button class="btn ghost" id="btnHelp">说明</button>
+    <div class="controls" data-page-node-id="BFNpz9UmJbIpfUUG0pE3f6">
+      <button class="btn" id="btnPause" title="空格键" data-page-node-id="lUYkF5TwXlAVAtAoB38TJB">暂停</button>
+      <button class="btn" id="btnSpeed" title="切换推演速度" data-page-node-id="sTixJPhScDheF1EbCN2LsU">1×</button>
+      <button class="btn ghost" id="btnReset" title="R 键" data-page-node-id="2fsZLO3jtECP1tITF3eOEM">重置</button>
+      <button class="btn ghost" id="btnHelp" data-page-node-id="s2JnQqRHAR4cVvasBJIS2a">说明</button>
     </div>
   </header>
 
-  <main class="stage">
-    <section class="board">
-      <div class="canvas-wrap">
-        <canvas id="pathway"></canvas>
-        <div class="tooltip" id="tooltip"></div>
+  <main class="stage" data-page-node-id="ZHx5nVr6sIFXRVM99AIB9A">
+    <section class="board" data-page-node-id="GJnZNFMNYqIkEkAMvfxgkT">
+      <div class="canvas-wrap" data-page-node-id="juEbv6GFjKXzriVB5g0oYe">
+        <canvas id="pathway" data-page-node-id="bRL0P9dw0wVQFbxSBHLfzX"></canvas>
+        <div class="tooltip" id="tooltip" data-page-node-id="dbB0WH2uzF0Qlg2iM51UnB"></div>
       </div>
 
-      <div class="dock">
-        <div class="dock-head">
-          <span class="dock-title">道具栏</span>
-          <span class="dock-hint">点击投放 · 也可按数字键 1–4</span>
+      <div class="dock" data-page-node-id="nW9l6WCxJ8ix4VXzZ63t8D">
+        <div class="dock-head" data-page-node-id="1Zbd7BaDIqY1TGnOBmWwGU">
+          <span class="dock-title" data-page-node-id="XJD8mKvEdbUEERz1tJVguK">道具栏</span>
+          <span class="dock-hint" data-page-node-id="NH9FB8xrZEDng502fs9Vib">点击投放 · 也可按数字键 1–4</span>
         </div>
-        <div class="dock-items" id="dock"></div>
+        <div class="dock-items" id="dock" data-page-node-id="V8pj48H1zRHNs5ljLA2DwT"></div>
       </div>
     </section>
 
-    <aside class="sidebar">
-      <div class="panel">
-        <div class="panel-head"><span>稳态指标</span><span class="panel-tag" id="phaseTag">推演中</span></div>
-        <div class="gauge-main">
-          <div class="gauge-row">
-            <span class="gauge-name">钙离子浓度 Ca²⁺</span>
-            <span class="gauge-val" id="caVal">100</span>
+    <aside class="sidebar" data-page-node-id="2PgKSGt8W3FOOcwMbqTxOD">
+      <div class="panel" data-page-node-id="meELK4p0T5Kh14RZsKsOsW">
+        <div class="panel-head" data-page-node-id="fWek37dISnATyVcDnQSCp7"><span data-page-node-id="jfn92emEheBRBg3ZguvTt3">稳态指标</span><span class="panel-tag" id="phaseTag" data-page-node-id="AIo5J0fJU0iHCw078QyA9V">推演中</span></div>
+        <div class="gauge-main" data-page-node-id="I5NP4PdWRMlj7couuHWJp7">
+          <div class="gauge-row" data-page-node-id="vUL1tQOGhcf1evsO3fIOiP">
+            <span class="gauge-name" data-page-node-id="yMuxxOnUJJd7B0Xk5aA5Mc">钙离子浓度 Ca²⁺</span>
+            <span class="gauge-val" id="caVal" data-page-node-id="VnfGsLaABiNrDnh963iNIG">100</span>
           </div>
-          <div class="gauge-bar">
-            <div class="gauge-safe" id="caSafe"></div>
-            <div class="gauge-fill" id="caFill"></div>
-            <div class="gauge-target" id="caTarget"></div>
+          <div class="gauge-bar" data-page-node-id="9AhIogYJaJj9yd9wOClomH">
+            <div class="gauge-safe" id="caSafe" data-page-node-id="QTJF32MeW9OwaPR33GtfKo"></div>
+            <div class="gauge-fill" id="caFill" data-page-node-id="ti98gTNKjz2w0cP2Tqm7Zt"></div>
+            <div class="gauge-target" id="caTarget" data-page-node-id="W3LMlhiYLiBf4KurrBfasY"></div>
           </div>
-          <div class="gauge-foot">
-            <span>目标 ≤ <b id="caGoal">45</b></span>
-            <span id="caHold">已稳定 0.0s / 3.0s</span>
-          </div>
-        </div>
-        <div class="mini-grid">
-          <div class="mini">
-            <span class="mini-name">平滑肌舒张度</span>
-            <span class="mini-val" id="relaxVal">0%</span>
-            <div class="mini-bar"><div class="mini-fill" id="relaxFill" style="background:#7ee08a"></div></div>
-          </div>
-          <div class="mini">
-            <span class="mini-name">cGMP 浓度</span>
-            <span class="mini-val" id="cgmpVal">0</span>
-            <div class="mini-bar"><div class="mini-fill" id="cgmpFill" style="background:#4dd0c7"></div></div>
-          </div>
-          <div class="mini">
-            <span class="mini-name">GTP 能量池</span>
-            <span class="mini-val" id="gtpVal">1200</span>
-            <div class="mini-bar"><div class="mini-fill" id="gtpFill" style="background:#ffd479"></div></div>
+          <div class="gauge-foot" data-page-node-id="MnV2vY5842Du0lijIYHPc0">
+            <span data-page-node-id="gcC8cCRvbXLQBXOrPu4ZU4">目标 ≤ <b id="caGoal" data-page-node-id="XyiDaWnYJEsK85tPDnYlys">45</b></span>
+            <span id="caHold" data-page-node-id="O8pCNcYCmsXhDwy0dxT9pG">已稳定 0.0s / 3.0s</span>
           </div>
         </div>
+        <div class="mini-grid" data-page-node-id="w4YvQyDC96hVkMNV9Hk1a7">
+          <div class="mini" data-page-node-id="jDqxcaAFelk0etbG7gI3s1">
+            <span class="mini-name" data-page-node-id="ba6JzSWhq1OvUfB0ADgxtu">平滑肌舒张度</span>
+            <span class="mini-val" id="relaxVal" data-page-node-id="7A9pmmFEJfem4EFnQlNw9t">0%</span>
+            <div class="mini-bar" data-page-node-id="UkORHqj1ogHqBVDxdDxFBb"><div class="mini-fill" id="relaxFill" style="background:#7ee08a" data-page-node-id="7cig37Pa1USGhcfEUAq22E"></div></div>
+          </div>
+          <div class="mini" data-page-node-id="C0Lw5ex4cLHJYwT5whMpfS">
+            <span class="mini-name" data-page-node-id="PaS3vNJ6q2zMQtRhofzBk3">cGMP 浓度</span>
+            <span class="mini-val" id="cgmpVal" data-page-node-id="XBmk4HJbmdepJDzOHhHQ9G">0</span>
+            <div class="mini-bar" data-page-node-id="PKV5942I7jaHI26MYZWJKi"><div class="mini-fill" id="cgmpFill" style="background:#4dd0c7" data-page-node-id="wcuEzJU0kWFm3mXFHk73P7"></div></div>
+          </div>
+          <div class="mini" data-page-node-id="eTqVvtHOyCxBcyXiWttpj1">
+            <span class="mini-name" data-page-node-id="FLLMpJvfvYf4ht6mB5LrNl">GTP 能量池</span>
+            <span class="mini-val" id="gtpVal" data-page-node-id="n3c7IUCrxVBEDC6DgES7wt">1200</span>
+            <div class="mini-bar" data-page-node-id="lJyKmHa5EvsfKtRG8g1hFI"><div class="mini-fill" id="gtpFill" style="background:#ffd479" data-page-node-id="aOy4cP86VrtOgxS2hKsnNg"></div></div>
+          </div>
+        </div>
       </div>
 
-      <div class="panel">
-        <div class="panel-head"><span>浓度动态</span><span class="panel-tag mono" id="tickTag">10 Hz</span></div>
-        <div class="chart-wrap"><canvas id="chart"></canvas></div>
+      <div class="panel" data-page-node-id="XDDi2wRMfnKWGkiCxXA5Um">
+        <div class="panel-head" data-page-node-id="pFzWcT7zzC2DmlQNlWAxWS"><span data-page-node-id="AaVrATfOLl3liAGGo0gp1Z">浓度动态</span><span class="panel-tag mono" id="tickTag" data-page-node-id="6tPNXghgmSryOULFLSM8qU">10 Hz</span></div>
+        <div class="chart-wrap" data-page-node-id="E02jFKNfyoqWBDFkrhsqlo"><canvas id="chart" data-page-node-id="PqPctx7GK74qDDyS9WzMkt"></canvas></div>
       </div>
 
-      <div class="panel grow" id="inspectorPanel">
-        <div class="panel-head"><span id="inspectorTitle">节点档案</span></div>
-        <div class="inspector" id="inspector"></div>
+      <div class="panel grow" id="inspectorPanel" data-page-node-id="l8PwcCpMB7lpEwIKRgHdLu">
+        <div class="panel-head" data-page-node-id="GAT5fRyfX7lpCEYRErwEW3"><span id="inspectorTitle" data-page-node-id="2DgmRO3Vgxd2cO4xaSJIz4">节点档案</span></div>
+        <div class="inspector" id="inspector" data-page-node-id="g9QgCsIHxpAldCxS68cjcB"></div>
       </div>
 
-      <div class="panel">
-        <div class="panel-head"><span>事件流水</span></div>
-        <div class="log" id="log"></div>
+      <div class="panel" data-page-node-id="mH1n1Th74GSu0fviRFyfg7">
+        <div class="panel-head" data-page-node-id="MhyEK0wA7kuEe3RnAALeAK"><span data-page-node-id="OCA07QVi9xSGVeCuPp6TE4">事件流水</span></div>
+        <div class="log" id="log" data-page-node-id="ztNdZIaxnMKykKfw6ThFaJ"></div>
       </div>
     </aside>
   </main>
 
-  <div class="modal" id="modal" hidden>
-    <div class="modal-card" id="modalCard"></div>
+  <div class="modal" id="modal" hidden data-page-node-id="0YrKPtjm2MooCx4Rn3q3SO">
+    <div class="modal-card" id="modalCard" data-page-node-id="GKFcW9cOkD5GGgpg1TKEiz"></div>
   </div>
 
-  <div class="modal" id="briefModal">
-    <div class="modal-card brief-card" id="briefCard"></div>
+  <div class="modal" id="briefModal" data-page-node-id="y3PJTHJP7sUKLy3QGf57qn">
+    <div class="modal-card brief-card" id="briefCard" data-page-node-id="ET9WIWtZT9TzdyNafqThDw"></div>
   </div>
 
 </div>

@@ -9,10 +9,18 @@ Signaling Pathway Simulator —— 细胞信号转导模拟游戏。
 
 ## 技术栈（已定，不要轻易改）
 - **纯 HTML5 + Canvas 2D，不引入 Cocos / Godot / 游戏引擎**
-- 逻辑层 TypeScript 风格书写（JSDoc 标注），但当前以 ES module 形式交付
-- 构建：`node tools/build.js` 把 ES module 合并为单文件 `dist/信号通路模拟器.html`
-  （file:// 下 import 会被 CORS 拦截，所以必须合并，用户才能双击运行）
-- 测试：改完务必跑 `node tools/build.js && node tools/smoke.mjs`
+- **源码为 TypeScript**（2026-09-06 迁入）：逻辑核心 `src/engine.ts` + 关卡数据
+  `src/pathways/nocgmp.ts` 已全面类型化；`render.js/ui.js/main.js` 暂仍是 .js（allowJs 一并编译）
+- **构建链（三连）**：
+  1. `tsc -p tsconfig.json` → 严格类型检查 + 编译 ESM 产物到 `build/`
+  2. `node tools/build.js` → 从 `build/` 打包单文件 `dist/信号通路模拟器.html`
+  3. `node tools/smoke.mjs` → 回归
+  一条命令：`npm run check`（= build:ts + build + smoke）
+- 配平工具 balance/sweep 的 import 已改指 `../build/*`（编译产物）
+- dev 页加载 `build/main.js`（浏览器跑不了 .ts），配合 `./node_modules/.bin/tsc -w` 实时重编
+- tsconfig 关键取舍：`strictPropertyInitialization:false`（类字段经 Object.assign 默认值初始化，
+  tsc 静态追踪不了）；`verbatimModuleSyntax` + `allowJs` + bundler resolution
+- 类型收益实证：关卡 effect 枚举拼错会报 TS2820 并给修正建议，编译期拦截而非运行期炸
 
 ## 底层规则（PDF 定下的，不可改）
 四步结算：`匹配标签(tags)` → `掷骰子(band)` → `挂 Buff(activation/timer)` → `乘数增量(amplify)`
@@ -20,9 +28,12 @@ Signaling Pathway Simulator —— 细胞信号转导模拟游戏。
 80% 的常规分子参数写死，只开放 20% 关键节点给玩家调参。
 
 ## 工作流约定
-- 改参数 → 跑 `tools/balance.mjs`（5 场景）或 `tools/sweep.mjs`（网格搜索）
-- 改代码 → 跑 `tools/build.js` 再跑 `tools/smoke.mjs`
+- 一条命令走全回归：`npm run check`（= tsc 类型检查+编译 → build.js 打包 → smoke.mjs）
+- 改代码 → 至少跑 `npm run typecheck`（tsc --noEmit）确认类型绿，再 `npm run check`
+- 改参数 → 跑 `tools/balance.mjs`（5 场景）或 `tools/sweep.mjs`（网格搜索）——注意它们吃 build/ 产物，
+  改完参数须先 `npm run build:ts`
 - 参数配平靠脚本扫，不靠手调（一阶动力学的饱和特性反直觉，手调必然踩坑）
+- dev 调试 → `node tools/dev-server.mjs` + 另开终端 `npm run watch`（tsc 监听实时重编到 build/）
 
 ## 扩展方向（PDF 里的远期规划）
 - 解析 KEGG KGML / Reactome 数据文件自动生成关卡拓扑
