@@ -281,7 +281,7 @@ const KINETICS = {
       band: [0, 85],
     },
     cGMP: {
-      drive: 'count', K: 62, baseDecay: 0.022,
+      drive: 'count', K: 62, baseDecay: 0.022, // `baseDecay``0.022`自然降解率—— 每个 tick 自动消失 2.2%。
     },
     PKG: {
       drive: 'activation', decay: 0.05, buffTicks: 20,
