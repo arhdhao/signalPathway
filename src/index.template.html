@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信号通路模拟器 · Signaling Pathway Simulator</title>
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<div id="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+        <circle cx="6" cy="16" r="3.4" fill="#4dd0c7"/>
+        <circle cx="16" cy="7" r="3.4" fill="#4dd0c7"/>
+        <circle cx="16" cy="25" r="3.4" fill="#ff7a6b"/>
+        <circle cx="26" cy="16" r="3.4" fill="#b39dff"/>
+        <path d="M6 16 L16 7 M6 16 L16 25 M16 7 L26 16 M16 25 L26 16"
+              stroke="#3a5560" stroke-width="1.6" fill="none"/>
+      </svg>
+      <div class="brand-text">
+        <h1>信号通路模拟器</h1>
+        <p id="levelName">—</p>
+      </div>
+    </div>
+
+    <div class="clock">
+      <span class="clock-label">推演时间</span>
+      <span class="clock-value" id="clock">00.0s</span>
+      <span class="clock-total" id="clockTotal">/ 90s</span>
+    </div>
+
+    <div class="controls">
+      <button class="btn" id="btnPause" title="空格键">暂停</button>
+      <button class="btn" id="btnSpeed" title="切换推演速度">1×</button>
+      <button class="btn ghost" id="btnReset" title="R 键">重置</button>
+      <button class="btn ghost" id="btnHelp">说明</button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <section class="board">
+      <div class="canvas-wrap">
+        <canvas id="pathway"></canvas>
+        <div class="tooltip" id="tooltip"></div>
+      </div>
+
+      <div class="dock">
+        <div class="dock-head">
+          <span class="dock-title">道具栏</span>
+          <span class="dock-hint">点击投放 · 也可按数字键 1–4</span>
+        </div>
+        <div class="dock-items" id="dock"></div>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="panel">
+        <div class="panel-head"><span>稳态指标</span><span class="panel-tag" id="phaseTag">推演中</span></div>
+        <div class="gauge-main">
+          <div class="gauge-row">
+            <span class="gauge-name">钙离子浓度 Ca²⁺</span>
+            <span class="gauge-val" id="caVal">100</span>
+          </div>
+          <div class="gauge-bar">
+            <div class="gauge-safe" id="caSafe"></div>
+            <div class="gauge-fill" id="caFill"></div>
+            <div class="gauge-target" id="caTarget"></div>
+          </div>
+          <div class="gauge-foot">
+            <span>目标 ≤ <b id="caGoal">45</b></span>
+            <span id="caHold">已稳定 0.0s / 3.0s</span>
+          </div>
+        </div>
+        <div class="mini-grid">
+          <div class="mini">
+            <span class="mini-name">平滑肌舒张度</span>
+            <span class="mini-val" id="relaxVal">0%</span>
+            <div class="mini-bar"><div class="mini-fill" id="relaxFill" style="background:#7ee08a"></div></div>
+          </div>
+          <div class="mini">
+            <span class="mini-name">cGMP 浓度</span>
+            <span class="mini-val" id="cgmpVal">0</span>
+            <div class="mini-bar"><div class="mini-fill" id="cgmpFill" style="background:#4dd0c7"></div></div>
+          </div>
+          <div class="mini">
+            <span class="mini-name">GTP 能量池</span>
+            <span class="mini-val" id="gtpVal">1200</span>
+            <div class="mini-bar"><div class="mini-fill" id="gtpFill" style="background:#ffd479"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><span>浓度动态</span><span class="panel-tag mono" id="tickTag">10 Hz</span></div>
+        <div class="chart-wrap"><canvas id="chart"></canvas></div>
+      </div>
+
+      <div class="panel grow" id="inspectorPanel">
+        <div class="panel-head"><span id="inspectorTitle">节点档案</span></div>
+        <div class="inspector" id="inspector"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><span>事件流水</span></div>
+        <div class="log" id="log"></div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" id="modalCard"></div>
+  </div>
+
+  <div class="modal" id="briefModal">
+    <div class="modal-card brief-card" id="briefCard"></div>
+  </div>
+
+</div>
+<script>/*__JS__*/</script>
+</body>
+</html>
