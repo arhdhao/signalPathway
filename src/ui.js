@@ -105,6 +105,10 @@ export class UI {
     this.el.caSafe.style.width = `${(level.goal.target / level.chart.max) * 100}%`;
     this.el.caTarget.style.left = `${(level.goal.target / level.chart.max) * 100}%`;
 
+    // 图表标题跟着 chart.series 走：以后加/删曲线，标题自动同步，不用回来改文案
+    const tt = $('trendTitle');
+    if (tt) tt.textContent = `浓度动态 · ${level.chart.series.map((s) => s.label ?? s.key).join(' · ')}`;
+
     this.el.btnPause.onclick = () => this.ctx.togglePause();
     this.el.btnSpeed.onclick = () => this.ctx.cycleSpeed();
     this.el.btnReset.onclick = () => this.ctx.reset();
@@ -169,15 +173,15 @@ export class UI {
     this.el.dock.innerHTML = level.drugs.map((d) => {
       const st = sim.drugState.get(d.id);
       const left = d.charges - st.uses;
-      return `<button class="drug" data-drug="${d.id}" ${left <= 0 ? 'disabled' : ''}>
-        <div class="dicon" style="background:${d.color}1f;color:${d.color}">${ICONS[d.icon] || ICONS.pill}</div>
-        <div style="min-width:0">
-          <div class="dname">${d.name}</div>
-          <div class="den">${d.en}</div>
-          <div class="ddesc">${d.desc}</div>
-        </div>
+      // 右栏是 372px 窄列，道具卡片只留「图标 + 名字 + 快捷键 + 剩余次数」。
+      // 完整说明（d.desc）挂到 title 上，hover 可见；投放后画布上也会出现对应节点，
+      // 点开节点档案能看到同一段文字 —— 信息没有真的丢，只是换了个地方。
+      return `<button class="drug" data-drug="${d.id}"
+        title="${d.name}（${d.en}）· 快捷键 ${d.hotkey}\n${d.desc}" ${left <= 0 ? 'disabled' : ''}>
+        <span class="dicon" style="background:${d.color}1f;color:${d.color}">${ICONS[d.icon] || ICONS.pill}</span>
+        <span class="dname">${d.name}</span>
         <span class="dkey">${d.hotkey}</span>
-        <span class="dcount">${left}/${d.charges}</span>
+        <span class="dcount${left <= 0 ? ' out' : ''}">${left}/${d.charges}</span>
       </button>`;
     }).join('');
 

@@ -508,6 +508,7 @@ export class Chart {
     const n = hist.length;
     const xOf = (i) => pad.l + (i / Math.max(1, n - 1)) * iw;
 
+    // 端点圆点先统一画，再统一画数值标注 —— 标注要在最后做防重叠，不能被曲线盖住
     for (const s of series) {
       ctx.beginPath();
       for (let i = 0; i < n; i++) {
@@ -516,27 +517,55 @@ export class Chart {
       }
       ctx.strokeStyle = s.color;
       ctx.lineWidth = 1.8;
+      ctx.setLineDash(s.dash || []);   // 线型：不配置就是实线
       ctx.stroke();
-      // 当前值端点
+      ctx.setLineDash([]);
       const lastY = yOf(hist[n - 1][s.key]);
       ctx.beginPath(); ctx.arc(xOf(n - 1), lastY, 3, 0, Math.PI * 2);
       ctx.fillStyle = s.color; ctx.fill();
-      ctx.textAlign = 'left';
-      ctx.fillStyle = s.color;
-      ctx.font = '10px ui-monospace, monospace';
-      // 端点标注取「当前实时值」，不走 history —— history 是每 2 tick 才存一条的
-      const lv = this.sim._readValue(s).toFixed(0);
-      ctx.fillText(lv, pad.l + iw + 6, lastY + 3);
     }
-    // 图例
+
+    /* 右侧端点标注：每条曲线标自己的真实数值（不走 history ——
+       history 是每 2 tick 才存一条的，端点要的是当前实时值）。
+       曲线多了以后几个标注会叠在一起，这里按 y 排序后把挨太近的推开，
+       整组超出绘图区再整体回推，保证每个数字都读得到。 */
+    const marks = series.map((s) => ({
+      y: yOf(hist[n - 1][s.key]),
+      color: s.color,
+      text: this.sim._readValue(s).toFixed(0),
+    })).sort((a, b) => a.y - b.y);
+    const GAP = 11;
+    for (let i = 1; i < marks.length; i++) {
+      if (marks[i].y - marks[i - 1].y < GAP) marks[i].y = marks[i - 1].y + GAP;
+    }
+    const bottom = pad.t + ih;
+    const over = marks.length ? marks[marks.length - 1].y - bottom : 0;
+    if (over > 0) for (const m of marks) m.y -= over;
+    if (marks.length && marks[0].y < pad.t) {
+      const up = pad.t - marks[0].y;
+      for (const m of marks) m.y = Math.min(bottom, m.y + up);
+    }
+    ctx.textAlign = 'left';
+    ctx.font = '10px ui-monospace, monospace';
+    for (const m of marks) {
+      ctx.fillStyle = m.color;
+      ctx.fillText(m.text, pad.l + iw + 6, m.y + 3);
+    }
+
+    // 图例：宽度按实际文字长度累加，放不下就换行（曲线多的时候不会挤成一坨）
     ctx.textAlign = 'left';
     ctx.font = '10px ui-sans-serif, system-ui';
-    let lx = pad.l + 4;
+    let lx = pad.l + 4, ly = pad.t + 6;
     for (const s of series) {
+      const tw = ctx.measureText(s.label ?? s.key).width;
+      if (lx + 12 + tw > pad.l + iw) { lx = pad.l + 4; ly += 13; }
       ctx.fillStyle = s.color;
-      ctx.fillRect(lx, pad.t + 2, 8, 2.5);
-      ctx.fillText(s.label, lx + 12, pad.t + 6);
-      lx += 52;
+      ctx.setLineDash(s.dash || []);
+      ctx.beginPath(); ctx.moveTo(lx, ly - 1.5); ctx.lineTo(lx + 16, ly - 1.5);
+      ctx.lineWidth = 1.8; ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillText(s.label ?? s.key, lx + 20, ly + 3);
+      lx += 20 + tw + 14;
     }
   }
 }
