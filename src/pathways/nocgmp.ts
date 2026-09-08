@@ -493,18 +493,30 @@ const METRICS: MetricConfig[] = [
  *             key   存在 history 里的键名（ui.js 读峰值时用的是 h.cGMP）
  *             label 图例文字
  *             color 曲线颜色
+ *             dash  线型（canvas setLineDash 数组），不填 = 实线
  *             取值来源三选一（与引擎 _readValue 的约定一致）：
  *               { kind:'node',   id:'cGMP', prop:'count' | 'activation' }
  *               { kind:'metric', id:'Ca' }
  *               { kind:'pool',   id:'GTP' }
  *   想多画一条曲线（比如把 GTP 也画上去），往 series 里加一行即可，
  *   采样和绘制会同时生效，不用改 engine.js 或 render.js。
+ *
+ * 【这三条激活度曲线为什么能直接共用 0–160 的纵轴】
+ *   sGC / PDE5 / PKG 取的是 prop:'activation'（0–100 的激活度），
+ *   Ca 是 0–100 的指标、cGMP 是分子计数 —— 实测三者同处一个量级，
+ *   没必要开第二套纵轴（双轴最容易让人误读大小关系）。
+ *   它们靠「颜色 + 线型」两两区分：实线=浓度/分子数，虚线类=激活度 %。
  */
 const CHART: { max: number; series: ChartSeries[] } = {
   max: 160,
   series: [
     { key: 'Ca', label: 'Ca²⁺', color: '#ff7a6b', kind: 'metric', id: 'Ca' },
     { key: 'cGMP', label: 'cGMP', color: '#4dd0c7', kind: 'node', id: 'cGMP', prop: 'count' },
+    // ↓ 新增三条激活度曲线。画布上 sGC 是青色、PDE5 是红色，与上面两条撞色，
+    //   所以这里另配色（紫/琥珀/粉），并各配一种线型作为第二重区分。
+    { key: 'sGC', label: 'sGC(%)', color: '#b39dff', dash: [7, 4], kind: 'node', id: 'sGC', prop: 'activation' },
+    { key: 'PDE5', label: 'PDE5(%)', color: '#ffd479', dash: [2, 3], kind: 'node', id: 'PDE5', prop: 'activation' },
+    { key: 'PKG', label: 'PKG(%)', color: '#ff9de2', dash: [10, 3, 2, 3], kind: 'node', id: 'PKG', prop: 'activation' },
   ],
 };
 

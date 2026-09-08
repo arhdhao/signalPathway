@@ -20,6 +20,11 @@ function makeCtx() {
   return new Proxy(store, {
     get(t, k) {
       if (k === 'canvas') return { width: 900, height: 400 };
+      // measureText 有返回值，不能走下面的「通用空函数」——否则 .width 是 undefined。
+      // 真实浏览器里它按字体算宽度，这里按 6px/字符粗略估一个就够跑通图例布局。
+      if (k === 'measureText') {
+        return (s) => { drawStats[k] = (drawStats[k] || 0) + 1; return { width: String(s).length * 6 }; };
+      }
       if (k in t) return t[k];
       return (...a) => { drawStats[k] = (drawStats[k] || 0) + 1; };
     },

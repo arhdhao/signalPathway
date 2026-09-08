@@ -62,14 +62,6 @@
         <canvas id="pathway"></canvas>
         <div class="tooltip" id="tooltip"></div>
       </div>
-
-      <div class="dock">
-        <div class="dock-head">
-          <span class="dock-title">道具栏</span>
-          <span class="dock-hint">点击投放 · 也可按数字键 1–4</span>
-        </div>
-        <div class="dock-items" id="dock"></div>
-      </div>
     </section>
 
     <aside class="sidebar">
@@ -109,9 +101,11 @@
         </div>
       </div>
 
-      <div class="panel">
-        <div class="panel-head"><span>浓度动态</span><span class="panel-tag mono" id="tickTag">10 Hz</span></div>
-        <div class="chart-wrap"><canvas id="chart"></canvas></div>
+      <div class="panel dock">
+        <div class="panel-head">
+          <span>道具栏</span><span class="panel-tag">点击投放 · 数字键 1–4</span>
+        </div>
+        <div class="dock-items" id="dock"></div>
       </div>
 
       <div class="panel grow" id="inspectorPanel">
@@ -124,6 +118,11 @@
         <div class="log" id="log"></div>
       </div>
     </aside>
+
+    <section class="panel trend">
+      <div class="panel-head"><span id="trendTitle">浓度动态</span><span class="panel-tag mono" id="tickTag">10 Hz</span></div>
+      <div class="chart-wrap"><canvas id="chart"></canvas></div>
+    </section>
   </main>
 
   <div class="modal" id="modal" hidden>

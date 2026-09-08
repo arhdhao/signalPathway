@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-page-node-id="hH7IBfKutGiDJisZTzPH1l">
-<head data-page-node-id="Aa11BvO6uvBa7Gw1qikPmc">
-<meta charset="UTF-8" data-page-node-id="IoeXqK9mBmnH2JwEKk0WGN">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="RrEV6kpS6ijuU3raOw6mxN">
+<html lang="zh-CN" data-page-node-id="Rd7Hj0oDhVbDLSAukwWG4p">
+<head data-page-node-id="43hfKwa3x8F6cpnvJ3PNgU">
+<meta charset="UTF-8" data-page-node-id="4uxTi0GX2DBbyPC9xuHryQ">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="1ChwBHYyAica5n1vEqUzfQ">
 <title>信号通路模拟器 · Signaling Pathway Simulator</title>
 <style>:root{
   --bg:#0a0e13; --panel:#111821; --panel2:#151e29; --border:#212d3d;
@@ -48,7 +48,13 @@ body{
 .btn.on{border-color:var(--accent); color:var(--accent)}
 
 /* ------------------------------------------------------------- 主区 */
-.stage{flex:1; display:grid; grid-template-columns:1fr 372px; gap:14px; padding:14px; min-height:0}
+/* 两列 + 底部整条：上排「画布 | 右栏」，下排是独占全宽的浓度动态长条 */
+.stage{
+  flex:1; display:grid;
+  grid-template-columns:1fr 372px;
+  grid-template-rows:minmax(0,1fr) auto;
+  gap:12px; padding:12px; min-height:0;
+}
 .board{display:flex; flex-direction:column; gap:12px; min-height:0; min-width:0}
 .canvas-wrap{
   flex:1; position:relative; background:radial-gradient(ellipse at 50% 35%,#101a24 0%,#0a0e13 70%);
@@ -70,35 +76,40 @@ body{
   background:rgba(77,208,199,.12); color:var(--accent); border:1px solid rgba(77,208,199,.25)}
 
 /* ------------------------------------------------------------- 道具栏 */
-.dock{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:11px 13px; flex-shrink:0}
-.dock-head{display:flex; align-items:baseline; gap:10px; margin-bottom:9px}
-.dock-title{font-size:12.5px; font-weight:600}
-.dock-hint{font-size:10.5px; color:var(--dim)}
-.dock-items{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:9px}
+/* 搬进右栏（372px）了 —— 原来那套「两列大卡片 + 三行文字」在这里会把
+   节点档案挤没。简化成 2×2 紧凑药丸：图标 + 名字 + 快捷键 + 剩余次数，
+   完整说明挪到 title（hover 可见），投放后点画布上的药物节点也有完整档案。 */
+.dock{flex-shrink:0}
+.dock-items{display:grid; grid-template-columns:1fr 1fr; gap:6px}
 .drug{
-  display:flex; gap:10px; align-items:flex-start; text-align:left;
-  background:var(--panel2); border:1px solid var(--border); border-radius:10px;
-  padding:9px 11px; cursor:pointer; transition:.15s; position:relative; overflow:hidden;
+  display:flex; align-items:center; gap:7px; width:100%; text-align:left;
+  background:var(--panel2); border:1px solid var(--border); border-radius:9px;
+  padding:7px 9px; cursor:pointer; transition:.15s;
 }
-.drug:hover:not(:disabled){border-color:#3a5570; transform:translateY(-1px)}
+.drug:hover:not(:disabled){border-color:#3a5570; background:#1a2431}
+.drug:active:not(:disabled){transform:translateY(1px)}
 .drug:disabled{opacity:.32; cursor:not-allowed}
-.drug .dicon{width:26px;height:26px;flex-shrink:0;border-radius:7px;display:grid;place-items:center}
-.drug .dname{font-size:12.5px; font-weight:600; display:flex; align-items:center; gap:6px}
-.drug .den{font-family:var(--mono); font-size:9.5px; color:var(--dim)}
-.drug .ddesc{font-size:10.5px; color:var(--muted); margin-top:3px; line-height:1.5}
+.drug .dicon{width:22px;height:22px;flex-shrink:0;border-radius:6px;display:grid;place-items:center}
+.drug .dicon svg{width:13px;height:13px}
+.drug .dname{
+  flex:1; min-width:0; font-size:12px; font-weight:600;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
 .drug .dkey{
-  position:absolute; top:7px; right:8px; font-family:var(--mono); font-size:9.5px;
-  color:var(--dim); border:1px solid var(--border); border-radius:4px; padding:0 4px;
+  font-family:var(--mono); font-size:9px; color:var(--dim); flex-shrink:0;
+  border:1px solid var(--border); border-radius:4px; padding:0 3px; line-height:1.5;
 }
 .drug .dcount{
-  position:absolute; bottom:7px; right:9px; font-family:var(--mono);
-  font-size:10px; color:var(--muted);
+  font-family:var(--mono); font-size:10px; color:var(--muted); flex-shrink:0;
 }
+.drug .dcount.out{color:var(--red)}
 
 /* ------------------------------------------------------------- 侧栏 */
-.sidebar{display:flex; flex-direction:column; gap:11px; min-height:0; overflow:hidden}
+/* overflow-y:auto 是兜底：万一窗口太矮、四块面板压到最小仍放不下，
+   宁可出滚动条，也不要把事件流水裁掉一截。 */
+.sidebar{display:flex; flex-direction:column; gap:11px; min-height:0; overflow-y:auto; overflow-x:hidden}
 .panel{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:11px 13px; flex-shrink:0}
-.panel.grow{flex:1; min-height:120px; display:flex; flex-direction:column}
+.panel.grow{flex:1; min-height:80px; display:flex; flex-direction:column}
 .panel-head{
   display:flex; justify-content:space-between; align-items:center;
   font-size:12px; font-weight:600; margin-bottom:9px; color:#c8d6e2;
@@ -128,7 +139,9 @@ body{
 .mini-bar{grid-column:1/-1; height:4px; background:#0c141d; border-radius:3px; overflow:hidden}
 .mini-fill{height:100%; width:0; transition:width .12s linear; opacity:.85}
 
-.chart-wrap{height:124px}
+/* 底部独占整条：跨两列，画布铺满可用宽度 */
+.trend{grid-column:1/-1; padding:10px 13px 12px}
+.chart-wrap{height:130px; min-width:0}
 #chart{display:block}
 
 /* 检查器 */
@@ -151,7 +164,7 @@ body{
   border-radius:8px; padding:9px 11px; font-size:11.5px; color:#a8c4c0; line-height:1.7; margin-bottom:11px}
 
 /* 日志 */
-.log{height:104px; overflow-y:auto; font-family:var(--mono); font-size:10.5px; line-height:1.85}
+.log{height:88px; overflow-y:auto; font-family:var(--mono); font-size:10.5px; line-height:1.85}
 .log-item{display:flex; gap:7px; color:var(--muted); padding:1px 0}
 .log-item .lt{color:var(--dim); flex-shrink:0}
 .log-item.k-drug{color:var(--purple)}
@@ -197,117 +210,121 @@ body{
   .topbar{gap:14px}
   .brand-text h1{font-size:14px}
 }
+/* 矮屏（笔记本 768p）：优先保住画布，把底部长条和日志压一压 */
+@media (max-height:800px){
+  .chart-wrap{height:104px}
+  .log{height:70px}
+}
 </style>
 </head>
-<body data-page-node-id="sGb6IrEfa88P5pEqd9HSBC">
-<div id="app" data-page-node-id="Usp1C3vx2TNFH9EP1Ml4Hf">
+<body data-page-node-id="xvfPI2WqFIWNSlDOSnTAHa">
+<div id="app" data-page-node-id="iLVEFl4aqVzPkHHT7rMgp8">
 
-  <header class="topbar" data-page-node-id="7SM5m7C3GU1WwagvVOo4ce">
-    <div class="brand" data-page-node-id="p2oDhIySnYQ0aAGj4QZ8QD">
-      <svg class="logo" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" data-page-node-id="2AE0Ibis93zxl1PPFkBBFM">
-        <circle cx="6" cy="16" r="3.4" fill="#4dd0c7" data-page-node-id="Wfu1yAKHxXNNnv0BSk5aaO"/>
-        <circle cx="16" cy="7" r="3.4" fill="#4dd0c7" data-page-node-id="BcyPiyzy6SVIBVgi1cnxQY"/>
-        <circle cx="16" cy="25" r="3.4" fill="#ff7a6b" data-page-node-id="8OGD1IeHOv2y8FNTMcHUVv"/>
-        <circle cx="26" cy="16" r="3.4" fill="#b39dff" data-page-node-id="q8rRwdhU7QbhAcO9qgZvGj"/>
+  <header class="topbar" data-page-node-id="FBBGLRzGL6u7muXg4bCHvS">
+    <div class="brand" data-page-node-id="UM0wqXxjNf0kWZEE8OA61P">
+      <svg class="logo" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" data-page-node-id="4Wbai8FhlrjXTvX83BXBzh">
+        <circle cx="6" cy="16" r="3.4" fill="#4dd0c7" data-page-node-id="7SakthOj4UcLLyW6lcSDBN"/>
+        <circle cx="16" cy="7" r="3.4" fill="#4dd0c7" data-page-node-id="IK2vpuy7RCk6TSXDHtLxZz"/>
+        <circle cx="16" cy="25" r="3.4" fill="#ff7a6b" data-page-node-id="BSnIXawMgii8CkwyQgeHoo"/>
+        <circle cx="26" cy="16" r="3.4" fill="#b39dff" data-page-node-id="BkFg9SbuVU8lBbOqecO1ng"/>
         <path d="M6 16 L16 7 M6 16 L16 25 M16 7 L26 16 M16 25 L26 16"
-              stroke="#3a5560" stroke-width="1.6" fill="none" data-page-node-id="HuGQBtBJI5kFKYtgEuLgH5"/>
+              stroke="#3a5560" stroke-width="1.6" fill="none" data-page-node-id="uxjsljhq2qB35ot6q2PDNQ"/>
       </svg>
-      <div class="brand-text" data-page-node-id="74Kfi2nkvCtQObRHrJ5RNB">
-        <h1 data-page-node-id="pf7rqsB6PLjoDYaOh4okDS">信号通路模拟器</h1>
-        <p id="levelName" data-page-node-id="1QVi1D2r1HnIuobMJfM7fU">—</p>
+      <div class="brand-text" data-page-node-id="ZfHrT742jPkIMGubhHBAWB">
+        <h1 data-page-node-id="1IlW9FlS3aOrRFMPokCQpc">信号通路模拟器</h1>
+        <p id="levelName" data-page-node-id="d2km0V2w1B9hQFgpBnhry6">—</p>
       </div>
     </div>
 
-    <div class="clock" data-page-node-id="cFVSghIBg6soDFM4uUyg5y">
-      <span class="clock-label" data-page-node-id="vmPPGcSExPED3HK7aFSXcX">推演时间</span>
-      <span class="clock-value" id="clock" data-page-node-id="sFTJ8lSWkky1ljYEb2Nkia">00.0s</span>
-      <span class="clock-total" id="clockTotal" data-page-node-id="rmzV5k0jkaTB6Aa0LM4QeN">/ 90s</span>
+    <div class="clock" data-page-node-id="6uFDhChpsDXv4Zbm3XJ2bN">
+      <span class="clock-label" data-page-node-id="OmIUHe54fvnz3EZisAsPX4">推演时间</span>
+      <span class="clock-value" id="clock" data-page-node-id="db9ujCSrnEYxOqb7lzCVBR">00.0s</span>
+      <span class="clock-total" id="clockTotal" data-page-node-id="jHJWS7VCxfDuUWq1Zqco9H">/ 90s</span>
     </div>
 
-    <div class="controls" data-page-node-id="BFNpz9UmJbIpfUUG0pE3f6">
-      <button class="btn" id="btnPause" title="空格键" data-page-node-id="lUYkF5TwXlAVAtAoB38TJB">暂停</button>
-      <button class="btn" id="btnSpeed" title="切换推演速度" data-page-node-id="sTixJPhScDheF1EbCN2LsU">1×</button>
-      <button class="btn ghost" id="btnReset" title="R 键" data-page-node-id="2fsZLO3jtECP1tITF3eOEM">重置</button>
-      <button class="btn ghost" id="btnHelp" data-page-node-id="s2JnQqRHAR4cVvasBJIS2a">说明</button>
+    <div class="controls" data-page-node-id="sqHj6Q5vjakrDGEdhMgkIh">
+      <button class="btn" id="btnPause" title="空格键" data-page-node-id="jsrcUELEKBL5lJO5jr0KrQ">暂停</button>
+      <button class="btn" id="btnSpeed" title="切换推演速度" data-page-node-id="WMZvdBLsc3G24XFXLddM0u">1×</button>
+      <button class="btn ghost" id="btnReset" title="R 键" data-page-node-id="Ps7b3E7tWcn5h5BdjUHAan">重置</button>
+      <button class="btn ghost" id="btnHelp" data-page-node-id="rm3h3FYHVv79wzQaqZTwxF">说明</button>
     </div>
   </header>
 
-  <main class="stage" data-page-node-id="ZHx5nVr6sIFXRVM99AIB9A">
-    <section class="board" data-page-node-id="GJnZNFMNYqIkEkAMvfxgkT">
-      <div class="canvas-wrap" data-page-node-id="juEbv6GFjKXzriVB5g0oYe">
-        <canvas id="pathway" data-page-node-id="bRL0P9dw0wVQFbxSBHLfzX"></canvas>
-        <div class="tooltip" id="tooltip" data-page-node-id="dbB0WH2uzF0Qlg2iM51UnB"></div>
-      </div>
-
-      <div class="dock" data-page-node-id="nW9l6WCxJ8ix4VXzZ63t8D">
-        <div class="dock-head" data-page-node-id="1Zbd7BaDIqY1TGnOBmWwGU">
-          <span class="dock-title" data-page-node-id="XJD8mKvEdbUEERz1tJVguK">道具栏</span>
-          <span class="dock-hint" data-page-node-id="NH9FB8xrZEDng502fs9Vib">点击投放 · 也可按数字键 1–4</span>
-        </div>
-        <div class="dock-items" id="dock" data-page-node-id="V8pj48H1zRHNs5ljLA2DwT"></div>
+  <main class="stage" data-page-node-id="WJZvPENYomoa31upuKgkMk">
+    <section class="board" data-page-node-id="nypFo1YREzCRr9YqX60wz3">
+      <div class="canvas-wrap" data-page-node-id="m2svA0RrqQMnaPHIamIdT7">
+        <canvas id="pathway" data-page-node-id="xr0LjwgoIiNVaXhDzRxgrl"></canvas>
+        <div class="tooltip" id="tooltip" data-page-node-id="dJzuKPi7urWIpNwbQFL1SV"></div>
       </div>
     </section>
 
-    <aside class="sidebar" data-page-node-id="2PgKSGt8W3FOOcwMbqTxOD">
-      <div class="panel" data-page-node-id="meELK4p0T5Kh14RZsKsOsW">
-        <div class="panel-head" data-page-node-id="fWek37dISnATyVcDnQSCp7"><span data-page-node-id="jfn92emEheBRBg3ZguvTt3">稳态指标</span><span class="panel-tag" id="phaseTag" data-page-node-id="AIo5J0fJU0iHCw078QyA9V">推演中</span></div>
-        <div class="gauge-main" data-page-node-id="I5NP4PdWRMlj7couuHWJp7">
-          <div class="gauge-row" data-page-node-id="vUL1tQOGhcf1evsO3fIOiP">
-            <span class="gauge-name" data-page-node-id="yMuxxOnUJJd7B0Xk5aA5Mc">钙离子浓度 Ca²⁺</span>
-            <span class="gauge-val" id="caVal" data-page-node-id="VnfGsLaABiNrDnh963iNIG">100</span>
+    <aside class="sidebar" data-page-node-id="8nXOFZE8Cfh2BuJkIQ5hTZ">
+      <div class="panel" data-page-node-id="JW2CuKmaiRGR0VmpX49akF">
+        <div class="panel-head" data-page-node-id="8xotA7ZOKFyDNQvW04aDLJ"><span data-page-node-id="BPwDfaWNMKuCE3DmADV8QT">稳态指标</span><span class="panel-tag" id="phaseTag" data-page-node-id="1AFTps2HBTAGYzc1J5VSRL">推演中</span></div>
+        <div class="gauge-main" data-page-node-id="wY559bjkMwzNZv98skFaGS">
+          <div class="gauge-row" data-page-node-id="tP8rvDqW6vW2qTodd3c3gZ">
+            <span class="gauge-name" data-page-node-id="HFhNypaefBfRPizwopDsev">钙离子浓度 Ca²⁺</span>
+            <span class="gauge-val" id="caVal" data-page-node-id="fiABjvMTLKjpxMRgegJNCu">100</span>
           </div>
-          <div class="gauge-bar" data-page-node-id="9AhIogYJaJj9yd9wOClomH">
-            <div class="gauge-safe" id="caSafe" data-page-node-id="QTJF32MeW9OwaPR33GtfKo"></div>
-            <div class="gauge-fill" id="caFill" data-page-node-id="ti98gTNKjz2w0cP2Tqm7Zt"></div>
-            <div class="gauge-target" id="caTarget" data-page-node-id="W3LMlhiYLiBf4KurrBfasY"></div>
+          <div class="gauge-bar" data-page-node-id="z9B7Q4jDPPKagZZGq2GpIs">
+            <div class="gauge-safe" id="caSafe" data-page-node-id="etH8TduPAELydFryV2FIoz"></div>
+            <div class="gauge-fill" id="caFill" data-page-node-id="YywsrD3KvqqBGd4qZIBgLL"></div>
+            <div class="gauge-target" id="caTarget" data-page-node-id="ZwsaT48yWnHqwxspCapOzD"></div>
           </div>
-          <div class="gauge-foot" data-page-node-id="MnV2vY5842Du0lijIYHPc0">
-            <span data-page-node-id="gcC8cCRvbXLQBXOrPu4ZU4">目标 ≤ <b id="caGoal" data-page-node-id="XyiDaWnYJEsK85tPDnYlys">45</b></span>
-            <span id="caHold" data-page-node-id="O8pCNcYCmsXhDwy0dxT9pG">已稳定 0.0s / 3.0s</span>
-          </div>
-        </div>
-        <div class="mini-grid" data-page-node-id="w4YvQyDC96hVkMNV9Hk1a7">
-          <div class="mini" data-page-node-id="jDqxcaAFelk0etbG7gI3s1">
-            <span class="mini-name" data-page-node-id="ba6JzSWhq1OvUfB0ADgxtu">平滑肌舒张度</span>
-            <span class="mini-val" id="relaxVal" data-page-node-id="7A9pmmFEJfem4EFnQlNw9t">0%</span>
-            <div class="mini-bar" data-page-node-id="UkORHqj1ogHqBVDxdDxFBb"><div class="mini-fill" id="relaxFill" style="background:#7ee08a" data-page-node-id="7cig37Pa1USGhcfEUAq22E"></div></div>
-          </div>
-          <div class="mini" data-page-node-id="C0Lw5ex4cLHJYwT5whMpfS">
-            <span class="mini-name" data-page-node-id="PaS3vNJ6q2zMQtRhofzBk3">cGMP 浓度</span>
-            <span class="mini-val" id="cgmpVal" data-page-node-id="XBmk4HJbmdepJDzOHhHQ9G">0</span>
-            <div class="mini-bar" data-page-node-id="PKV5942I7jaHI26MYZWJKi"><div class="mini-fill" id="cgmpFill" style="background:#4dd0c7" data-page-node-id="wcuEzJU0kWFm3mXFHk73P7"></div></div>
-          </div>
-          <div class="mini" data-page-node-id="eTqVvtHOyCxBcyXiWttpj1">
-            <span class="mini-name" data-page-node-id="FLLMpJvfvYf4ht6mB5LrNl">GTP 能量池</span>
-            <span class="mini-val" id="gtpVal" data-page-node-id="n3c7IUCrxVBEDC6DgES7wt">1200</span>
-            <div class="mini-bar" data-page-node-id="lJyKmHa5EvsfKtRG8g1hFI"><div class="mini-fill" id="gtpFill" style="background:#ffd479" data-page-node-id="aOy4cP86VrtOgxS2hKsnNg"></div></div>
+          <div class="gauge-foot" data-page-node-id="gAZUdiv2QMWmPPM6ypf0QJ">
+            <span data-page-node-id="E3exTJGKDKLzQJZRgv5ZMY">目标 ≤ <b id="caGoal" data-page-node-id="005JYbmGsDeCZl0LnFhUM3">45</b></span>
+            <span id="caHold" data-page-node-id="85oGFoiIGiM7lbq5vpOgYq">已稳定 0.0s / 3.0s</span>
           </div>
         </div>
+        <div class="mini-grid" data-page-node-id="DAMQzfjSmlgV7chZQEH2uG">
+          <div class="mini" data-page-node-id="ueoNJHLcKzrjFD2OdYE185">
+            <span class="mini-name" data-page-node-id="4kk23VBBRD4bxlFXlfbweO">平滑肌舒张度</span>
+            <span class="mini-val" id="relaxVal" data-page-node-id="fyClQqDIUmRMZpwhVN1Nxj">0%</span>
+            <div class="mini-bar" data-page-node-id="ZGDsbCUpth69zPGMHXBFxz"><div class="mini-fill" id="relaxFill" style="background:#7ee08a" data-page-node-id="SiJXZDIDqd8hxVBKzbsOSQ"></div></div>
+          </div>
+          <div class="mini" data-page-node-id="Y99vydwO3qXELy1ky972XI">
+            <span class="mini-name" data-page-node-id="hTys630FvYQkHqAcRWfG6G">cGMP 浓度</span>
+            <span class="mini-val" id="cgmpVal" data-page-node-id="mgyZOKcfvsXqiKKCbraFKb">0</span>
+            <div class="mini-bar" data-page-node-id="CjgjU7PtGxAMS2ixQIrUoc"><div class="mini-fill" id="cgmpFill" style="background:#4dd0c7" data-page-node-id="HxMM5iVHza4LMBRrIfHsjb"></div></div>
+          </div>
+          <div class="mini" data-page-node-id="k3K0xXI9rZC82eVJpCjbFF">
+            <span class="mini-name" data-page-node-id="7SgiKPlmKYOqXJ5YXv8djq">GTP 能量池</span>
+            <span class="mini-val" id="gtpVal" data-page-node-id="tttU0yrgHMT4mmEz4Fmdcm">1200</span>
+            <div class="mini-bar" data-page-node-id="3UJVHCHz9ovN7DxIvwr0bd"><div class="mini-fill" id="gtpFill" style="background:#ffd479" data-page-node-id="hJvTtBVPPGTVibnaFGExIT"></div></div>
+          </div>
+        </div>
       </div>
 
-      <div class="panel" data-page-node-id="XDDi2wRMfnKWGkiCxXA5Um">
-        <div class="panel-head" data-page-node-id="pFzWcT7zzC2DmlQNlWAxWS"><span data-page-node-id="AaVrATfOLl3liAGGo0gp1Z">浓度动态</span><span class="panel-tag mono" id="tickTag" data-page-node-id="6tPNXghgmSryOULFLSM8qU">10 Hz</span></div>
-        <div class="chart-wrap" data-page-node-id="E02jFKNfyoqWBDFkrhsqlo"><canvas id="chart" data-page-node-id="PqPctx7GK74qDDyS9WzMkt"></canvas></div>
+      <div class="panel dock" data-page-node-id="0WMDoobBCGCgPTnOsWjKGC">
+        <div class="panel-head" data-page-node-id="lZk09RNKbSZJaABqUFJTlc">
+          <span data-page-node-id="HiAsc3T4gXTyLNcDK0NkQ4">道具栏</span><span class="panel-tag" data-page-node-id="ojHKxB9GOAo7bmlLmYNB1K">点击投放 · 数字键 1–4</span>
+        </div>
+        <div class="dock-items" id="dock" data-page-node-id="CEuWyDMgsoiye5fwAIwhrY"></div>
       </div>
 
-      <div class="panel grow" id="inspectorPanel" data-page-node-id="l8PwcCpMB7lpEwIKRgHdLu">
-        <div class="panel-head" data-page-node-id="GAT5fRyfX7lpCEYRErwEW3"><span id="inspectorTitle" data-page-node-id="2DgmRO3Vgxd2cO4xaSJIz4">节点档案</span></div>
-        <div class="inspector" id="inspector" data-page-node-id="g9QgCsIHxpAldCxS68cjcB"></div>
+      <div class="panel grow" id="inspectorPanel" data-page-node-id="h0ihIQUIlOhmjZ4GdAqgW0">
+        <div class="panel-head" data-page-node-id="Sm3Jup36TrfFCWpNO4ldwK"><span id="inspectorTitle" data-page-node-id="4runyh0ADVDj7Vlz4oqzVn">节点档案</span></div>
+        <div class="inspector" id="inspector" data-page-node-id="PlbauhqTeuCo4aDCLVTZB8"></div>
       </div>
 
-      <div class="panel" data-page-node-id="mH1n1Th74GSu0fviRFyfg7">
-        <div class="panel-head" data-page-node-id="MhyEK0wA7kuEe3RnAALeAK"><span data-page-node-id="OCA07QVi9xSGVeCuPp6TE4">事件流水</span></div>
-        <div class="log" id="log" data-page-node-id="ztNdZIaxnMKykKfw6ThFaJ"></div>
+      <div class="panel" data-page-node-id="524EkVNMOvp1qsiSsxUYBe">
+        <div class="panel-head" data-page-node-id="DjmJXTamKlPHnGqDMr8zpR"><span data-page-node-id="KCdBQCHs5JKZ5EVC9A9uKu">事件流水</span></div>
+        <div class="log" id="log" data-page-node-id="9hvA78A3FB3r1dRsypQAcx"></div>
       </div>
     </aside>
+
+    <section class="panel trend" data-page-node-id="Z4oCHo2Zu57s6FpJHkee3R">
+      <div class="panel-head" data-page-node-id="1Wol3lf9ASVA1PoE1w6zDc"><span id="trendTitle" data-page-node-id="u9mwMnqNNMpQt8j7dUAiBV">浓度动态</span><span class="panel-tag mono" id="tickTag" data-page-node-id="wCLl5G8VMcViiHZ5nP3E1R">10 Hz</span></div>
+      <div class="chart-wrap" data-page-node-id="2b0ly9MY59Dq9DA6dMzgUd"><canvas id="chart" data-page-node-id="jNM7UIB8frD79Xz0boDiqx"></canvas></div>
+    </section>
   </main>
 
-  <div class="modal" id="modal" hidden data-page-node-id="0YrKPtjm2MooCx4Rn3q3SO">
-    <div class="modal-card" id="modalCard" data-page-node-id="GKFcW9cOkD5GGgpg1TKEiz"></div>
+  <div class="modal" id="modal" hidden data-page-node-id="gH7Q2eOjN6lbMssRTgH8Lh">
+    <div class="modal-card" id="modalCard" data-page-node-id="BAuQhbkMsiZLLz0pHP5APe"></div>
   </div>
 
-  <div class="modal" id="briefModal" data-page-node-id="y3PJTHJP7sUKLy3QGf57qn">
-    <div class="modal-card brief-card" id="briefCard" data-page-node-id="ET9WIWtZT9TzdyNafqThDw"></div>
+  <div class="modal" id="briefModal" data-page-node-id="QYDs3DFFKggZjb49jNCc2D">
+    <div class="modal-card brief-card" id="briefCard" data-page-node-id="NEoKzGXb3hYzmcIQzOdCx3"></div>
   </div>
 
 </div>
@@ -364,8 +381,8 @@ __MODULES__["engine.js"] = (function () {
  *
  * 如果你只想读懂一个函数，从 Simulator.tick() 开始；它就是每 100ms 发生一次的"心跳"。
  */
-const TICK_MS = 100;
-const TPS = 1000 / TICK_MS; // 每秒逻辑帧数 = 10
+const TICK_MS = 100; // 每个 tick 100ms
+const TPS = 1000 / TICK_MS; // 每秒逻辑帧数 = 10 ，每秒 10 个 tick
 /* ==========================================================================
  * TUNING —— 引擎机制常量
  * --------------------------------------------------------------------------
@@ -1459,18 +1476,30 @@ const METRICS = [
  *             key   存在 history 里的键名（ui.js 读峰值时用的是 h.cGMP）
  *             label 图例文字
  *             color 曲线颜色
+ *             dash  线型（canvas setLineDash 数组），不填 = 实线
  *             取值来源三选一（与引擎 _readValue 的约定一致）：
  *               { kind:'node',   id:'cGMP', prop:'count' | 'activation' }
  *               { kind:'metric', id:'Ca' }
  *               { kind:'pool',   id:'GTP' }
  *   想多画一条曲线（比如把 GTP 也画上去），往 series 里加一行即可，
  *   采样和绘制会同时生效，不用改 engine.js 或 render.js。
+ *
+ * 【这三条激活度曲线为什么能直接共用 0–160 的纵轴】
+ *   sGC / PDE5 / PKG 取的是 prop:'activation'（0–100 的激活度），
+ *   Ca 是 0–100 的指标、cGMP 是分子计数 —— 实测三者同处一个量级，
+ *   没必要开第二套纵轴（双轴最容易让人误读大小关系）。
+ *   它们靠「颜色 + 线型」两两区分：实线=浓度/分子数，虚线类=激活度 %。
  */
 const CHART = {
     max: 160,
     series: [
         { key: 'Ca', label: 'Ca²⁺', color: '#ff7a6b', kind: 'metric', id: 'Ca' },
         { key: 'cGMP', label: 'cGMP', color: '#4dd0c7', kind: 'node', id: 'cGMP', prop: 'count' },
+        // ↓ 新增三条激活度曲线。画布上 sGC 是青色、PDE5 是红色，与上面两条撞色，
+        //   所以这里另配色（紫/琥珀/粉），并各配一种线型作为第二重区分。
+        { key: 'sGC', label: 'sGC(%)', color: '#b39dff', dash: [7, 4], kind: 'node', id: 'sGC', prop: 'activation' },
+        { key: 'PDE5', label: 'PDE5(%)', color: '#ffd479', dash: [2, 3], kind: 'node', id: 'PDE5', prop: 'activation' },
+        { key: 'PKG', label: 'PKG(%)', color: '#ff9de2', dash: [10, 3, 2, 3], kind: 'node', id: 'PKG', prop: 'activation' },
     ],
 };
 /**
@@ -2172,6 +2201,7 @@ class Chart {
             return;
         const n = hist.length;
         const xOf = (i) => pad.l + (i / Math.max(1, n - 1)) * iw;
+        // 端点圆点先统一画，再统一画数值标注 —— 标注要在最后做防重叠，不能被曲线盖住
         for (const s of series) {
             ctx.beginPath();
             for (let i = 0; i < n; i++) {
@@ -2180,29 +2210,65 @@ class Chart {
             }
             ctx.strokeStyle = s.color;
             ctx.lineWidth = 1.8;
+            ctx.setLineDash(s.dash || []); // 线型：不配置就是实线
             ctx.stroke();
-            // 当前值端点
+            ctx.setLineDash([]);
             const lastY = yOf(hist[n - 1][s.key]);
             ctx.beginPath();
             ctx.arc(xOf(n - 1), lastY, 3, 0, Math.PI * 2);
             ctx.fillStyle = s.color;
             ctx.fill();
-            ctx.textAlign = 'left';
-            ctx.fillStyle = s.color;
-            ctx.font = '10px ui-monospace, monospace';
-            // 端点标注取「当前实时值」，不走 history —— history 是每 2 tick 才存一条的
-            const lv = this.sim._readValue(s).toFixed(0);
-            ctx.fillText(lv, pad.l + iw + 6, lastY + 3);
         }
-        // 图例
+        /* 右侧端点标注：每条曲线标自己的真实数值（不走 history ——
+           history 是每 2 tick 才存一条的，端点要的是当前实时值）。
+           曲线多了以后几个标注会叠在一起，这里按 y 排序后把挨太近的推开，
+           整组超出绘图区再整体回推，保证每个数字都读得到。 */
+        const marks = series.map((s) => ({
+            y: yOf(hist[n - 1][s.key]),
+            color: s.color,
+            text: this.sim._readValue(s).toFixed(0),
+        })).sort((a, b) => a.y - b.y);
+        const GAP = 11;
+        for (let i = 1; i < marks.length; i++) {
+            if (marks[i].y - marks[i - 1].y < GAP)
+                marks[i].y = marks[i - 1].y + GAP;
+        }
+        const bottom = pad.t + ih;
+        const over = marks.length ? marks[marks.length - 1].y - bottom : 0;
+        if (over > 0)
+            for (const m of marks)
+                m.y -= over;
+        if (marks.length && marks[0].y < pad.t) {
+            const up = pad.t - marks[0].y;
+            for (const m of marks)
+                m.y = Math.min(bottom, m.y + up);
+        }
+        ctx.textAlign = 'left';
+        ctx.font = '10px ui-monospace, monospace';
+        for (const m of marks) {
+            ctx.fillStyle = m.color;
+            ctx.fillText(m.text, pad.l + iw + 6, m.y + 3);
+        }
+        // 图例：宽度按实际文字长度累加，放不下就换行（曲线多的时候不会挤成一坨）
         ctx.textAlign = 'left';
         ctx.font = '10px ui-sans-serif, system-ui';
-        let lx = pad.l + 4;
+        let lx = pad.l + 4, ly = pad.t + 6;
         for (const s of series) {
+            const tw = ctx.measureText(s.label ?? s.key).width;
+            if (lx + 12 + tw > pad.l + iw) {
+                lx = pad.l + 4;
+                ly += 13;
+            }
             ctx.fillStyle = s.color;
-            ctx.fillRect(lx, pad.t + 2, 8, 2.5);
-            ctx.fillText(s.label, lx + 12, pad.t + 6);
-            lx += 52;
+            ctx.setLineDash(s.dash || []);
+            ctx.beginPath();
+            ctx.moveTo(lx, ly - 1.5);
+            ctx.lineTo(lx + 16, ly - 1.5);
+            ctx.lineWidth = 1.8;
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillText(s.label ?? s.key, lx + 20, ly + 3);
+            lx += 20 + tw + 14;
         }
     }
 }
@@ -2300,6 +2366,10 @@ class UI {
         this.el.caGoal.textContent = level.goal.target;
         this.el.caSafe.style.width = `${(level.goal.target / level.chart.max) * 100}%`;
         this.el.caTarget.style.left = `${(level.goal.target / level.chart.max) * 100}%`;
+        // 图表标题跟着 chart.series 走：以后加/删曲线，标题自动同步，不用回来改文案
+        const tt = $('trendTitle');
+        if (tt)
+            tt.textContent = `浓度动态 · ${level.chart.series.map((s) => s.label ?? s.key).join(' · ')}`;
         this.el.btnPause.onclick = () => this.ctx.togglePause();
         this.el.btnSpeed.onclick = () => this.ctx.cycleSpeed();
         this.el.btnReset.onclick = () => this.ctx.reset();
@@ -2372,15 +2442,15 @@ class UI {
         this.el.dock.innerHTML = level.drugs.map((d) => {
             const st = sim.drugState.get(d.id);
             const left = d.charges - st.uses;
-            return `<button class="drug" data-drug="${d.id}" ${left <= 0 ? 'disabled' : ''}>
-        <div class="dicon" style="background:${d.color}1f;color:${d.color}">${ICONS[d.icon] || ICONS.pill}</div>
-        <div style="min-width:0">
-          <div class="dname">${d.name}</div>
-          <div class="den">${d.en}</div>
-          <div class="ddesc">${d.desc}</div>
-        </div>
+            // 右栏是 372px 窄列，道具卡片只留「图标 + 名字 + 快捷键 + 剩余次数」。
+            // 完整说明（d.desc）挂到 title 上，hover 可见；投放后画布上也会出现对应节点，
+            // 点开节点档案能看到同一段文字 —— 信息没有真的丢，只是换了个地方。
+            return `<button class="drug" data-drug="${d.id}"
+        title="${d.name}（${d.en}）· 快捷键 ${d.hotkey}\n${d.desc}" ${left <= 0 ? 'disabled' : ''}>
+        <span class="dicon" style="background:${d.color}1f;color:${d.color}">${ICONS[d.icon] || ICONS.pill}</span>
+        <span class="dname">${d.name}</span>
         <span class="dkey">${d.hotkey}</span>
-        <span class="dcount">${left}/${d.charges}</span>
+        <span class="dcount${left <= 0 ? ' out' : ''}">${left}/${d.charges}</span>
       </button>`;
         }).join('');
         this.el.dock.querySelectorAll('.drug').forEach((b) => {

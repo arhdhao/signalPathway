@@ -267,6 +267,9 @@ export interface ChartSeries {
   key: string;
   label?: string;
   color?: string;
+  /** 线型（canvas setLineDash 的数组）。不填 = 实线。
+   *  同图曲线多了以后只靠颜色不够分（尤其色觉障碍），线型是第二重区分。 */
+  dash?: number[];
   kind: 'node' | 'metric' | 'pool';
   id: string;
   prop?: 'count' | 'activation';
