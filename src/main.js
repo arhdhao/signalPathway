@@ -20,7 +20,7 @@
  */
 
 import { Simulator, TICK_MS } from './engine.js';
-import { LEVEL_NO_CGMP } from './pathways/nocgmp.js';
+import { LEVEL_NO_CGMP } from './pathways/nocgmp/index.js';
 import { Renderer, Chart } from './render.js';
 import { UI } from './ui.js';
 

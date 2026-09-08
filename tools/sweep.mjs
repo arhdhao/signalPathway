@@ -3,7 +3,7 @@
  *   node tools/sweep.mjs
  * ==========================================================================*/
 import { Simulator, TPS } from '../build/engine.js';
-import { LEVEL_NO_CGMP as BASE } from '../build/pathways/nocgmp.js';
+import { LEVEL_NO_CGMP as BASE } from '../build/pathways/nocgmp/index.js';
 
 const clone = (o) => JSON.parse(JSON.stringify(o));
 

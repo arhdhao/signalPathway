@@ -10,7 +10,14 @@ Signaling Pathway Simulator —— 细胞信号转导模拟游戏。
 ## 技术栈（已定，不要轻易改）
 - **纯 HTML5 + Canvas 2D，不引入 Cocos / Godot / 游戏引擎**
 - **源码为 TypeScript**（2026-09-06 迁入）：逻辑核心 `src/engine.ts` + 关卡数据
-  `src/pathways/nocgmp.ts` 已全面类型化；`render.js/ui.js/main.js` 暂仍是 .js（allowJs 一并编译）
+  `src/pathways/nocgmp/` 已全面类型化；`render.js/ui.js/main.js` 暂仍是 .js（allowJs 一并编译）
+- **关卡 = 文件夹，不是单文件**（2026-09-08 拆分）：
+  `nocgmp/{view,biology,interaction,kinetics,game,copy,index}.ts` + README + 两份参数文档。
+  按「变化的理由」分六层，`index.ts` 只做按 id 查表合并。
+  build.js 是自动依赖图 DFS，拆子目录零改造；但孤儿文件会被 `unreachable` 剔除，
+  新文件必须被 index.ts 引用。
+  ⚠️ `index.ts` 的 NODE_ORDER / REACTION_ORDER **顺序有意义**（决定绘制层级与随机数消耗顺序），
+  重排会让整局推演结果改变。
 - **构建链（三连）**：
   1. `tsc -p tsconfig.json` → 严格类型检查 + 编译 ESM 产物到 `build/`
   2. `node tools/build.js` → 从 `build/` 打包单文件 `dist/信号通路模拟器.html`
@@ -34,6 +41,20 @@ Signaling Pathway Simulator —— 细胞信号转导模拟游戏。
   改完参数须先 `npm run build:ts`
 - 参数配平靠脚本扫，不靠手调（一阶动力学的饱和特性反直觉，手调必然踩坑）
 - dev 调试 → `node tools/dev-server.mjs` + 另开终端 `npm run watch`（tsc 监听实时重编到 build/）
+- **纯重构的验收标准**：动手前先 `node tools/balance.mjs > 基线.txt`，改完 diff 必须逐行一致
+  （注意过滤 MODULE_TYPELESS 那几行 warning，带 PID 会假报差异）。
+  「架构改变 ≠ 模拟规则改变」—— 数字变了就是 index.ts 漏搬字段
+
+## 更换求解器（Gillespie，arhdhao 2026-09-08 选的远期方向）
+- **②③⑤⑥ 四层与求解器无关**，换求解器时原样复用；只有 `kinetics.ts` 整个重写。
+  它的 band/hill/power/amplify/slots 全是骰子求解器的方言，与 Vmax/Km/kcat 语义正交，
+  **不能做字段映射，只能换一套**。文件夹结构已为此留位（`kinetics/` 子目录）。
+- **第一道坎不在引擎，在 `biology.ts`**：effect 四枚举是「桌游动词」不是化学计量，
+  Gillespie 要 `PKG + MLCP → PKG + MLCP_p`。需补 stoichiometry 或写翻译表。
+- **第二道坎是 tick 语义**：现固定 100ms（10Hz），Gillespie 是变步长事件驱动；
+  render 动画 / CHART 每 2 tick 采样 / UI 倒计时全要改，渲染层工作量可能大于引擎。
+- 反向利好：`slots` 竞争性抑制在 Gillespie 里是自然涌现的（两底物争同一酶速率常数），
+  不用专门写 `_resolveConsume`。
 
 ## 扩展方向（PDF 里的远期规划）
 - 解析 KEGG KGML / Reactome 数据文件自动生成关卡拓扑

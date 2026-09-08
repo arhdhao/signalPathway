@@ -4,7 +4,7 @@
  * 验证四个场景能否自然涌现出 PDF 里描述的结局。
  * ==========================================================================*/
 import { Simulator, TPS } from '../build/engine.js';
-import { LEVEL_NO_CGMP } from '../build/pathways/nocgmp.js';
+import { LEVEL_NO_CGMP } from '../build/pathways/nocgmp/index.js';
 
 const mk = (seed = 20260904) => new Simulator(LEVEL_NO_CGMP, { seed });
 
