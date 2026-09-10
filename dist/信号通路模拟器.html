@@ -375,7 +375,7 @@ __MODULES__["engine.js"] = (function () {
  *                 "占座不退出"把真正的底物保护下来 —— 这就是竞争性抑制在代码里的表达。
  *   · "双缓冲"    Simulator.tick() 里所有反应"读 this 快照、写 next 缓冲"，末尾一次性提交。
  *                 保证信号传播严格 1 tick 延迟，消除遍历顺序带来的"幽灵先手"——
- *                 反馈回路密集的通路尤其依赖它（见 gifts/ 里 Gemini 评审第二条）。
+ *                 反馈回路密集的通路尤其依赖它（见 设计资料/外部AI的建议与评价/ 里 Gemini 评审第二条）。
  *   · "三种失败"  能量枯竭 / 脱靶毒性 / 无响应超时，加上"成功"共四种结局。
  *                 判定配方在关卡的 OUTCOME 里，判定引擎在 _judge() 里。
  *
@@ -398,7 +398,7 @@ const TPS = 1000 / TICK_MS; // 每秒逻辑帧数 = 10 ，每秒 10 个 tick
  *
  * 这里的数字以前是直接写在代码里的裸数字（所谓魔法数字），现在提上来并命名：
  * 好处是调引擎手感时只改这一处，而且看名字就知道它在管什么。
- * ⚠️ 改动这些值会影响【所有关卡】，改完要跑 tools/balance.mjs 与 tools/smoke.mjs。
+ * ⚠️ 改动这些值会影响【所有关卡】，改完要跑 tools/balance.mjs 与 tools/smoke-test.mjs。
  * ==========================================================================*/
 const TUNING = {
     /** 激活度的满值。激活度是一个 0–100 的抽象刻度，不是真实浓度 —— 别当物理单位看。 */
@@ -743,7 +743,7 @@ class Simulator {
         // —— 双缓冲：把当前状态快照到 next 缓冲区 ——
         // 之后所有反应都是"读 this（本 tick 开始的快照）、写 next（下一帧）"，
         // 这样无论 reactions 数组怎么排序、通路里有没有反馈环，信号传播都严格 1 tick 延迟，
-        // 不再有"遍历顺序导致的幽灵先手"（详见 gifts/ 里 Gemini 评审的第二条）。
+        // 不再有"遍历顺序导致的幽灵先手"（详见 设计资料/外部AI的建议与评价/ 里 Gemini 评审的第二条）。
         for (const m of this.nodes.values()) {
             m.nextActivation = m.activation;
             m.nextCount = m.count;
@@ -1112,8 +1112,8 @@ class Simulator {
 return { TICK_MS: TICK_MS, TPS: TPS, TUNING: TUNING, fillTemplate: fillTemplate, RNG: RNG, Status: Status, STATUS_INACTIVE: STATUS_INACTIVE, STATUS_ACTIVE: STATUS_ACTIVE, STATUS_MUTED: STATUS_MUTED, MoleculeTemplate: MoleculeTemplate, Molecule: Molecule, Reaction: Reaction, Simulator: Simulator };
 })();
 
-/* ================================ pathways/nocgmp/view.js ================================ */
-__MODULES__["pathways/nocgmp/view.js"] = (function () {
+/* ================================ pathways/nocgmp/01view.js ================================ */
+__MODULES__["pathways/nocgmp/01view.js"] = (function () {
 /* ══════════════════════════════════════════════════════════════════════════
  * ① VIEW —— 屏幕呈现层
  *    纯视觉。这一层的任何改动都不可能影响模拟结果，可以放心大胆地调。
@@ -1182,8 +1182,8 @@ const VIEW = {
 return { VIEW: VIEW };
 })();
 
-/* ================================ pathways/nocgmp/biology.js ================================ */
-__MODULES__["pathways/nocgmp/biology.js"] = (function () {
+/* ================================ pathways/nocgmp/02biology.js ================================ */
+__MODULES__["pathways/nocgmp/02biology.js"] = (function () {
 /* ══════════════════════════════════════════════════════════════════════════
  * ② BIOLOGY —— 生物学事实层
  *    ⚠️ 这一层【一个数字都不能有】。
@@ -1275,8 +1275,8 @@ const BIOLOGY = {
 return { BIOLOGY: BIOLOGY };
 })();
 
-/* ================================ pathways/nocgmp/interaction.js ================================ */
-__MODULES__["pathways/nocgmp/interaction.js"] = (function () {
+/* ================================ pathways/nocgmp/03interaction.js ================================ */
+__MODULES__["pathways/nocgmp/03interaction.js"] = (function () {
 /* ══════════════════════════════════════════════════════════════════════════
  * ③ INTERACTION —— 碰撞资格层（标签密码表）
  *
@@ -1310,8 +1310,8 @@ const TAGS = {
 return { TAGS: TAGS };
 })();
 
-/* ================================ pathways/nocgmp/kinetics.js ================================ */
-__MODULES__["pathways/nocgmp/kinetics.js"] = (function () {
+/* ================================ pathways/nocgmp/04kinetics.js ================================ */
+__MODULES__["pathways/nocgmp/04kinetics.js"] = (function () {
 /* ══════════════════════════════════════════════════════════════════════════
  * ④ KINETICS —— 动力学层
  *    回答「这个作用多强、多快、多容易发生」。
@@ -1413,9 +1413,9 @@ const KINETICS = {
 return { KINETICS: KINETICS };
 })();
 
-/* ================================ pathways/nocgmp/game.js ================================ */
-__MODULES__["pathways/nocgmp/game.js"] = (function () {
-const { VIEW } = __MODULES__["pathways/nocgmp/view.js"];
+/* ================================ pathways/nocgmp/05game.js ================================ */
+__MODULES__["pathways/nocgmp/05game.js"] = (function () {
+const { VIEW } = __MODULES__["pathways/nocgmp/01view.js"];
 /* ══════════════════════════════════════════════════════════════════════════
  * ⑤ GAME —— 游戏层
  *    「玩家怎么玩」的一切：时长、胜负、红线、资源、药物、可调参数。
@@ -1427,7 +1427,7 @@ const { VIEW } = __MODULES__["pathways/nocgmp/view.js"];
  *      玩家能调哪些滑块              → EDITABLE
  *      指标怎么算 / 曲线画什么        → METRICS / CHART
  * ══════════════════════════════════════════════════════════════════════════*/
-/* import from ./view.js */
+/* import from ./01view.js */
 /**
  * 关卡规则。调难度主要动这一块。
  */
@@ -1443,7 +1443,7 @@ const RULES = {
     pulse: { node: 'NO', period: 16, amount: 30, cap: 90 },
     /**
      * 全局能量池 GTP —— 合成 cGMP 的「货币」。上限就是初始值。
-     * 调参血泪史（详见 .workbuddy/memory/2026-09-04.md 与 gifts/ 里的 Gemini 评审）：
+     * 调参血泪史（详见 .workbuddy/memory/2026-09-04.md 与 设计资料/外部AI的建议与评价/ 里的 Gemini 评审）：
      *   · 早期试过 600 / 再生 1.2 → 连基础 sGC 本底合成都把池子烧穿，细胞在正常状态下
      *     也会「饿死」，导致任何玩法都通不了关；且 GTP 因能量守恒封顶而停在低位不再触 0，
      *     能量枯竭死法反而失效，已弃。
@@ -1640,8 +1640,8 @@ const EDITABLE = {
 return { RULES: RULES, OUTCOME: OUTCOME, METRICS: METRICS, CHART: CHART, DRUGS: DRUGS, EDITABLE: EDITABLE };
 })();
 
-/* ================================ pathways/nocgmp/copy.js ================================ */
-__MODULES__["pathways/nocgmp/copy.js"] = (function () {
+/* ================================ pathways/nocgmp/06copy.js ================================ */
+__MODULES__["pathways/nocgmp/06copy.js"] = (function () {
 /* ══════════════════════════════════════════════════════════════════════════
  * ⑥ COPY —— 文案层
  *    纯文本，改这里不影响任何逻辑。
@@ -1697,12 +1697,12 @@ return { COPY: COPY };
 
 /* ================================ pathways/nocgmp/index.js ================================ */
 __MODULES__["pathways/nocgmp/index.js"] = (function () {
-const { VIEW } = __MODULES__["pathways/nocgmp/view.js"];
-const { BIOLOGY } = __MODULES__["pathways/nocgmp/biology.js"];
-const { TAGS } = __MODULES__["pathways/nocgmp/interaction.js"];
-const { KINETICS } = __MODULES__["pathways/nocgmp/kinetics.js"];
-const { RULES, OUTCOME, METRICS, CHART, DRUGS, EDITABLE } = __MODULES__["pathways/nocgmp/game.js"];
-const { COPY } = __MODULES__["pathways/nocgmp/copy.js"];
+const { VIEW } = __MODULES__["pathways/nocgmp/01view.js"];
+const { BIOLOGY } = __MODULES__["pathways/nocgmp/02biology.js"];
+const { TAGS } = __MODULES__["pathways/nocgmp/03interaction.js"];
+const { KINETICS } = __MODULES__["pathways/nocgmp/04kinetics.js"];
+const { RULES, OUTCOME, METRICS, CHART, DRUGS, EDITABLE } = __MODULES__["pathways/nocgmp/05game.js"];
+const { COPY } = __MODULES__["pathways/nocgmp/06copy.js"];
 /* ══════════════════════════════════════════════════════════════════════════
  * 组装车间 —— 按 id 把六层查表合并，拼成引擎认识的扁平结构
  *
@@ -1718,12 +1718,12 @@ const { COPY } = __MODULES__["pathways/nocgmp/copy.js"];
  *  因为引擎里 MoleculeTemplate / Reaction 是用 Object.assign(默认值, 配置) 建的，
  *  如果配置里带了 undefined，会把默认值覆盖成 undefined，渲染时可能炸。
  * ══════════════════════════════════════════════════════════════════════════*/
-/* import from ./view.js */
-/* import from ./biology.js */
-/* import from ./interaction.js */
-/* import from ./kinetics.js */
-/* import from ./game.js */
-/* import from ./copy.js */
+/* import from ./01view.js */
+/* import from ./02biology.js */
+/* import from ./03interaction.js */
+/* import from ./04kinetics.js */
+/* import from ./05game.js */
+/* import from ./06copy.js */
 const NODE_ORDER = ['NO', 'sGC', 'cGMP', 'PKG', 'MLCP', 'PDE5', 'Sildenafil'];
 const REACTION_ORDER = ['r1', 'r2', 'r3', 'r4', 'r5', 'r6'];
 /** 去掉值为 undefined 的键，好让引擎里的类默认值正常生效 */
